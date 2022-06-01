@@ -67,6 +67,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
         bufferedImage = null;
+        this.InBaoCao.setEnabled(false);
     }
 
     /**
@@ -285,6 +286,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
     private void XemBieuDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XemBieuDoActionPerformed
         String loai = (String) LoaiBaoCaoField.getSelectedItem();
+        this.InBaoCao.setEnabled(true);
         if (NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null) {
             if ("Doanh thu theo ngày".equals(loai)) {
                 this.veBieuDo("Doanh thu ngày");
@@ -298,6 +300,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     private void InBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InBaoCaoActionPerformed
         // TODO add your handling code here:
         String loai = (String) LoaiBaoCaoField.getSelectedItem();
+        this.InBaoCao.setEnabled(false);
         ArrayList<BaoCaoDoanhThu> hd = ThongKeDAO.getInstance().getDoanhThuByHoaDon(new Date(NgayBatDauField.getDate().getTime()), new Date(NgayKetThucField.getDate().getTime()));
         if (NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null && hd != null) {
             if ("Doanh thu theo ngày".equals(loai)) {
@@ -670,10 +673,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             doc.add(prgMuc2);
             Image image = Image.getInstance(writer, bufferedImage, 1.0f);
             image.setAlignment(Element.ALIGN_CENTER);
-            doc.add(image);
-            
-            
-            
+            doc.add(image);                        
             doc.close();
             writer.close();
 
