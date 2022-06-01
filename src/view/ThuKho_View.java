@@ -4,6 +4,8 @@
  */
 package view;
 
+import dao.NhanVienDAO;
+
 /**
  *
  * @author Thanh PC
@@ -22,6 +24,7 @@ public class ThuKho_View extends javax.swing.JFrame {
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
         MaNhanVienField.setText(maNV);
+        TenNhanVienField.setText(NhanVienDAO.getInstance().getById(maNV).getTenNhanVien());
         
     }
 
@@ -86,6 +89,7 @@ public class ThuKho_View extends javax.swing.JFrame {
         MaNhanVienField.setEditable(false);
         MaNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         MaNhanVienField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        MaNhanVienField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MaNhanVienField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         MaNhanVienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -96,6 +100,7 @@ public class ThuKho_View extends javax.swing.JFrame {
         TenNhanVienField.setEditable(false);
         TenNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         TenNhanVienField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TenNhanVienField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TenNhanVienField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         TenNhanVienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -106,6 +111,7 @@ public class ThuKho_View extends javax.swing.JFrame {
         SoNgayField.setEditable(false);
         SoNgayField.setBackground(new java.awt.Color(255, 255, 255));
         SoNgayField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        SoNgayField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         SoNgayField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         SoNgayField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -180,6 +186,11 @@ public class ThuKho_View extends javax.swing.JFrame {
         MatKhauBtn.setForeground(new java.awt.Color(255, 255, 255));
         MatKhauBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/password.png"))); // NOI18N
         MatKhauBtn.setText("Đổi mật khẩu");
+        MatKhauBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MatKhauBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,6 +260,12 @@ public class ThuKho_View extends javax.swing.JFrame {
     private void BaoCaoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaoCaoBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BaoCaoBtnActionPerformed
+
+    private void MatKhauBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MatKhauBtnActionPerformed
+        // TODO add your handling code here:
+        new DoiMatKhau(this.phanQuyen, this.tenTaiKhoan);
+        this.dispose();
+    }//GEN-LAST:event_MatKhauBtnActionPerformed
 
     /**
      * @param args the command line arguments

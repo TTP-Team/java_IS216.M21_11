@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.sql.Date;
 import oracle.jdbc.OracleTypes;
 
-public class ChamCongDAO{
-    
+public class ChamCongDAO {
+
     public static ChamCongDAO getInstance() {
         return new ChamCongDAO();
     }
-    
+
     public ArrayList<ChamCong> getAll() {
         ArrayList<ChamCong> ketQua = new ArrayList<>();
         String sql = "{call getAllChamCong(?)}";
@@ -41,6 +41,7 @@ public class ChamCongDAO{
             return null;
         }
     }
+
     public ArrayList<ChamCong> getByMaNhanVien(String t) {
         ArrayList<ChamCong> ketQua = new ArrayList<>();
         String sql = "{call getChamCongByMaNhanVien(?,?)}";
@@ -63,6 +64,7 @@ public class ChamCongDAO{
             return null;
         }
     }
+
     public ArrayList<ChamCong> getByTenNhanVien(String t) {
         ArrayList<ChamCong> ketQua = new ArrayList<>();
         String sql = "{call getChamCongByTenNhanVien(?,?)}";
@@ -85,6 +87,7 @@ public class ChamCongDAO{
             return null;
         }
     }
+
     public ArrayList<ChamCong> getByNgayLamViec(Date t) {
         ArrayList<ChamCong> ketQua = new ArrayList<>();
         String sql = "{call getChamCongByNgayLamViec(?,?)}";
@@ -105,6 +108,23 @@ public class ChamCongDAO{
         } catch (SQLException e) {
             System.out.println("Error: " + e);
             return null;
+        }
+    }
+
+    public int getSoNgayLamViecThang(String t) {
+        String sql = "{call ?:=getSoNgayLamViec(?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(2, t);
+            cstm.registerOutParameter(1, java.sql.Types.INTEGER);
+            cstm.execute();
+            int soNgay = cstm.getInt(1);
+            con.close();
+            cstm.close();
+            return soNgay;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return 0;
         }
     }
 }

@@ -26,6 +26,8 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
     private String tenTaiKhoan;
     private DefaultTableModel model;
     private String chucNang;
+    private String regSDT;
+    private String regEmail;
     
     /**
      * Creates new form QuanLyNhanVien
@@ -39,6 +41,8 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         this.VoHieuHoaBtn(false);
         NgaySinhField.setDateFormatString("dd/MM/yyyy");
         this.setTimKiemField();
+        regSDT = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
+        regEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
     }
@@ -172,7 +176,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             DanhSachKhachHang.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 102));
 
@@ -548,8 +552,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         QuayLaiBtn.setForeground(new java.awt.Color(255, 255, 255));
         QuayLaiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         QuayLaiBtn.setText("Thoát");
-        QuayLaiBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        QuayLaiBtn.setOpaque(false);
         QuayLaiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QuayLaiBtnActionPerformed(evt);
@@ -625,11 +627,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         this.getAllKhachHang();
     }
     
-    private void QuayLaiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuayLaiBtnActionPerformed
-        new NhanVienBanHang_View(phanQuyen, tenTaiKhoan);
-        this.dispose();
-    }//GEN-LAST:event_QuayLaiBtnActionPerformed
-
     private void DanhSachKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DanhSachKhachHangMouseClicked
         // TODO add your handling code here:
         int index = DanhSachKhachHang.getSelectedRow();
@@ -699,9 +696,14 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
     private void LuuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuuBtnActionPerformed
         // TODO add your handling code here:\
-
-
-        if (!"".equals(HoTenField.getText())) {
+        if(!SoDienThoaiField.getText().matches(regSDT)){
+            JOptionPane.showMessageDialog(rootPane, "Định dạng số điện thoại không đúng");
+        }
+        else if(!EmailField.getText().matches(regEmail)){
+            JOptionPane.showMessageDialog(rootPane, "Định dạng email không đúng");
+        }
+        else{
+            if (!"".equals(HoTenField.getText())) {
             if ("Them".equals(this.chucNang))
                 try {
                 ThemKhachHang();
@@ -731,6 +733,8 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
         } else
             JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin");
+        }
+        
     }                                      
 
                                       
@@ -759,6 +763,12 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         } else
             this.getAllKhachHang();
     }//GEN-LAST:event_TimKiemBtnActionPerformed
+
+    private void QuayLaiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuayLaiBtnActionPerformed
+        // TODO add your handling code here:
+        new NhanVienBanHang_View(phanQuyen, tenTaiKhoan);
+        this.dispose();
+    }//GEN-LAST:event_QuayLaiBtnActionPerformed
     
     private void hienThi(ArrayList<KhachHang> t) {
         model = (DefaultTableModel) DanhSachKhachHang.getModel();

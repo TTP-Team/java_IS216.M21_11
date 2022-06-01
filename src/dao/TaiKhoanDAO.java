@@ -22,7 +22,7 @@ public class TaiKhoanDAO {
     public int update(TaiKhoan t) {
         int ketQua = 0;
         try(Connection con = JDBCUtil.getConnection()) {
-            String sql = "{call SuaTaiKhoan(?,?)}";
+            String sql = "{call SuaTrangThaiTaiKhoan(?,?)}";
             CallableStatement cstm = con.prepareCall(sql);
             cstm.setString(1, t.getTenDangNhap());
             cstm.setString(2, t.getTrangThai());
@@ -127,7 +127,6 @@ public class TaiKhoanDAO {
         }
     }
     public void lamMoiMatKhau(String t) {
-        ArrayList<TaiKhoan> ketQua = new ArrayList<>();
         String sql = "{call lamMoiMatKhau(?)}";
         try ( Connection con = JDBCUtil.getConnection()) {
             CallableStatement cstm = con.prepareCall(sql);
@@ -138,6 +137,21 @@ public class TaiKhoanDAO {
             System.out.println("Error: " + e);
         }
     }
+    
+    public void doiMatKhau(String tenDN, String mkMoi) {
+        String sql = "{call doiMatKhau(?,?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(1, tenDN);
+            cstm.setString(2, mkMoi);
+            cstm.executeUpdate();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    
+
     public int kiemTraTrangThai(String tk, String mk){
         try ( Connection con = JDBCUtil.getConnection()) {
             String sql = "{call kiemTraTaiKhoan(?,?,?,?)}";

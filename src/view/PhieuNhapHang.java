@@ -4,14 +4,12 @@
  */
 package view;
 
-import Model.ChiTietHoaDon;
 import Model.ChiTietPhieuNhap;
 import dao.ChiTietPhieuNhapDAO;
 import Model.SanPham;
 import dao.SanPhamDAO;
 import dao.PhieuNhapDAO;
 import Model.PhieuNhap;
-import Model.SuKien;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -24,9 +22,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.toedter.calendar.JDateChooser;
-import dao.ChiTietHoaDonDAO;
 import dao.NhanVienDAO;
-import dao.SuKienDAO;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.io.File;
@@ -43,6 +39,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Desktop;
 
 /**
  *
@@ -74,7 +71,9 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         this.getAllPhieuNhap();
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
-        MaNhanVienField.setText(maNV);
+         MaNhanVienField.setText(maNV);
+        TenNhanVienField.setText(NhanVienDAO.getInstance().getById(maNV).getTenNhanVien());
+        
         this.setTimKiemField();
     }
 
@@ -918,6 +917,18 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                 
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+            try {
+                File file = new File("src/reports/" + fileName + ".pdf");
+                if(!Desktop.isDesktopSupported()){
+                    System.out.println("not supported");
+                    return;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if(file.exists()){
+                    desktop.open(file);
+                }
+            } catch (Exception e) {
             }
         }
     }//GEN-LAST:event_InPNBtnActionPerformed

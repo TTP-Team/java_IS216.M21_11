@@ -33,6 +33,7 @@ import java.io.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import java.awt.Desktop;
+import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -47,6 +48,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private JDateChooser tuKhoaDate;
     private ArrayList<ChiTietHoaDon> arr_CTHD;
     private HoaDon newHoaDon;
+    
     /**
      * Creates new form HoaDonBanHang
      */
@@ -68,7 +70,8 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         }
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
-        this.MaNhanVienField.setText(maNV);
+         MaNhanVienField.setText(maNV);
+        TenNhanVienField.setText(NhanVienDAO.getInstance().getById(maNV).getTenNhanVien());
         this.setTimKiemField();
     }
 
@@ -264,6 +267,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         TinhTienBtn.setForeground(new java.awt.Color(255, 255, 255));
         TinhTienBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/pay-per-click.png"))); // NOI18N
         TinhTienBtn.setText("Tính tiền");
+        TinhTienBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TinhTienBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TinhTienBtnActionPerformed(evt);
@@ -275,6 +279,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         HuyHDBtn.setForeground(new java.awt.Color(255, 255, 255));
         HuyHDBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/delete-button.png"))); // NOI18N
         HuyHDBtn.setText("Hủy hóa đơn");
+        HuyHDBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         HuyHDBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HuyHDBtnActionPerformed(evt);
@@ -286,6 +291,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         InHDBtn.setForeground(new java.awt.Color(255, 255, 255));
         InHDBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/printer.png"))); // NOI18N
         InHDBtn.setText("In hóa đơn");
+        InHDBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         InHDBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InHDBtnActionPerformed(evt);
@@ -297,6 +303,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         HuyBtn.setForeground(new java.awt.Color(255, 255, 255));
         HuyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/cancel.png"))); // NOI18N
         HuyBtn.setText("Hủy");
+        HuyBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         HuyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HuyBtnActionPerformed(evt);
@@ -308,6 +315,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         ThoatBtn.setForeground(new java.awt.Color(255, 255, 255));
         ThoatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         ThoatBtn.setText("Thoát");
+        ThoatBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ThoatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ThoatBtnActionPerformed(evt);
@@ -1130,11 +1138,24 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 
                 doc.close();
                 writer.close();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            try {
+                File file = new File("src/reports/" + fileName + ".pdf");
+                if(!Desktop.isDesktopSupported()){
+                    System.out.println("not supported");
+                    return;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if(file.exists()){
+                    desktop.open(file);
+                }
+            } catch (Exception e) {
         }
+        }
+        
         this.ResetValue();
         this.VoHieuHoaBtn(false);
         this.getAllHoaDon();

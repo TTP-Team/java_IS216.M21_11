@@ -91,13 +91,13 @@ public class DangNhap_View extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        matKhau_Label.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        matKhau_Label.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         matKhau_Label.setForeground(new java.awt.Color(0, 0, 0));
         matKhau_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/padlock.png"))); // NOI18N
         matKhau_Label.setText("Mật khẩu");
         jPanel1.add(matKhau_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
 
-        tenDangNhap_Label.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tenDangNhap_Label.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         tenDangNhap_Label.setForeground(new java.awt.Color(0, 0, 0));
         tenDangNhap_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/User-Executive-Red-icon.png"))); // NOI18N
         tenDangNhap_Label.setText("Tên đăng nhập");
@@ -113,7 +113,7 @@ public class DangNhap_View extends javax.swing.JFrame {
         matKhau_Field.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(matKhau_Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 200, 35));
 
-        DangNhap_Btn.setBackground(new java.awt.Color(0, 153, 204));
+        DangNhap_Btn.setBackground(new java.awt.Color(0, 204, 102));
         DangNhap_Btn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         DangNhap_Btn.setForeground(new java.awt.Color(255, 255, 255));
         DangNhap_Btn.setText("Đăng nhập");
