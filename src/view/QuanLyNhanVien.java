@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.text.DateFormat;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private String tenTaiKhoan;
     private DefaultTableModel model;
     private String chucNang;
+    private String regSDT;
+    private String regEmail;
 
     /**
      * Creates new form QuanLyNhanVien
@@ -39,6 +42,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         this.VoHieuHoaBtn(false);
         NgaySinhField.setDateFormatString("dd/MM/yyyy");
         this.setTimKiemField();
+        regSDT = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
+        regEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maQL;
     }
@@ -54,6 +59,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         } else if (jRadioButton2.isSelected()) {
             gioiTinh = jRadioButton2.getText();
         }
+       
+        
         NhanVien nv = new NhanVien("", HoTenField.getText(), DiaChiField.getText(), SoDienThoaiField.getText(), EmailField.getText(), Long.parseLong(CCCDField.getText()), gioiTinh, ngaySinh, ngayVaoLam, ChucVuField.getSelectedItem().toString(), Double.parseDouble(LuongField.getText()));
         NhanVienDAO.getInstance().insert(nv);
         ResetValue();
@@ -290,6 +297,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         SoDienThoaiField.setBackground(new java.awt.Color(255, 255, 255));
         SoDienThoaiField.setForeground(new java.awt.Color(0, 0, 0));
         SoDienThoaiField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        SoDienThoaiField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SoDienThoaiFieldActionPerformed(evt);
+            }
+        });
 
         SoDienThoaiLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         SoDienThoaiLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -479,7 +491,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Từ khóa");
 
-        TimKiemBtn.setBackground(new java.awt.Color(51, 255, 153));
+        TimKiemBtn.setBackground(new java.awt.Color(0, 204, 102));
         TimKiemBtn.setForeground(new java.awt.Color(255, 255, 255));
         TimKiemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/search.png"))); // NOI18N
         TimKiemBtn.setText("Tìm kiếm");
@@ -640,8 +652,14 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void LuuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuuBtnActionPerformed
         // TODO add your handling code here:
-
-        if (!"".equals(HoTenField.getText())) {
+        if(!SoDienThoaiField.getText().matches(regSDT)){
+            JOptionPane.showMessageDialog(rootPane, "Định dạng số điện thoại không đúng");
+        }
+        else if(!EmailField.getText().matches(regEmail)){
+            JOptionPane.showMessageDialog(rootPane, "Định dạng email không đúng");
+        }
+        else{
+            if (!"".equals(HoTenField.getText())) {
             if ("Them".equals(this.chucNang))
                 try {
                 ThemNhanVien();
@@ -670,6 +688,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         } else
             JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin!");
+        
+        }
+        
     }//GEN-LAST:event_LuuBtnActionPerformed
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
@@ -757,6 +778,10 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         } else
             this.getAllNhanVien();
     }//GEN-LAST:event_TimKiemBtnActionPerformed
+
+    private void SoDienThoaiFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SoDienThoaiFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SoDienThoaiFieldActionPerformed
 
     private void hienThi(ArrayList<NhanVien> t) {
         model = (DefaultTableModel) DanhSachNhanVien.getModel();

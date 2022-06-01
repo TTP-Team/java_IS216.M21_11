@@ -12,6 +12,7 @@ import org.jfree.chart.JFreeChart;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
@@ -22,6 +23,7 @@ import dao.ThongKeDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Date;
@@ -36,6 +38,7 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+
 /**
  *
  * @author LeCongThanh
@@ -45,7 +48,10 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     /**
      * Creates new form BaoCaoThongKe
      */
-    public BaoCaoThongKe() {
+    private String phanQuyen;
+    private String tenTaiKhoan;
+    private BufferedImage bufferedImage;
+    public BaoCaoThongKe(String phanQuyen, String maNV) {
         initComponents();
         this.setVisible(true);
 
@@ -56,8 +62,12 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         long millis = System.currentTimeMillis();
         java.sql.Date ngayHienTai = new java.sql.Date(millis);
         NgayBatDauField.setDate(ngayHienTai);
-        NgayKetThucField.setDate(ngayHienTai);
+        NgayKetThucField.setDate(ngayHienTai);   
         this.veBieuDo("Doanh thu ngày");
+        this.tenTaiKhoan = maNV;
+        this.phanQuyen = phanQuyen;
+        bufferedImage = null;
+        this.InBaoCao.setEnabled(false);
     }
 
     /**
@@ -82,6 +92,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         InBaoCao = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        ThoatBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -206,16 +217,28 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        ThoatBtn.setBackground(new java.awt.Color(0, 204, 102));
+        ThoatBtn.setForeground(new java.awt.Color(255, 255, 255));
+        ThoatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
+        ThoatBtn.setText("Thoát");
+        ThoatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ThoatBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(384, 384, 384)
+                .addGap(276, 276, 276)
                 .addComponent(XemBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200)
+                .addGap(157, 157, 157)
                 .addComponent(InBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136)
+                .addComponent(ThoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -235,9 +258,11 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(XemBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(InBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ThoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(XemBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(InBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32))
         );
 
@@ -261,6 +286,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
     private void XemBieuDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XemBieuDoActionPerformed
         String loai = (String) LoaiBaoCaoField.getSelectedItem();
+        this.InBaoCao.setEnabled(true);
         if (NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null) {
             if ("Doanh thu theo ngày".equals(loai)) {
                 this.veBieuDo("Doanh thu ngày");
@@ -274,6 +300,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     private void InBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InBaoCaoActionPerformed
         // TODO add your handling code here:
         String loai = (String) LoaiBaoCaoField.getSelectedItem();
+        this.InBaoCao.setEnabled(false);
         ArrayList<BaoCaoDoanhThu> hd = ThongKeDAO.getInstance().getDoanhThuByHoaDon(new Date(NgayBatDauField.getDate().getTime()), new Date(NgayKetThucField.getDate().getTime()));
         if (NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null && hd != null) {
             if ("Doanh thu theo ngày".equals(loai)) {
@@ -285,6 +312,17 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_InBaoCaoActionPerformed
+
+    private void ThoatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThoatBtnActionPerformed
+        // TODO add your handling code here:
+        if("QL".equals(phanQuyen))
+            new QuanLy_View(phanQuyen, tenTaiKhoan);
+        else if("NVBH".equals(phanQuyen))
+            new NhanVienBanHang_View(phanQuyen, tenTaiKhoan);
+        else if("TK".equals(phanQuyen))
+            new ThuKho_View(phanQuyen, tenTaiKhoan);
+        this.dispose();
+    }//GEN-LAST:event_ThoatBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,7 +349,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                     CategoryPlot Plot = (CategoryPlot) chart.getPlot();
                     Plot.setBackgroundPaint(Color.WHITE);
                     Plot.setOutlinePaint(null);
-
+                    bufferedImage = chart.createBufferedImage(900, 600);
                     ChartPanel chartPanel = new ChartPanel(chart);
                     chartPanel.setPreferredSize(new Dimension(Panel1.getWidth(), Panel1.getHeight()));
                     Panel1.removeAll();
@@ -334,6 +372,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                     PiePlot Plot = (PiePlot) chart.getPlot();
                     Plot.setBackgroundPaint(Color.WHITE);
                     Plot.setOutlinePaint(null);
+                    bufferedImage = chart.createBufferedImage(600, 600);
                     ChartPanel chartPanel = new ChartPanel(chart);
                     chartPanel.setSize(new Dimension(Panel1.getWidth(), Panel1.getHeight()));
                     Panel1.removeAll();
@@ -498,7 +537,10 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             cellGC.setPaddingBottom(6);
             tableSP.addCell(cellGC);
             doc.add(tableSP);
-
+            Image image = Image.getInstance(writer, bufferedImage, 1.0f);
+            image.setAlignment(Element.ALIGN_CENTER);
+            image.scaleToFit(PageSize.A4);
+            doc.add(image);
             doc.close();
             writer.close();
 
@@ -623,6 +665,15 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 stt = stt + 1;
             }
             doc.add(tableSP);
+            Paragraph prgMuc2 = new Paragraph("II. Số lượng sản phẩm theo ngày:", fontTieuDe2);
+            prgMuc1.setAlignment(Element.ALIGN_LEFT);
+            prgMuc1.setIndentationLeft(30);
+            prgMuc1.setSpacingBefore(20);
+            prgMuc1.setSpacingAfter(10);
+            doc.add(prgMuc2);
+            Image image = Image.getInstance(writer, bufferedImage, 1.0f);
+            image.setAlignment(Element.ALIGN_CENTER);
+            doc.add(image);                        
             doc.close();
             writer.close();
 
@@ -653,6 +704,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser NgayBatDauField;
     private com.toedter.calendar.JDateChooser NgayKetThucField;
     private javax.swing.JPanel Panel1;
+    private javax.swing.JButton ThoatBtn;
     private javax.swing.JButton XemBieuDo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

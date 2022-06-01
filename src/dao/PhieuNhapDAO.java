@@ -55,10 +55,12 @@ public class PhieuNhapDAO{
     
     public ArrayList<PhieuNhap> getAll() {
         ArrayList<PhieuNhap> ketQua = new ArrayList<>();
+        String sql = "{call getAllPhieuNhap(?)}";
         try ( Connection con = JDBCUtil.getConnection()) {
-            String sql = "SELECT * FROM PHIEUNHAP";
-            PreparedStatement pstm = con.prepareStatement(sql);
-            ResultSet rs = pstm.executeQuery();
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.registerOutParameter(1, OracleTypes.CURSOR);
+            cstm.execute();
+            ResultSet rs = (ResultSet) cstm.getObject(1);
             while (rs.next()) {
                 String maPhieuNhap = rs.getString("MAPHIEUNHAP");
                 Date ngayNhap = rs.getDate("NGAYNHAP");
@@ -150,7 +152,7 @@ public class PhieuNhapDAO{
     public String getSoThuTu(){
         try ( Connection con = JDBCUtil.getConnection()) {
             String tt;
-            String sqlProc = "{? = call getThuTuPhieuNhap}";
+            String sqlProc = "{? := call getThuTuPhieuNhap}";
             CallableStatement cstm = con.prepareCall(sqlProc);
             cstm.registerOutParameter(1,java.sql.Types.INTEGER);              
             cstm.executeUpdate();
