@@ -36,7 +36,7 @@ public class DangNhap {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(ChamCongDAO.getInstance().getSoNgayLamViecThang("NV01"));
+        new DangNhap_View();
 //
     }
 }
