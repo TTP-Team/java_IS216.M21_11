@@ -47,10 +47,13 @@ public class DangNhap_View extends javax.swing.JFrame {
                 this.setCursor(WAIT_CURSOR);
                 if ("NVBH".equals(phanQuyen)) {                   
                     new NhanVienBanHang_View(phanQuyen,tk);
+                    this.dispose();
                 } else if ("QL".equals(phanQuyen)) {
                     new QuanLy_View(phanQuyen,tk);
+                    this.dispose();
                 } else if ("TK".equals(phanQuyen)) {
                     new ThuKho_View(phanQuyen,tk);
+                    this.dispose();
                 }
             }
             case 0 -> {

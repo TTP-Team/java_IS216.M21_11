@@ -20,6 +20,7 @@ import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -31,7 +32,8 @@ public class QuanLySuKien extends javax.swing.JFrame {
     private String phanQuyen;
     private String tenTaiKhoan;
     private String chucNang;
-
+        private JTextField TuKhoaField;
+    private JDateChooser TuKhoaDate;
     /**
      * Creates new form QuanLySuKien
      */
@@ -133,8 +135,6 @@ public class QuanLySuKien extends javax.swing.JFrame {
         TimKiemField = new javax.swing.JComboBox<>();
         TuKhoaLabel = new javax.swing.JLabel();
         TimKiemPanel = new javax.swing.JPanel();
-        TuKhoaField = new javax.swing.JTextField();
-        TuKhoaDate = new com.toedter.calendar.JDateChooser();
         TimKiemBtn = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -376,27 +376,15 @@ public class QuanLySuKien extends javax.swing.JFrame {
         TuKhoaLabel.setForeground(new java.awt.Color(0, 0, 0));
         TuKhoaLabel.setText("Từ khóa");
 
-        TuKhoaField.setBackground(new java.awt.Color(255, 255, 255));
-        TuKhoaField.setForeground(new java.awt.Color(0, 0, 0));
-        TuKhoaField.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(102, 102, 102), null));
-
         javax.swing.GroupLayout TimKiemPanelLayout = new javax.swing.GroupLayout(TimKiemPanel);
         TimKiemPanel.setLayout(TimKiemPanelLayout);
         TimKiemPanelLayout.setHorizontalGroup(
             TimKiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TimKiemPanelLayout.createSequentialGroup()
-                .addComponent(TuKhoaField, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TuKhoaDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 206, Short.MAX_VALUE)
         );
         TimKiemPanelLayout.setVerticalGroup(
             TimKiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TimKiemPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(TimKiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TuKhoaField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TuKhoaDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         TimKiemBtn.setBackground(new java.awt.Color(0, 204, 102));
@@ -634,14 +622,18 @@ public class QuanLySuKien extends javax.swing.JFrame {
 
     private void TimKiemFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TimKiemFieldItemStateChanged
         // TODO add your handling code here:
-        if ("Ngày sự kiện".equals((String) TimKiemField.getSelectedItem())) {
+        if("Ngày sự kiện".equals((String)TimKiemField.getSelectedItem())){    
+            TuKhoaDate = new JDateChooser();
+            TuKhoaDate.setDateFormatString("dd/MM/yyyy");
             TuKhoaDate.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
             TimKiemPanel.removeAll();
             TimKiemPanel.setLayout(new CardLayout());
             TimKiemPanel.add(TuKhoaDate);
             TimKiemPanel.validate();
             TimKiemPanel.repaint();
-        } else {
+        }
+        else{
+            TuKhoaField = new JTextField();
             TuKhoaField.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
             TimKiemPanel.removeAll();
             TimKiemPanel.setLayout(new CardLayout());
@@ -694,8 +686,6 @@ public class QuanLySuKien extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TimKiemField;
     private javax.swing.JLabel TimKiemLabel;
     private javax.swing.JPanel TimKiemPanel;
-    private com.toedter.calendar.JDateChooser TuKhoaDate;
-    private javax.swing.JTextField TuKhoaField;
     private javax.swing.JLabel TuKhoaLabel;
     private javax.swing.JButton XoaBtn;
     private javax.swing.JLabel jLabel1;

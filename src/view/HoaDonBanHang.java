@@ -70,7 +70,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         }
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
-         MaNhanVienField.setText(maNV);
+        MaNhanVienField.setText(maNV);
         TenNhanVienField.setText(NhanVienDAO.getInstance().getById(maNV).getTenNhanVien());
         this.setTimKiemField();
     }
