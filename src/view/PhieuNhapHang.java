@@ -140,6 +140,8 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("PHIẾU NHẬP");
 
+        DanhSachPhieuNhap.setBackground(new java.awt.Color(255, 255, 255));
+        DanhSachPhieuNhap.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachPhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -156,6 +158,9 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DanhSachPhieuNhap.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachPhieuNhap.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachPhieuNhap.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachPhieuNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DanhSachPhieuNhapMouseClicked(evt);
@@ -172,6 +177,8 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("CHI TIẾT PHIẾU NHẬP");
 
+        DanhSachCTPN.setBackground(new java.awt.Color(255, 255, 255));
+        DanhSachCTPN.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachCTPN.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -188,6 +195,9 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DanhSachCTPN.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachCTPN.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachCTPN.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(DanhSachCTPN);
         if (DanhSachCTPN.getColumnModel().getColumnCount() > 0) {
             DanhSachCTPN.getColumnModel().getColumn(0).setResizable(false);

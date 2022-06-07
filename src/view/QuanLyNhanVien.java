@@ -49,6 +49,13 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         regEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maQL;
+        ChucVuField.setRenderer(new DefaultListCellRenderer() {
+        @Override
+        public void paint(Graphics g) {
+            setForeground(Color.BLACK);
+            super.paint(g);
+        }
+        });
                                        
     }
     
@@ -151,8 +158,9 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        DanhSachNhanVien.setGridColor(new java.awt.Color(153, 153, 153));
-        DanhSachNhanVien.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        DanhSachNhanVien.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachNhanVien.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachNhanVien.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachNhanVien.getTableHeader().setReorderingAllowed(false);
         DanhSachNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

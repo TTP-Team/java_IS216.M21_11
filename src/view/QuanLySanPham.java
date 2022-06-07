@@ -194,9 +194,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        DanhSachSanPham.setGridColor(new java.awt.Color(153, 153, 153));
+        DanhSachSanPham.setGridColor(new java.awt.Color(102, 102, 102));
         DanhSachSanPham.setPreferredSize(new java.awt.Dimension(1400, 800));
-        DanhSachSanPham.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        DanhSachSanPham.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachSanPham.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachSanPham.getTableHeader().setReorderingAllowed(false);
         DanhSachSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

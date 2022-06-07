@@ -4,7 +4,6 @@
  */
 package view;
 
-
 import Model.KhachHang;
 import dao.KhachHangDAO;
 import java.sql.Date;
@@ -153,8 +152,9 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        DanhSachKhachHang.setGridColor(new java.awt.Color(153, 153, 153));
-        DanhSachKhachHang.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        DanhSachKhachHang.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachKhachHang.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachKhachHang.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachKhachHang.getTableHeader().setReorderingAllowed(false);
         DanhSachKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -577,7 +577,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -728,11 +728,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         }
         
     }                                      
-
-                                      
-
-                                        
-
     private void DanhSachMouseClicked(java.awt.event.MouseEvent evt) {                                              
         // TODO add your handling code here:    
     }//GEN-LAST:event_LuuBtnActionPerformed

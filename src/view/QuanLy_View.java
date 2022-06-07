@@ -4,6 +4,7 @@
  */
 package view;
 
+import dao.ChamCongDAO;
 import dao.NhanVienDAO;
 
 /**
@@ -25,6 +26,7 @@ public class QuanLy_View extends javax.swing.JFrame {
         this.tenTaiKhoan = maNV;
         MaNhanVienField.setText(maNV);
         TenNhanVienField.setText(NhanVienDAO.getInstance().getById(maNV).getTenNhanVien());
+        SoNgayField.setText(String.valueOf(ChamCongDAO.getInstance().getSoNgayLamViecThang(maNV)));
     }
     
     
@@ -154,7 +156,7 @@ public class QuanLy_View extends javax.swing.JFrame {
         MaNhanVienField.setEditable(false);
         MaNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         MaNhanVienField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        MaNhanVienField.setForeground(new java.awt.Color(0, 0, 0));
+        MaNhanVienField.setForeground(new java.awt.Color(102, 102, 102));
         MaNhanVienField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MaNhanVienField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         MaNhanVienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -166,6 +168,7 @@ public class QuanLy_View extends javax.swing.JFrame {
         TenNhanVienField.setEditable(false);
         TenNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         TenNhanVienField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TenNhanVienField.setForeground(new java.awt.Color(102, 102, 102));
         TenNhanVienField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TenNhanVienField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         TenNhanVienField.setCaretColor(new java.awt.Color(0, 0, 0));
@@ -178,8 +181,8 @@ public class QuanLy_View extends javax.swing.JFrame {
         SoNgayField.setEditable(false);
         SoNgayField.setBackground(new java.awt.Color(255, 255, 255));
         SoNgayField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        SoNgayField.setForeground(new java.awt.Color(102, 102, 102));
         SoNgayField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        SoNgayField.setText("1");
         SoNgayField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         SoNgayField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 

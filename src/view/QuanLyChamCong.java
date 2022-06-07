@@ -177,6 +177,8 @@ public class QuanLyChamCong extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DanhSachChamCong.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachChamCong.setSelectionBackground(new java.awt.Color(153, 255, 153));
         DanhSachChamCong.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(DanhSachChamCong);
         if (DanhSachChamCong.getColumnModel().getColumnCount() > 0) {

@@ -68,8 +68,6 @@ public class QuanLySuKien extends javax.swing.JFrame {
         this.BoQuaBtn.setEnabled(val);
         this.LuuBtn.setEnabled(val);
         this.TenSuKienField.setEnabled(val);
-        this.NgayBatDauField.setEnabled(val);
-        this.NgayKetThucField.setEnabled(val);
         this.PhanTramGiamGiaField.setEnabled(val);
     }
 
@@ -144,6 +142,8 @@ public class QuanLySuKien extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setForeground(new java.awt.Color(255, 255, 204));
 
+        DanhSachSuKien.setBackground(new java.awt.Color(255, 255, 255));
+        DanhSachSuKien.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachSuKien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -160,6 +160,9 @@ public class QuanLySuKien extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DanhSachSuKien.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachSuKien.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachSuKien.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachSuKien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DanhSachSuKienMouseClicked(evt);

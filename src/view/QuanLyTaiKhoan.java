@@ -133,6 +133,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         DanhSachTaiKhoan.setBackground(new java.awt.Color(255, 255, 255));
+        DanhSachTaiKhoan.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachTaiKhoan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -156,6 +157,9 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DanhSachTaiKhoan.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachTaiKhoan.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachTaiKhoan.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DanhSachTaiKhoanMouseClicked(evt);
