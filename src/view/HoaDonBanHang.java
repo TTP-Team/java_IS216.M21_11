@@ -33,7 +33,6 @@ import java.io.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import java.awt.Desktop;
-import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -48,7 +47,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private JDateChooser tuKhoaDate;
     private ArrayList<ChiTietHoaDon> arr_CTHD;
     private HoaDon newHoaDon;
-    
+
     /**
      * Creates new form HoaDonBanHang
      */
@@ -78,7 +77,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private void VoHieuHoaBtn(boolean val) {
         this.ThemHDBtn.setEnabled(!val);
         this.HuyHDBtn.setEnabled(!val);
-        this.HuyBtn.setEnabled(val);        
+        this.HuyBtn.setEnabled(val);
         this.MaKhachHangField.setEnabled(val);
         this.MaSanPhamField.setEnabled(val);
         this.SoLuongField.setEnabled(val);
@@ -93,7 +92,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         long millis = System.currentTimeMillis();
         java.sql.Date ngayHoaDon = new java.sql.Date(millis);
         NgayHoaDonField.setText(dateFormat.format(ngayHoaDon));
-        MaSuKienField.setText(SuKienDAO.getInstance().getMaSuKien(ngayHoaDon));       
+        MaSuKienField.setText(SuKienDAO.getInstance().getMaSuKien(ngayHoaDon));
         if (!"".equals(MaSuKienField.getText())) {
             TenSuKienField.setText(SuKienDAO.getInstance().getById(MaSuKienField.getText()).getTenSuKien());
         }
@@ -486,7 +485,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         NgayHoaDonField.setBackground(new java.awt.Color(255, 255, 255));
         NgayHoaDonField.setForeground(new java.awt.Color(0, 0, 0));
         NgayHoaDonField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        NgayHoaDonField.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        NgayHoaDonField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         MaNhanVienLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         MaNhanVienLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -496,6 +495,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         MaNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         MaNhanVienField.setForeground(new java.awt.Color(0, 0, 0));
         MaNhanVienField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        MaNhanVienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         TenNhanVienLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         TenNhanVienLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -505,6 +505,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         TenNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         TenNhanVienField.setForeground(new java.awt.Color(0, 0, 0));
         TenNhanVienField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        TenNhanVienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         MaKhachHangLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         MaKhachHangLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -513,6 +514,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         MaKhachHangField.setBackground(new java.awt.Color(255, 255, 255));
         MaKhachHangField.setForeground(new java.awt.Color(0, 0, 0));
         MaKhachHangField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        MaKhachHangField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         MaKhachHangField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 MaKhachHangFieldKeyPressed(evt);
@@ -527,7 +529,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         TenKhachHangField.setBackground(new java.awt.Color(255, 255, 255));
         TenKhachHangField.setForeground(new java.awt.Color(0, 0, 0));
         TenKhachHangField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        TenKhachHangField.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        TenKhachHangField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         MaSuKienLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         MaSuKienLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -537,6 +539,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         MaSuKienField.setBackground(new java.awt.Color(255, 255, 255));
         MaSuKienField.setForeground(new java.awt.Color(0, 0, 0));
         MaSuKienField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        MaSuKienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         TenSuKienLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         TenSuKienLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -546,6 +549,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         TenSuKienField.setBackground(new java.awt.Color(255, 255, 255));
         TenSuKienField.setForeground(new java.awt.Color(0, 0, 0));
         TenSuKienField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        TenSuKienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -714,7 +718,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         TenSanPhamField.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
         TenSanPhamField.setForeground(new java.awt.Color(0, 0, 0));
         TenSanPhamField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        TenSanPhamField.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        TenSanPhamField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         TenSanPhamField.setEnabled(false);
 
         SoLuongLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
@@ -907,36 +911,48 @@ public class HoaDonBanHang extends javax.swing.JFrame {
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
         // TODO add your handling code here:    
-        if(this.SoLuongField.getText() != ""){
+        if (this.SoLuongField.getText() != "") {
             model2 = (DefaultTableModel) DanhSachCTHD.getModel();
             String tensanPham = SanPhamDAO.getInstance().getById(MaSanPhamField.getSelectedItem().toString()).getTenSanPham();
             double donGia;
             if (Integer.parseInt(SoLuongField.getText()) > 10) {
                 donGia = SanPhamDAO.getInstance().getById(MaSanPhamField.getSelectedItem().toString()).getDonGiaSi();
             } else {
-            donGia = SanPhamDAO.getInstance().getById(MaSanPhamField.getSelectedItem().toString()).getDonGiaLe();
+                donGia = SanPhamDAO.getInstance().getById(MaSanPhamField.getSelectedItem().toString()).getDonGiaLe();
             }
+            ChiTietHoaDon cthd = new ChiTietHoaDon("", MaSanPhamField.getSelectedItem().toString(), Integer.parseInt(SoLuongField.getText()));
             String[] dataRow = {MaSanPhamField.getSelectedItem().toString(), tensanPham, SoLuongField.getText(), String.valueOf(donGia)};
             model2.addRow(dataRow);
-            ChiTietHoaDon cthd = new ChiTietHoaDon("", MaSanPhamField.getSelectedItem().toString(), Integer.parseInt(SoLuongField.getText()));
-            arr_CTHD.add(cthd);
-        }
-        else{
+            if(!arr_CTHD.isEmpty()){
+               for (ChiTietHoaDon i : arr_CTHD) {
+                   int sl = i.getSoLuong();
+                if (i.getMaSanPham().equals(MaSanPhamField.getSelectedItem().toString())) {
+                    i.setSoLuong(sl + Integer.parseInt(SoLuongField.getText()));
+                } else {   
+                    arr_CTHD.add(cthd);
+                }
+            }
+            }
+            else
+                arr_CTHD.add(cthd);
+           
+
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập số lượng");
         }
-        
+
     }//GEN-LAST:event_ThemBtnActionPerformed
 
     private void ThemHDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemHDBtnActionPerformed
         // TODO add your handling code here:
-        arr_CTHD = new ArrayList<>();
+        arr_CTHD = new ArrayList<ChiTietHoaDon>();
         model1.setRowCount(0);
         this.InHDBtn.setEnabled(false);
         ResetValue();
         VoHieuHoaBtn(true);
-        
+
     }//GEN-LAST:event_ThemHDBtnActionPerformed
-    
+
     private void TimKiemFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TimKiemFieldItemStateChanged
         // TODO add your handling code here:
         if ("Ngày hóa đơn".equals((String) TimKiemField.getSelectedItem())) {
@@ -963,23 +979,25 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!"".equals(TenKhachHangField.getText())){
             Date ngayHoaDon = null;
+            this.TinhTienBtn.setEnabled(false);
             this.InHDBtn.setEnabled(true);
             try {
                 ngayHoaDon= new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayHoaDonField.getText()).getTime());
             } catch (ParseException ex) {
                 Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
             }
-            newHoaDon = new HoaDon(HoaDonDAO.getInstance().getSoThuTu(), MaKhachHangField.getText(), MaNhanVienField.getText(), MaSuKienField.getText(),ngayHoaDon ,0);
+            String stt = HoaDonDAO.getInstance().getSoThuTu();
+            newHoaDon = new HoaDon(stt, MaKhachHangField.getText(), MaNhanVienField.getText(), MaSuKienField.getText(),ngayHoaDon ,0);
             HoaDonDAO.getInstance().insert(newHoaDon);
             for(ChiTietHoaDon i : arr_CTHD){
                 i.setMaHoaDon(newHoaDon.getMaHoaDon());
                 ChiTietHoaDonDAO.getInstance().insert(i);
             }
+            MaHoaDonField.setText(stt);
             TriGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById(newHoaDon.getMaHoaDon()).getTriGia()));
             GiamGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienGiamGia(newHoaDon.getMaHoaDon())));
             ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienThanhToan(newHoaDon.getMaHoaDon()))); 
         }
-        
         
     }//GEN-LAST:event_TinhTienBtnActionPerformed
 
@@ -1010,7 +1028,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 Font fontNoiDung2 = new Font(bfNoiDung, 12);
 
                 Paragraph prgTenCuaHang = new Paragraph("TPT SPORT", fontTieuDe1);
-                prgTenCuaHang.setAlignment(Element.ALIGN_CENTER);               
+                prgTenCuaHang.setAlignment(Element.ALIGN_CENTER);
                 doc.add(prgTenCuaHang);
 
                 Paragraph prgDiaChi = new Paragraph("123 Đường số 4, Phường Linh Trung, Thành phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam", fontNoiDung2);
@@ -1030,7 +1048,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 listTTHD.add(new ListItem("Tên nhân viên: " + TenNhanVienField.getText(), fontNoiDung1));
                 listTTHD.add(new ListItem("Ngày hóa đơn: " + NgayHoaDonField.getText(), fontNoiDung1));
                 doc.add(listTTHD);
-                
+
                 PdfPTable tableSP = new PdfPTable(4);
                 tableSP.setWidthPercentage(95);
                 tableSP.setSpacingBefore(20);
@@ -1044,14 +1062,14 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 cellTDSP.setPaddingBottom(6);
                 cellTDSP.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cellTDSP.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                
+
                 tableSP.addCell(cellTDSP);
 
                 PdfPCell cellTDSL = new PdfPCell(new Paragraph("SL", fontTieuDe2));
                 cellTDSL.setBorder(0);
                 cellTDSL.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cellTDSL.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                                cellTDSL.setPaddingTop(6);
+                cellTDSL.setPaddingTop(6);
                 cellTDSL.setPaddingBottom(6);
                 tableSP.addCell(cellTDSL);
 
@@ -1065,7 +1083,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 cellTDTT.setBorder(0);
                 cellTDTT.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cellTDTT.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                                cellTDTT.setPaddingTop(6);
+                cellTDTT.setPaddingTop(6);
                 cellTDTT.setPaddingBottom(6);
                 tableSP.addCell(cellTDTT);
 
@@ -1077,16 +1095,16 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                     cellSP.setBorder(0);
                     cellSP.setHorizontalAlignment(Element.ALIGN_CENTER);
                     cellSP.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                                    cellSP.setPaddingTop(6);
-                cellSP.setPaddingBottom(6);
+                    cellSP.setPaddingTop(6);
+                    cellSP.setPaddingBottom(6);
                     tableSP.addCell(cellSP);
 
                     PdfPCell cellSL = new PdfPCell(new Paragraph(String.valueOf(i.getSoLuong()), fontNoiDung1));
                     cellSL.setBorder(0);
                     cellSL.setHorizontalAlignment(Element.ALIGN_CENTER);
                     cellSL.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                                    cellSL.setPaddingTop(6);
-                cellSL.setPaddingBottom(6);
+                    cellSL.setPaddingTop(6);
+                    cellSL.setPaddingBottom(6);
                     tableSP.addCell(cellSL);
 
                     double donGia;
@@ -1100,29 +1118,28 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                     cellDG.setBorder(0);
                     cellDG.setHorizontalAlignment(Element.ALIGN_CENTER);
                     cellDG.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                                    cellDG.setPaddingTop(6);
-                cellDG.setPaddingBottom(6);
+                    cellDG.setPaddingTop(6);
+                    cellDG.setPaddingBottom(6);
                     tableSP.addCell(cellDG);
-                    
-                    PdfPCell cellTT = new PdfPCell(new Paragraph(DinhDangTienTe(i.getSoLuong() * donGia), fontNoiDung1));
+
+                    PdfPCell cellTT = new PdfPCell(new Paragraph(DinhDangTienTe((double)i.getSoLuong() * donGia), fontNoiDung1));
                     cellTT.setBorder(0);
                     cellTT.setHorizontalAlignment(Element.ALIGN_CENTER);
                     cellTT.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                                    cellTT.setPaddingTop(6);
-                cellTT.setPaddingBottom(6);
+                    cellTT.setPaddingTop(6);
+                    cellTT.setPaddingBottom(6);
                     tableSP.addCell(cellTT);
-                    
+
                     tongTien = tongTien + (i.getSoLuong() * donGia);
                 }
                 doc.add(tableSP);
-                
+
                 PdfPTable tableTinhTien = new PdfPTable(2);
                 tableTinhTien.setWidthPercentage(95);
                 tableTinhTien.setSpacingAfter(20);
-                
-                float[]  tableTinhTien_colWidths = {450, 150};
+
+                float[] tableTinhTien_colWidths = {450, 150};
                 tableTinhTien.setWidths(tableTinhTien_colWidths);
-                
 
                 PdfPCell cellTDTC = new PdfPCell(new Paragraph("Tổng tiền: \n\nGiảm giá: \n\nThanh toán:", fontTieuDe2));
                 cellTDTC.setBorder(0);
@@ -1135,7 +1152,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 cellTC.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 tableTinhTien.addCell(cellTC);
                 doc.add(tableTinhTien);
-                
+
                 doc.close();
                 writer.close();
 
@@ -1144,18 +1161,18 @@ public class HoaDonBanHang extends javax.swing.JFrame {
             }
             try {
                 File file = new File("src/reports/" + fileName + ".pdf");
-                if(!Desktop.isDesktopSupported()){
+                if (!Desktop.isDesktopSupported()) {
                     System.out.println("not supported");
                     return;
                 }
                 Desktop desktop = Desktop.getDesktop();
-                if(file.exists()){
+                if (file.exists()) {
                     desktop.open(file);
                 }
             } catch (Exception e) {
+            }
         }
-        }
-        
+
         this.ResetValue();
         this.VoHieuHoaBtn(false);
         this.getAllHoaDon();
@@ -1171,12 +1188,13 @@ public class HoaDonBanHang extends javax.swing.JFrame {
 
     private void ThoatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThoatBtnActionPerformed
         // TODO add your handling code here:
-        if("QL".equals(phanQuyen))
+        if ("QL".equals(phanQuyen)) {
             new QuanLy_View(phanQuyen, tenTaiKhoan);
-        else if("NVBH".equals(phanQuyen))
+        } else if ("NVBH".equals(phanQuyen)) {
             new NhanVienBanHang_View(phanQuyen, tenTaiKhoan);
-        else if("TK".equals(phanQuyen))
+        } else if ("TK".equals(phanQuyen)) {
             new ThuKho_View(phanQuyen, tenTaiKhoan);
+        }
         this.dispose();
     }//GEN-LAST:event_ThoatBtnActionPerformed
     private void HienThiComboboxSanPham() {

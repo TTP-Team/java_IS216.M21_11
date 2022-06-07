@@ -9,11 +9,14 @@ import Model.SanPham;
 import dao.DanhMucDAO;
 import java.io.File;
 import dao.SanPhamDAO;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,13 +47,20 @@ public class QuanLySanPham extends javax.swing.JFrame {
         this.HienThiDanhMuc();
         this.setTimKiemField();
         if(!"QL".equals(phanQuyen)){
-             this.ThemBtn.setVisible(false);
+            this.ThemBtn.setVisible(false);
             this.XoaBtn.setVisible(false);
             this.SuaBtn.setVisible(false);
             this.BoQuaBtn.setVisible(false);
             this.LuuBtn.setVisible(false);
             this.HinhAnhBtn.setVisible(false);
         }
+        MaDanhMucField.setRenderer(new DefaultListCellRenderer() {
+        @Override
+        public void paint(Graphics g) {
+            setForeground(Color.BLACK);
+            super.paint(g);
+        }
+        });
     }
     
     private void VoHieuHoaBtn(boolean val){
@@ -69,7 +79,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         this.DonGiaSiField.setEnabled(val);
         this.DonGiaLeField.setEnabled(val);
         this.MoTaField.setEnabled(val); 
-        this.HinhAnhBtn.setEnabled(val);
+        this.HinhAnhBtn.setVisible(val);
         
     }
     

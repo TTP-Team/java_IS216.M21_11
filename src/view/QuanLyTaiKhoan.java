@@ -175,6 +175,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         KhoaBtn.setForeground(new java.awt.Color(255, 255, 255));
         KhoaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/padlock.png"))); // NOI18N
         KhoaBtn.setText("Khóa");
+        KhoaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         KhoaBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/unlocked.png"))); // NOI18N
         KhoaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +188,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         LamMoiBtn.setForeground(new java.awt.Color(255, 255, 255));
         LamMoiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/undo.png"))); // NOI18N
         LamMoiBtn.setText("Làm mới mật khẩu");
+        LamMoiBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LamMoiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LamMoiBtnActionPerformed(evt);
@@ -198,6 +200,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         QuayLaiBtn.setForeground(new java.awt.Color(255, 255, 255));
         QuayLaiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         QuayLaiBtn.setText("Thoát");
+        QuayLaiBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         QuayLaiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QuayLaiBtnActionPerformed(evt);
@@ -306,6 +309,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         TimKiemBtn.setForeground(new java.awt.Color(255, 255, 255));
         TimKiemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/search.png"))); // NOI18N
         TimKiemBtn.setText("Tìm kiếm");
+        TimKiemBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TimKiemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TimKiemBtnActionPerformed(evt);

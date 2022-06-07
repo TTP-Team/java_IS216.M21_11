@@ -22,6 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import dao.ThongKeDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -94,7 +95,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ThoatBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
@@ -110,7 +111,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         );
         Panel1Layout.setVerticalGroup(
             Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
+            .addGap(0, 435, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -207,14 +208,14 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(356, 356, 356))
+                .addGap(365, 365, 365))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(21, 21, 21))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         ThoatBtn.setBackground(new java.awt.Color(0, 204, 102));
@@ -234,8 +235,8 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(276, 276, 276)
-                .addComponent(XemBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157)
+                .addComponent(XemBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(143, 143, 143)
                 .addComponent(InBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136)
                 .addComponent(ThoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,7 +255,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
@@ -402,7 +403,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
         String fileName = "BaoCaoDoanhThu" + ngayBatDau + "+" + ngayKetThuc;
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/reports/" + fileName + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\reports\\" + fileName + ".pdf"));
             doc.open();
             File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -547,6 +548,18 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            File f = new File("D:\\reports\\" + fileName + ".pdf");
+            if(!Desktop.isDesktopSupported()){
+                System.out.println("not supported");
+                return;
+            }
+            Desktop dk = Desktop.getDesktop();
+            if(f.exists()){
+                dk.open(f);
+            }
+        } catch (Exception e) {
+        }
     }
     private void InBaoCaoSanPhamBan() {
         Document doc = new Document(PageSize.A4);
@@ -556,7 +569,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
         String fileName = "BaoCaoSanPhamBan" + ngayBatDau + "+" + ngayKetThuc;
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/reports/" + fileName + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\reports\\" + fileName + ".pdf"));
             doc.open();
             File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -679,6 +692,18 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        try {
+            File f = new File("D:\\reports\\" + fileName + ".pdf");
+            if(!Desktop.isDesktopSupported()){
+                System.out.println("not supported");
+                return;
+            }
+            Desktop dk = Desktop.getDesktop();
+            if(f.exists()){
+                dk.open(f);
+            }
+        } catch (Exception e) {
         }
     }        
     public String DinhDangTienTe(double SoTien) {
