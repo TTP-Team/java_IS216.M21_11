@@ -287,6 +287,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
         PhanTramGiamGiaLabel.setText("Phần trăm giảm giá");
 
         PhanTramGiamGiaField.setBackground(new java.awt.Color(255, 255, 255));
+        PhanTramGiamGiaField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         PhanTramGiamGiaField.setForeground(new java.awt.Color(0, 0, 0));
         PhanTramGiamGiaField.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(102, 102, 102), null));
         PhanTramGiamGiaField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -301,9 +302,11 @@ public class QuanLySuKien extends javax.swing.JFrame {
 
         NgayBatDauField.setBackground(new java.awt.Color(255, 255, 255));
         NgayBatDauField.setForeground(new java.awt.Color(0, 0, 0));
+        NgayBatDauField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         NgayKetThucField.setBackground(new java.awt.Color(255, 255, 255));
         NgayKetThucField.setForeground(new java.awt.Color(0, 0, 0));
+        NgayKetThucField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -368,6 +371,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
         TimKiemLabel.setText("Tìm kiếm theo");
 
         TimKiemField.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TimKiemField.setForeground(new java.awt.Color(0, 0, 0));
         TimKiemField.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -378,6 +382,10 @@ public class QuanLySuKien extends javax.swing.JFrame {
         TuKhoaLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         TuKhoaLabel.setForeground(new java.awt.Color(0, 0, 0));
         TuKhoaLabel.setText("Từ khóa");
+
+        TimKiemPanel.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemPanel.setForeground(new java.awt.Color(0, 0, 0));
+        TimKiemPanel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout TimKiemPanelLayout = new javax.swing.GroupLayout(TimKiemPanel);
         TimKiemPanel.setLayout(TimKiemPanelLayout);

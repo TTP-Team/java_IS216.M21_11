@@ -155,7 +155,7 @@ public class QuanLy_View extends javax.swing.JFrame {
 
         MaNhanVienField.setEditable(false);
         MaNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
-        MaNhanVienField.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        MaNhanVienField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         MaNhanVienField.setForeground(new java.awt.Color(102, 102, 102));
         MaNhanVienField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MaNhanVienField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));

@@ -118,13 +118,16 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
 
         LoaiBaoCaoField.setBackground(new java.awt.Color(255, 255, 255));
+        LoaiBaoCaoField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         LoaiBaoCaoField.setForeground(new java.awt.Color(0, 0, 0));
 
         NgayBatDauField.setBackground(new java.awt.Color(255, 255, 255));
         NgayBatDauField.setForeground(new java.awt.Color(0, 0, 0));
+        NgayBatDauField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         NgayKetThucField.setBackground(new java.awt.Color(255, 255, 255));
         NgayKetThucField.setForeground(new java.awt.Color(0, 0, 0));
+        NgayKetThucField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));

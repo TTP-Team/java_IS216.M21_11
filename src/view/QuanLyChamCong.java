@@ -79,6 +79,7 @@ public class QuanLyChamCong extends javax.swing.JFrame {
         TimKiemTheoLabel.setText("Tìm kiếm theo");
 
         TimKiemField.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TimKiemField.setForeground(new java.awt.Color(0, 0, 0));
         TimKiemField.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -102,6 +103,7 @@ public class QuanLyChamCong extends javax.swing.JFrame {
 
         TimKiemPanel.setBackground(new java.awt.Color(255, 255, 255));
         TimKiemPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        TimKiemPanel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout TimKiemPanelLayout = new javax.swing.GroupLayout(TimKiemPanel);
         TimKiemPanel.setLayout(TimKiemPanelLayout);

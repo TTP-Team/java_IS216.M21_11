@@ -72,17 +72,17 @@
                               <Component id="PhiepHangBtn" alignment="3" min="-2" pref="82" max="-2" attributes="0"/>
                               <Component id="DanhMucBtn" alignment="3" min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="74" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="MatKhauBtn" max="32767" attributes="0"/>
-                              <Component id="jButton1" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButton1" alignment="3" min="-2" pref="82" max="-2" attributes="0"/>
+                              <Component id="MatKhauBtn" alignment="3" min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -302,6 +302,9 @@
               <Image iconType="3" name="/resources/icon/input.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u nh&#x1ead;p h&#xe0;ng"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PhiepHangBtnActionPerformed"/>
@@ -322,6 +325,9 @@
               <Image iconType="3" name="/resources/icon/categories.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u danh m&#x1ee5;c"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DanhMucBtnActionPerformed"/>
@@ -342,6 +348,9 @@
               <Image iconType="3" name="/resources/icon/password.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1ed5;i m&#x1ead;t kh&#x1ea9;u"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MatKhauBtnActionPerformed"/>
@@ -349,6 +358,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="0" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="16" style="0"/>
             </Property>
@@ -359,6 +371,9 @@
               <Image iconType="3" name="/resources/icon/product.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u s&#x1ea3;n ph&#x1ea9;m"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>

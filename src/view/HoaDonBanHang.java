@@ -79,6 +79,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         @Override
         public void paint(Graphics g) {
             setForeground(Color.BLACK);
+            
             super.paint(g);
         }
         });
@@ -91,7 +92,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         this.MaKhachHangField.setEnabled(val);
         this.MaSanPhamField.setEnabled(val);
         this.SoLuongField.setEnabled(val);
-        this.ThemBtn.setEnabled(val);
+        this.ThemBtn.setVisible(val);
         this.TinhTienBtn.setEnabled(val);
     }
 
@@ -345,11 +346,11 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ThemHDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(HuyHDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(75, 75, 75)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(InHDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(HuyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(InHDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(HuyHDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HuyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(TinhTienBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
@@ -361,19 +362,17 @@ public class HoaDonBanHang extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ThemHDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(HuyHDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ThoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ThemHDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(HuyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TinhTienBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                     .addComponent(InHDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HuyHDBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(HuyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                            .addComponent(ThoatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -433,12 +432,9 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(TriGiaValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -449,8 +445,11 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ThanhToanValue, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(17, 17, 17))
+                            .addComponent(ThanhToanValue, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 102));
@@ -759,7 +758,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         ThemBtn.setBackground(new java.awt.Color(0, 204, 102));
         ThemBtn.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         ThemBtn.setForeground(new java.awt.Color(255, 255, 255));
-        ThemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/add-to-basket.png"))); // NOI18N
+        ThemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/add-product.png"))); // NOI18N
         ThemBtn.setText("Thêm");
         ThemBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ThemBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -900,8 +899,15 @@ public class HoaDonBanHang extends javax.swing.JFrame {
 
     private void MaKhachHangFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MaKhachHangFieldKeyPressed
         // TODO add your handling code here:
+        String tenKH = "";
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            TenKhachHangField.setText(KhachHangDAO.getInstance().getById(MaKhachHangField.getText()).getHoTen());
+            tenKH = KhachHangDAO.getInstance().getById(MaKhachHangField.getText()).getHoTen();
+        }
+        if(!"".equals(tenKH)){
+            TenKhachHangField.setText(tenKH);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Không tồn tại khách hàng");
         }
     }//GEN-LAST:event_MaKhachHangFieldKeyPressed
 
@@ -916,7 +922,6 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         ArrayList<ChiTietHoaDon> cthd = ChiTietHoaDonDAO.getInstance().getById((String) model1.getValueAt(index, 0));
         this.hienThiChiTietHoaDon(cthd);
         ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById((String) model1.getValueAt(index, 0)).getTriGia()) + "  VND");
-
         MaHoaDonField.setText((String) model1.getValueAt(index, 0));
         MaKhachHangField.setText((String) model1.getValueAt(index, 1));
         TenKhachHangField.setText(KhachHangDAO.getInstance().getById(MaKhachHangField.getText()).getHoTen());
@@ -927,11 +932,10 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         NgayHoaDonField.setText((String) model1.getValueAt(index, 4));
     }//GEN-LAST:event_DanhSachHoaDonMouseClicked
 
-    public String DinhDangTienTe(double SoTien) {
+    public String DinhDangTienTe(double soTien) {
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
-
-        String str = en.format(SoTien);
+        String str = en.format(soTien);
         return str;
     }
 
@@ -976,12 +980,15 @@ public class HoaDonBanHang extends javax.swing.JFrame {
 
     private void ThemHDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemHDBtnActionPerformed
         // TODO add your handling code here:
-        arr_CTHD = new ArrayList<ChiTietHoaDon>();
-        model1.setRowCount(0);
+        arr_CTHD = new ArrayList<>();
+        if(model1 != null)
+            model1.setRowCount(0);
+        if(model2 != null)
+            model2.setRowCount(0);
         this.InHDBtn.setEnabled(false);
         ResetValue();
         VoHieuHoaBtn(true);
-
+        
     }//GEN-LAST:event_ThemHDBtnActionPerformed
 
     private void TimKiemFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TimKiemFieldItemStateChanged
@@ -1008,28 +1015,25 @@ public class HoaDonBanHang extends javax.swing.JFrame {
 
     private void TinhTienBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TinhTienBtnActionPerformed
         // TODO add your handling code here:
-        if (!"".equals(TenKhachHangField.getText())) {
-            Date ngayHoaDon = null;
-            this.TinhTienBtn.setEnabled(false);
-            this.InHDBtn.setEnabled(true);
-            try {
-                ngayHoaDon = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayHoaDonField.getText()).getTime());
-            } catch (ParseException ex) {
-                Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String stt = HoaDonDAO.getInstance().getSoThuTu();
-            newHoaDon = new HoaDon(stt, MaKhachHangField.getText(), MaNhanVienField.getText(), MaSuKienField.getText(), ngayHoaDon, 0);
-            HoaDonDAO.getInstance().insert(newHoaDon);
-            for (ChiTietHoaDon i : arr_CTHD) {
-                i.setMaHoaDon(newHoaDon.getMaHoaDon());
-                ChiTietHoaDonDAO.getInstance().insert(i);
-            }
-            MaHoaDonField.setText(stt);
-            TriGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById(newHoaDon.getMaHoaDon()).getTriGia()));
-            GiamGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienGiamGia(newHoaDon.getMaHoaDon())));
-            ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienThanhToan(newHoaDon.getMaHoaDon())));
+        Date ngayHoaDon = null;
+        this.TinhTienBtn.setEnabled(false);
+        this.InHDBtn.setEnabled(true);
+        try {
+            ngayHoaDon = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayHoaDonField.getText()).getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        String stt = HoaDonDAO.getInstance().getSoThuTu();
+        newHoaDon = new HoaDon(stt, MaKhachHangField.getText(), MaNhanVienField.getText(), MaSuKienField.getText(), ngayHoaDon, 0);
+        HoaDonDAO.getInstance().insert(newHoaDon);
+        for (ChiTietHoaDon i : arr_CTHD) {
+            i.setMaHoaDon(newHoaDon.getMaHoaDon());
+            ChiTietHoaDonDAO.getInstance().insert(i);
+        }
+        MaHoaDonField.setText(stt);
+        TriGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById(newHoaDon.getMaHoaDon()).getTriGia()));
+        GiamGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienGiamGia(newHoaDon.getMaHoaDon())));
+        ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienThanhToan(newHoaDon.getMaHoaDon())));
     }//GEN-LAST:event_TinhTienBtnActionPerformed
 
     private void HuyHDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HuyHDBtnActionPerformed

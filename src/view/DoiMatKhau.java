@@ -62,10 +62,13 @@ public class DoiMatKhau extends javax.swing.JFrame {
         jLabel3.setText("Xác nhận mật khẩu");
 
         MatKhauCuField.setBackground(new java.awt.Color(255, 255, 255));
+        MatKhauCuField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         MatKhauMoiField.setBackground(new java.awt.Color(255, 255, 255));
+        MatKhauMoiField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         XacNhanMatKhauField.setBackground(new java.awt.Color(255, 255, 255));
+        XacNhanMatKhauField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         XacNhanBtn.setBackground(new java.awt.Color(0, 204, 102));
         XacNhanBtn.setText("Xác nhận");

@@ -247,6 +247,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
         TenDangNhapField.setEditable(false);
         TenDangNhapField.setBackground(new java.awt.Color(255, 255, 255));
+        TenDangNhapField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TenDangNhapField.setForeground(new java.awt.Color(0, 0, 0));
         TenDangNhapField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         TenDangNhapField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -257,6 +258,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
         PhanQuyenField.setEditable(false);
         PhanQuyenField.setBackground(new java.awt.Color(255, 255, 255));
+        PhanQuyenField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         PhanQuyenField.setForeground(new java.awt.Color(0, 0, 0));
         PhanQuyenField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         PhanQuyenField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -297,6 +299,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         TimKiemLabel.setText("Tìm kiếm theo");
 
         TimKiemField.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TimKiemField.setForeground(new java.awt.Color(0, 0, 0));
         TimKiemField.setBorder(null);
         TimKiemField.addItemListener(new java.awt.event.ItemListener() {
@@ -321,6 +324,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         });
 
         TimKiemPanel.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemPanel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout TimKiemPanelLayout = new javax.swing.GroupLayout(TimKiemPanel);
         TimKiemPanel.setLayout(TimKiemPanelLayout);
@@ -408,7 +412,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

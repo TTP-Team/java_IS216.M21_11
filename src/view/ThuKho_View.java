@@ -157,6 +157,7 @@ public class ThuKho_View extends javax.swing.JFrame {
         PhiepHangBtn.setForeground(new java.awt.Color(255, 255, 255));
         PhiepHangBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/input.png"))); // NOI18N
         PhiepHangBtn.setText("Phiếu nhập hàng");
+        PhiepHangBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PhiepHangBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PhiepHangBtnActionPerformed(evt);
@@ -168,6 +169,7 @@ public class ThuKho_View extends javax.swing.JFrame {
         DanhMucBtn.setForeground(new java.awt.Color(255, 255, 255));
         DanhMucBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/categories.png"))); // NOI18N
         DanhMucBtn.setText("Tra cứu danh mục");
+        DanhMucBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         DanhMucBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DanhMucBtnActionPerformed(evt);
@@ -179,16 +181,19 @@ public class ThuKho_View extends javax.swing.JFrame {
         MatKhauBtn.setForeground(new java.awt.Color(255, 255, 255));
         MatKhauBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/password.png"))); // NOI18N
         MatKhauBtn.setText("Đổi mật khẩu");
+        MatKhauBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MatKhauBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MatKhauBtnActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 204, 102));
         jButton1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/product.png"))); // NOI18N
         jButton1.setText("Tra cứu sản phẩm");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -223,15 +228,15 @@ public class ThuKho_View extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(PhiepHangBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DanhMucBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(MatKhauBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(51, 51, 51))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MatKhauBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,7 +255,7 @@ public class ThuKho_View extends javax.swing.JFrame {
 
     private void PhiepHangBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhiepHangBtnActionPerformed
         // TODO add your handling code here:
-        new HoaDonBanHang(this.phanQuyen, this.tenTaiKhoan);
+        new PhieuNhapHang(this.phanQuyen, this.tenTaiKhoan);
         this.dispose();
     }//GEN-LAST:event_PhiepHangBtnActionPerformed
 

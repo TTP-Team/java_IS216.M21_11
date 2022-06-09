@@ -139,13 +139,9 @@
                               <Component id="jScrollPane2" min="-2" pref="193" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="TriGiaValue" alignment="3" max="32767" attributes="0"/>
@@ -160,9 +156,13 @@
                                   <Component id="jLabel2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="ThanhToanValue" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -360,12 +360,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="ThemHDBtn" pref="150" max="32767" attributes="0"/>
-                              <Component id="HuyHDBtn" max="32767" attributes="0"/>
+                              <Component id="InHDBtn" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="InHDBtn" pref="150" max="32767" attributes="0"/>
-                              <Component id="HuyBtn" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="HuyHDBtn" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="HuyBtn" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -381,24 +381,21 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ThemHDBtn" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="HuyHDBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="ThoatBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ThemHDBtn" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="HuyBtn" max="32767" attributes="0"/>
                                   <Component id="TinhTienBtn" pref="40" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="InHDBtn" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="InHDBtn" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="HuyHDBtn" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="HuyBtn" pref="38" max="32767" attributes="0"/>
-                                      <Component id="ThoatBtn" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1377,7 +1374,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/resources/icon/add-to-basket.png"/>
+                      <Image iconType="3" name="/resources/icon/add-product.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
