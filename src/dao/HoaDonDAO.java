@@ -182,7 +182,7 @@ public class HoaDonDAO{
     public String getSoThuTu(){
         try ( Connection con = JDBCUtil.getConnection()) {
             String tt;
-            String sqlProc = "{? := call getThuTuHoaDon}";
+            String sqlProc = "{? = call getThuTuHoaDon}";
             CallableStatement cstm = con.prepareCall(sqlProc);
             cstm.registerOutParameter(1,java.sql.Types.INTEGER);              
             cstm.executeUpdate();
@@ -198,7 +198,7 @@ public class HoaDonDAO{
     
     public double tienGiamGia(String t){
         try ( Connection con = JDBCUtil.getConnection()) {
-            String sqlProc = "{?:=call tinhGiamGia(?)}";
+            String sqlProc = "{? = call tinhGiamGia(?)}";
             CallableStatement cstm = con.prepareCall(sqlProc);
             cstm.registerOutParameter(1,java.sql.Types.DOUBLE);     
             cstm.setString(2, t);
@@ -214,7 +214,7 @@ public class HoaDonDAO{
     }
     public double tienThanhToan(String t){
         try ( Connection con = JDBCUtil.getConnection()) {
-            String sqlProc = "{?:=call tinhTongTien(?)}";
+            String sqlProc = "{? = call tinhTongTien(?)}";
             CallableStatement cstm = con.prepareCall(sqlProc);
             cstm.registerOutParameter(1,java.sql.Types.DOUBLE);     
             cstm.setString(2, t);

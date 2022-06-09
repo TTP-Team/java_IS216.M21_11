@@ -93,6 +93,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         DanhSachDanhMuc.setBackground(new java.awt.Color(255, 255, 255));
+        DanhSachDanhMuc.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachDanhMuc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -109,8 +110,8 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        DanhSachDanhMuc.setGridColor(new java.awt.Color(204, 204, 204));
-        DanhSachDanhMuc.setSelectionBackground(new java.awt.Color(51, 255, 255));
+        DanhSachDanhMuc.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachDanhMuc.setSelectionBackground(new java.awt.Color(153, 255, 153));
         DanhSachDanhMuc.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachDanhMuc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -230,6 +231,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
 
         MaDanhMucField.setEditable(false);
         MaDanhMucField.setBackground(new java.awt.Color(255, 255, 255));
+        MaDanhMucField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         MaDanhMucField.setForeground(new java.awt.Color(0, 0, 0));
         MaDanhMucField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         MaDanhMucField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

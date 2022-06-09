@@ -4,7 +4,6 @@
  */
 package view;
 
-
 import Model.KhachHang;
 import dao.KhachHangDAO;
 import java.sql.Date;
@@ -88,7 +87,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DanhSachKhachHang = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -154,8 +152,9 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        DanhSachKhachHang.setGridColor(new java.awt.Color(153, 153, 153));
-        DanhSachKhachHang.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        DanhSachKhachHang.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachKhachHang.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachKhachHang.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachKhachHang.getTableHeader().setReorderingAllowed(false);
         DanhSachKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -176,8 +175,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             DanhSachKhachHang.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
-
         jPanel2.setBackground(new java.awt.Color(0, 204, 102));
 
         jLabel4.setBackground(new java.awt.Color(0, 204, 102));
@@ -192,14 +189,14 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(377, 377, 377))
+                .addGap(410, 410, 410))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel4)
-                .addGap(15, 15, 15))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -225,6 +222,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         HoTenLabel.setText("Họ tên");
 
         HoTenField.setBackground(new java.awt.Color(255, 255, 255));
+        HoTenField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         HoTenField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         HoTenField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         HoTenField.setSelectedTextColor(new java.awt.Color(0, 0, 0));
@@ -234,11 +232,13 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         DiaChiLabel.setText("Địa chỉ");
 
         DiaChiField.setBackground(new java.awt.Color(255, 255, 255));
+        DiaChiField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         DiaChiField.setForeground(new java.awt.Color(0, 0, 0));
         DiaChiField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         DiaChiField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         SoDienThoaiField.setBackground(new java.awt.Color(255, 255, 255));
+        SoDienThoaiField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         SoDienThoaiField.setForeground(new java.awt.Color(0, 0, 0));
         SoDienThoaiField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         SoDienThoaiField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -248,6 +248,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         SoDienThoaiLabel.setText("Số điện thoại");
 
         EmailField.setBackground(new java.awt.Color(255, 255, 255));
+        EmailField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         EmailField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         EmailField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -257,6 +258,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         EmailLabel.setText("Email");
 
         CCCDField.setBackground(new java.awt.Color(255, 255, 255));
+        CCCDField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         CCCDField.setForeground(new java.awt.Color(0, 0, 0));
         CCCDField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         CCCDField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -276,6 +278,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
         NgayDangKyField.setEditable(false);
         NgayDangKyField.setBackground(new java.awt.Color(255, 255, 255));
+        NgayDangKyField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         NgayDangKyField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         NgayDangKyField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -289,6 +292,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
         DoanhSoField.setEditable(false);
         DoanhSoField.setBackground(new java.awt.Color(255, 255, 255));
+        DoanhSoField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         DoanhSoField.setForeground(new java.awt.Color(0, 0, 0));
         DoanhSoField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         DoanhSoField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -296,6 +300,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         NgaySinhField.setBackground(new java.awt.Color(255, 255, 255));
         NgaySinhField.setForeground(new java.awt.Color(0, 0, 0));
         NgaySinhField.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        NgaySinhField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         GioiTinh.add(jRadioButton1);
@@ -409,12 +414,14 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         TimKiemPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 0, new java.awt.Color(153, 153, 153)));
 
         TimKiemField.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         TimKiemLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         TimKiemLabel.setForeground(new java.awt.Color(0, 0, 0));
         TimKiemLabel.setText("Tìm kiếm theo");
 
         TuKhoaField.setBackground(new java.awt.Color(255, 255, 255));
+        TuKhoaField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TuKhoaField.setForeground(new java.awt.Color(0, 0, 0));
         TuKhoaField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
@@ -568,9 +575,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(1043, 1043, 1043)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -583,9 +587,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -596,7 +598,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -736,11 +738,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         }
         
     }                                      
-
-                                      
-
-                                        
-
     private void DanhSachMouseClicked(java.awt.event.MouseEvent evt) {                                              
         // TODO add your handling code here:    
     }//GEN-LAST:event_LuuBtnActionPerformed
@@ -829,7 +826,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
     private javax.swing.JPanel TimKiemPanel;
     private javax.swing.JTextField TuKhoaField;
     private javax.swing.JButton XoaBtn;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
