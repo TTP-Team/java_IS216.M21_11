@@ -55,7 +55,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         this.SoDienThoaiField.setEnabled(val);
         this.EmailField.setEnabled(val);
         this.DiaChiField.setEnabled(val);
-        this.NgaySinhField.setEnabled(val);
         this.CCCDField.setEnabled(val);    
     }
 

@@ -812,7 +812,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
             Document doc = new Document(PageSize.A5);
             String fileName = MaPhieuNhapField.getText();
             try {
-                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\bills\\" + fileName + ".pdf"));
+                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\inventories\\" + fileName + ".pdf"));
                 doc.open();
                 File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
                 BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -942,7 +942,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                 e.printStackTrace();
             }
             try {
-                File file = new File("D:\\bills\\" + fileName + ".pdf");
+                File file = new File("D:\\tptsport\\inventories\\" + fileName + ".pdf");
                 if(!Desktop.isDesktopSupported()){
                     System.out.println("not supported");
                     return;

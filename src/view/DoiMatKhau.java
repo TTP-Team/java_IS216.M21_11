@@ -25,6 +25,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
         this.setLocationRelativeTo(null);
+        
     }
 
     /**

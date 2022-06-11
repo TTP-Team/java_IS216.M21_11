@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.text.DateFormat;
-import java.util.regex.Pattern;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
@@ -643,7 +642,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         this.SoDienThoaiField.setEnabled(val);
         this.EmailField.setEnabled(val);
         this.DiaChiField.setEnabled(val);
-        this.NgaySinhField.setEnabled(val);
         this.CCCDField.setEnabled(val);
         this.ChucVuField.setEnabled(val);
         
@@ -756,9 +754,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         CCCDField.setText((String) model.getValueAt(index, 5));
         if ("nam".equalsIgnoreCase((String) model.getValueAt(index, 6))) {
             jRadioButton1.setSelected(true);    
-            jRadioButton2.setSelected(false);
-        } else {
-            jRadioButton1.setSelected(false);
+        } else if("nữ".equalsIgnoreCase((String) model.getValueAt(index, 6))) {
             jRadioButton2.setSelected(true);
         }
 
