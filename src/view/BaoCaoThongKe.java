@@ -21,7 +21,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import dao.ThongKeDAO;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -38,14 +37,19 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-
+import com.raven.chart.ModelChart;
+import com.raven.chart.Chart;
+import java.awt.Color;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author LeCongThanh
  */
 public class BaoCaoThongKe extends javax.swing.JFrame {
-
+    private Chart chart;
     /**
      * Creates new form BaoCaoThongKe
      */
@@ -55,14 +59,20 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     public BaoCaoThongKe(String phanQuyen, String maNV) {
         initComponents();
         this.setVisible(true);
-
         this.setLocationRelativeTo(null);
         this.setLoaiBaoCaoField();
         NgayBatDauField.setDateFormatString("dd/MM/yyyy");
         NgayKetThucField.setDateFormatString("dd/MM/yyyy");
         long millis = System.currentTimeMillis();
         java.sql.Date ngayHienTai = new java.sql.Date(millis);
-        NgayBatDauField.setDate(ngayHienTai);
+        
+        Date ngayBatDau= null;
+        try {
+            ngayBatDau = new Date(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021").getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        NgayBatDauField.setDate(ngayBatDau);
         NgayKetThucField.setDate(ngayHienTai);   
         this.veBieuDo("Doanh thu ngày");
         this.tenTaiKhoan = maNV;
@@ -225,6 +235,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         ThoatBtn.setForeground(new java.awt.Color(255, 255, 255));
         ThoatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         ThoatBtn.setText("Thoát");
+        ThoatBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ThoatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ThoatBtnActionPerformed(evt);
@@ -349,18 +360,23 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                         String ngayHoaDon = dateFormat.format(i.getNgayHoaDon());
                         dataset.addValue(i.getDoanhThu(), "Doanh thu", ngayHoaDon);
                     }
-                    JFreeChart chart = ChartFactory.createBarChart("THỐNG KÊ DOANH THU TPT SPORT", "Thời gian", "Doanh thu", dataset);
-                    CategoryPlot Plot = (CategoryPlot) chart.getPlot();
+                    JFreeChart chart1 = ChartFactory.createBarChart("THỐNG KÊ DOANH THU TPT SPORT", "Thời gian", "Doanh thu", dataset);
+                    CategoryPlot Plot = (CategoryPlot) chart1.getPlot();
                     Plot.setBackgroundPaint(Color.WHITE);
                     Plot.setOutlinePaint(null);
-                    bufferedImage = chart.createBufferedImage(900, 600);
-                    ChartPanel chartPanel = new ChartPanel(chart);
-                    chartPanel.setPreferredSize(new Dimension(Panel1.getWidth(), Panel1.getHeight()));
+                    bufferedImage = chart1.createBufferedImage(900, 600);
                     Panel1.removeAll();
+                    chart = new Chart();
+                    chart.addLegend("Doanh thu", new Color(255, 51, 102));
+                    for (BaoCaoDoanhThu i : hd) {
+                        String ngayHoaDon = dateFormat.format(i.getNgayHoaDon());
+                        chart.addData(new ModelChart(ngayHoaDon, new double[]{i.getDoanhThu()}));
+                    }
                     Panel1.setLayout(new CardLayout());
-                    Panel1.add(chartPanel);
+                    Panel1.add(chart);
                     Panel1.validate();
                     Panel1.repaint();
+                    chart.start();                   
                 } else {
                     JOptionPane.showConfirmDialog(rootPane, "Không tồn tại dữ liệu!");
                 }
@@ -389,24 +405,20 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 }
 
             }            
-            case "Lợi nhuận" -> {
-
-            }
             default -> {
             }
         }
 
     }
 
-    private void InBaoCaoDoanhThu() {
-        Document doc = new Document(PageSize.A4);
-        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy");
+    private void InBaoCaoDoanhThu() {        
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String ngayBatDau = dateFormat.format(NgayBatDauField.getDate());
         String ngayKetThuc = dateFormat.format(NgayKetThucField.getDate());
-
+        Document doc = new Document(PageSize.A4);
         String fileName = "BaoCaoDoanhThu" + ngayBatDau + "+" + ngayKetThuc;
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\reports\\" + fileName + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\reports\\" + fileName + ".pdf"));
             doc.open();
             File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -552,7 +564,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             e.printStackTrace();
         }
         try {
-            File f = new File("D:\\reports\\" + fileName + ".pdf");
+            File f = new File("D:\\tptsport\\reports\\" + fileName + ".pdf");
             if(!Desktop.isDesktopSupported()){
                 System.out.println("not supported");
                 return;
@@ -572,7 +584,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
         String fileName = "BaoCaoSanPhamBan" + ngayBatDau + "+" + ngayKetThuc;
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\reports\\" + fileName + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\reports\\" + fileName + ".pdf"));
             doc.open();
             File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -697,7 +709,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             e.printStackTrace();
         }
         try {
-            File f = new File("D:\\reports\\" + fileName + ".pdf");
+            File f = new File("D:\\tptsport\\reports\\" + fileName + ".pdf");
             if(!Desktop.isDesktopSupported()){
                 System.out.println("not supported");
                 return;

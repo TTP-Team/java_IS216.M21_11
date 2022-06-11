@@ -263,6 +263,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
 
         TriGiaValue.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         TriGiaValue.setForeground(new java.awt.Color(0, 0, 153));
+        TriGiaValue.setText("0");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -385,9 +386,11 @@ public class HoaDonBanHang extends javax.swing.JFrame {
 
         GiamGiaValue.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         GiamGiaValue.setForeground(new java.awt.Color(0, 0, 153));
+        GiamGiaValue.setText("0");
 
         ThanhToanValue.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         ThanhToanValue.setForeground(new java.awt.Color(0, 0, 153));
+        ThanhToanValue.setText("0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -902,13 +905,14 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         String tenKH = "";
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             tenKH = KhachHangDAO.getInstance().getById(MaKhachHangField.getText()).getHoTen();
-        }
-        if(!"".equals(tenKH)){
+             if(!"".equals(tenKH)){
             TenKhachHangField.setText(tenKH);
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Không tồn tại khách hàng");
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Không tồn tại khách hàng");
-        }
+       
     }//GEN-LAST:event_MaKhachHangFieldKeyPressed
 
     private void MaSanPhamFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_MaSanPhamFieldItemStateChanged
@@ -921,7 +925,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         int index = DanhSachHoaDon.getSelectedRow();
         ArrayList<ChiTietHoaDon> cthd = ChiTietHoaDonDAO.getInstance().getById((String) model1.getValueAt(index, 0));
         this.hienThiChiTietHoaDon(cthd);
-        ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById((String) model1.getValueAt(index, 0)).getTriGia()) + "  VND");
+        ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById((String) model1.getValueAt(index, 0)).getTriGia()));
         MaHoaDonField.setText((String) model1.getValueAt(index, 0));
         MaKhachHangField.setText((String) model1.getValueAt(index, 1));
         TenKhachHangField.setText(KhachHangDAO.getInstance().getById(MaKhachHangField.getText()).getHoTen());
@@ -1051,7 +1055,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
             Document doc = new Document(PageSize.A5);
             String fileName = MaHoaDonField.getText();
             try {
-                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/reports/" + fileName + ".pdf"));
+                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\bills\\" + fileName + ".pdf"));
                 doc.open();
                 File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
                 BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -1071,7 +1075,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 prgDiaChi.setAlignment(Paragraph.ALIGN_CENTER);
                 prgDiaChi.setSpacingBefore(10);
                 doc.add(prgDiaChi);
-
+//
                 Paragraph prgTieuDe = new Paragraph("PHIẾU THANH TOÁN", fontTieuDe1);
                 prgTieuDe.setAlignment(Element.ALIGN_CENTER);
                 prgTieuDe.setSpacingBefore(20);
@@ -1083,7 +1087,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 listTTHD.add(new ListItem("Tên nhân viên: " + TenNhanVienField.getText(), fontNoiDung1));
                 listTTHD.add(new ListItem("Ngày hóa đơn: " + NgayHoaDonField.getText(), fontNoiDung1));
                 doc.add(listTTHD);
-
+                
                 PdfPTable tableSP = new PdfPTable(4);
                 tableSP.setWidthPercentage(95);
                 tableSP.setSpacingBefore(20);
@@ -1173,7 +1177,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 tableTinhTien.setWidthPercentage(95);
                 tableTinhTien.setSpacingAfter(20);
 
-                float[] tableTinhTien_colWidths = {450, 150};
+                float[] tableTinhTien_colWidths = {500, 250};
                 tableTinhTien.setWidths(tableTinhTien_colWidths);
 
                 PdfPCell cellTDTC = new PdfPCell(new Paragraph("Tổng tiền: \n\nGiảm giá: \n\nThanh toán:", fontTieuDe2));
@@ -1181,31 +1185,29 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 cellTDTC.setHorizontalAlignment(Element.ALIGN_RIGHT);
                 cellTDTC.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 tableTinhTien.addCell(cellTDTC);
-                PdfPCell cellTC = new PdfPCell(new Paragraph(DinhDangTienTe(Double.parseDouble(TriGiaValue.getText())) + "\n\n" + DinhDangTienTe(Double.parseDouble(GiamGiaValue.getText())) + "\n\n" + DinhDangTienTe(Double.parseDouble(ThanhToanValue.getText())), fontNoiDung1));
+                PdfPCell cellTC = new PdfPCell(new Paragraph(TriGiaValue.getText() + "\n\n" + GiamGiaValue.getText() + "\n\n" + ThanhToanValue.getText(), fontNoiDung1));
                 cellTC.setBorder(0);
                 cellTC.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cellTC.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 tableTinhTien.addCell(cellTC);
                 doc.add(tableTinhTien);
-
                 doc.close();
                 writer.close();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            try {
-                File file = new File("src/reports/" + fileName + ".pdf");
-                if (!Desktop.isDesktopSupported()) {
-                    System.out.println("not supported");
-                    return;
-                }
-                Desktop desktop = Desktop.getDesktop();
-                if (file.exists()) {
-                    desktop.open(file);
-                }
-            } catch (Exception e) {
+           try {
+            File f = new File("D:\\tptsport\\bills\\" + fileName + ".pdf");
+            if(!Desktop.isDesktopSupported()){
+                System.out.println("not supported");
+                return;
             }
+            Desktop dk = Desktop.getDesktop();
+            if(f.exists()){
+                dk.open(f);
+            }
+        } catch (Exception e) {
+        }
         }
 
         this.ResetValue();

@@ -79,8 +79,8 @@ public class DangNhap_View extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         matKhau_Label = new javax.swing.JLabel();
         tenDangNhap_Label = new javax.swing.JLabel();
-        tenDangNhap_Field = new javax.swing.JTextField();
         matKhau_Field = new javax.swing.JPasswordField();
+        tenDangNhap_Field = new javax.swing.JTextField();
         DangNhap_Btn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         bgLabel = new javax.swing.JLabel();
@@ -104,17 +104,22 @@ public class DangNhap_View extends javax.swing.JFrame {
         tenDangNhap_Label.setText("Tên đăng nhập");
         jPanel1.add(tenDangNhap_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
 
+        matKhau_Field.setBackground(new java.awt.Color(255, 255, 255));
+        matKhau_Field.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        matKhau_Field.setForeground(new java.awt.Color(0, 0, 0));
+        matKhau_Field.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        matKhau_Field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matKhau_FieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(matKhau_Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 200, 35));
+
         tenDangNhap_Field.setBackground(new java.awt.Color(255, 255, 255));
         tenDangNhap_Field.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tenDangNhap_Field.setForeground(new java.awt.Color(0, 0, 0));
         tenDangNhap_Field.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jPanel1.add(tenDangNhap_Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 200, 35));
-
-        matKhau_Field.setBackground(new java.awt.Color(255, 255, 255));
-        matKhau_Field.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        matKhau_Field.setForeground(new java.awt.Color(0, 0, 0));
-        matKhau_Field.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        jPanel1.add(matKhau_Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 200, 35));
 
         DangNhap_Btn.setBackground(new java.awt.Color(0, 204, 102));
         DangNhap_Btn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -126,7 +131,7 @@ public class DangNhap_View extends javax.swing.JFrame {
                 DangNhap_BtnActionPerformed(evt);
             }
         });
-        jPanel1.add(DangNhap_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 110, -1));
+        jPanel1.add(DangNhap_Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 51, 102));
@@ -147,6 +152,10 @@ public class DangNhap_View extends javax.swing.JFrame {
          this.kiemTraDangNhap();  
         
     }//GEN-LAST:event_DangNhap_BtnActionPerformed
+
+    private void matKhau_FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matKhau_FieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_matKhau_FieldActionPerformed
 
     /**
      * @param args the command line arguments
