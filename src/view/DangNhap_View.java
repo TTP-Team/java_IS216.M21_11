@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 public class DangNhap_View extends javax.swing.JFrame {
     private int soLanDangNhapSai;
@@ -45,7 +46,8 @@ public class DangNhap_View extends javax.swing.JFrame {
         switch (tt) {
             case 1 -> {
                 this.setCursor(WAIT_CURSOR);
-                if ("NVBH".equals(phanQuyen)) {                   
+                if ("NVBH".equals(phanQuyen)) {  
+                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công role Nhân viên");
                     new NhanVienBanHang_View(phanQuyen,tk);
                 } else if ("QL".equals(phanQuyen)) {
                     new QuanLy_View(phanQuyen,tk);

@@ -14,7 +14,7 @@ public class JDBCUtil {
        try {
            final String url = "jdbc:oracle:thin:@localhost:1521:orcl";
            final String user = "c##tptsport";
-           final String password = "12345";
+           final String password = "admin123";
            Class.forName("oracle.jdbc.driver.OracleDriver");
            Connection con = DriverManager.getConnection(url, user, password);
            return con;
