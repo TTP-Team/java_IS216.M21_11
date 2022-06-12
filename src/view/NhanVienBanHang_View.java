@@ -4,6 +4,10 @@
  */
 package view;
 
+import Model.ChamCong;
+import dao.NhanVienDAO;
+import dao.ChamCongDAO;
+
 /**
  *
  * @author Thanh PC
@@ -23,6 +27,9 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
         MaNhanVienField.setText(maNV);
+        TenNhanVienField.setText(NhanVienDAO.getInstance().getById(maNV).getTenNhanVien());
+        SoNgayField.setText(String.valueOf(ChamCongDAO.getInstance().getSoNgayLamViecThang(maNV)));
+        
     }
 
     /**
@@ -82,7 +89,7 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(286, 286, 286))
+                .addGap(278, 278, 278))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,6 +153,11 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
         MatKhauBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/password.png"))); // NOI18N
         MatKhauBtn.setText("Đổi mật khẩu");
         MatKhauBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MatKhauBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MatKhauBtnActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
@@ -157,6 +169,8 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
         MaNhanVienField.setEditable(false);
         MaNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         MaNhanVienField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        MaNhanVienField.setForeground(new java.awt.Color(102, 102, 102));
+        MaNhanVienField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         MaNhanVienField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         MaNhanVienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -167,6 +181,8 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
         TenNhanVienField.setEditable(false);
         TenNhanVienField.setBackground(new java.awt.Color(255, 255, 255));
         TenNhanVienField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TenNhanVienField.setForeground(new java.awt.Color(102, 102, 102));
+        TenNhanVienField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TenNhanVienField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         TenNhanVienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -177,6 +193,8 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
         SoNgayField.setEditable(false);
         SoNgayField.setBackground(new java.awt.Color(255, 255, 255));
         SoNgayField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        SoNgayField.setForeground(new java.awt.Color(102, 102, 102));
+        SoNgayField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         SoNgayField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         SoNgayField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -210,7 +228,7 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SoNgayField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         BaoCaoBtn.setBackground(new java.awt.Color(0, 204, 102));
@@ -218,6 +236,7 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
         BaoCaoBtn.setForeground(new java.awt.Color(255, 255, 255));
         BaoCaoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/graph.png"))); // NOI18N
         BaoCaoBtn.setText("Thống kê, Báo cáo");
+        BaoCaoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BaoCaoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BaoCaoBtnActionPerformed(evt);
@@ -230,9 +249,9 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(33, 33, 33)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(SanPhamBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -266,7 +285,10 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
                             .addComponent(MatKhauBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(DanhMucBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(22, 22, 22))
         );
 
@@ -316,7 +338,15 @@ public class NhanVienBanHang_View extends javax.swing.JFrame {
 
     private void BaoCaoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaoCaoBtnActionPerformed
         // TODO add your handling code here:
+        new BaoCaoThongKe(this.phanQuyen, this.tenTaiKhoan);
+        this.dispose();
     }//GEN-LAST:event_BaoCaoBtnActionPerformed
+
+    private void MatKhauBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MatKhauBtnActionPerformed
+        // TODO add your handling code here:
+        new DoiMatKhau(this.phanQuyen,this.tenTaiKhoan);
+        this.dispose();
+    }//GEN-LAST:event_MatKhauBtnActionPerformed
 
     /**
      * @param args the command line arguments

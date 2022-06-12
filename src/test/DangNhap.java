@@ -29,13 +29,15 @@ import view.QuanLySuKien;
 import view.QuanLyTaiKhoan;
 import view.ThuKho_View;
 import dao.ChamCongDAO;
+import dao.DanhMucDAO;
 
 public class DangNhap {
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
+        new DangNhap_View();
+
     }
 }

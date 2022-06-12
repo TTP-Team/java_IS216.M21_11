@@ -5,6 +5,7 @@
 package view;
 
 import Model.TaiKhoan;
+import com.toedter.calendar.JDateChooser;
 import dao.TaiKhoanDAO;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -12,7 +13,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,7 +26,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     private DefaultTableModel model;
     private String phanQuyen;
     private String tenTaiKhoan;
-
+            private JTextField TuKhoaField;
+    private JComboBox TuKhoaCombobox;
     /**
      * Creates new form QuanLyTaiKhoan
      */
@@ -88,8 +92,6 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         TuKhoaLabel = new javax.swing.JLabel();
         TimKiemBtn = new javax.swing.JButton();
         TimKiemPanel = new javax.swing.JPanel();
-        TuKhoaField = new javax.swing.JTextField();
-        TuKhoaCombobox = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -131,6 +133,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         DanhSachTaiKhoan.setBackground(new java.awt.Color(255, 255, 255));
+        DanhSachTaiKhoan.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachTaiKhoan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -154,6 +157,9 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DanhSachTaiKhoan.setGridColor(new java.awt.Color(102, 102, 102));
+        DanhSachTaiKhoan.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachTaiKhoan.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DanhSachTaiKhoanMouseClicked(evt);
@@ -173,6 +179,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         KhoaBtn.setForeground(new java.awt.Color(255, 255, 255));
         KhoaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/padlock.png"))); // NOI18N
         KhoaBtn.setText("Khóa");
+        KhoaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         KhoaBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/unlocked.png"))); // NOI18N
         KhoaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +192,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         LamMoiBtn.setForeground(new java.awt.Color(255, 255, 255));
         LamMoiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/undo.png"))); // NOI18N
         LamMoiBtn.setText("Làm mới mật khẩu");
+        LamMoiBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LamMoiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LamMoiBtnActionPerformed(evt);
@@ -196,6 +204,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         QuayLaiBtn.setForeground(new java.awt.Color(255, 255, 255));
         QuayLaiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         QuayLaiBtn.setText("Thoát");
+        QuayLaiBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         QuayLaiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QuayLaiBtnActionPerformed(evt);
@@ -238,6 +247,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
         TenDangNhapField.setEditable(false);
         TenDangNhapField.setBackground(new java.awt.Color(255, 255, 255));
+        TenDangNhapField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TenDangNhapField.setForeground(new java.awt.Color(0, 0, 0));
         TenDangNhapField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         TenDangNhapField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -248,6 +258,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
         PhanQuyenField.setEditable(false);
         PhanQuyenField.setBackground(new java.awt.Color(255, 255, 255));
+        PhanQuyenField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         PhanQuyenField.setForeground(new java.awt.Color(0, 0, 0));
         PhanQuyenField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         PhanQuyenField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -288,6 +299,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         TimKiemLabel.setText("Tìm kiếm theo");
 
         TimKiemField.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TimKiemField.setForeground(new java.awt.Color(0, 0, 0));
         TimKiemField.setBorder(null);
         TimKiemField.addItemListener(new java.awt.event.ItemListener() {
@@ -304,6 +316,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         TimKiemBtn.setForeground(new java.awt.Color(255, 255, 255));
         TimKiemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/search.png"))); // NOI18N
         TimKiemBtn.setText("Tìm kiếm");
+        TimKiemBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TimKiemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TimKiemBtnActionPerformed(evt);
@@ -311,27 +324,17 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         });
 
         TimKiemPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        TuKhoaField.setBackground(new java.awt.Color(255, 255, 255));
-        TuKhoaField.setForeground(new java.awt.Color(0, 0, 0));
-        TuKhoaField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        TimKiemPanel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout TimKiemPanelLayout = new javax.swing.GroupLayout(TimKiemPanel);
         TimKiemPanel.setLayout(TimKiemPanelLayout);
         TimKiemPanelLayout.setHorizontalGroup(
             TimKiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TimKiemPanelLayout.createSequentialGroup()
-                .addComponent(TuKhoaField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TuKhoaCombobox, 0, 87, Short.MAX_VALUE))
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         TimKiemPanelLayout.setVerticalGroup(
             TimKiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TimKiemPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(TimKiemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TuKhoaField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TuKhoaCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -409,7 +412,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,7 +487,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
     private void TimKiemFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TimKiemFieldItemStateChanged
         // TODO add your handling code here:
-        if("Tên đăng nhập".equals((String)TimKiemField.getSelectedItem())){            
+        if("Tên đăng nhập".equals((String)TimKiemField.getSelectedItem())){    
+            TuKhoaField = new JTextField();
             TuKhoaField.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
             TimKiemPanel.removeAll();
             TimKiemPanel.setLayout(new CardLayout());
@@ -493,6 +497,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             TimKiemPanel.repaint();
         }
         else{
+            TuKhoaCombobox = new JComboBox();
             TuKhoaCombobox.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
             TimKiemPanel.removeAll();
             TimKiemPanel.setLayout(new CardLayout());
@@ -553,8 +558,6 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JLabel TimKiemLabel;
     private javax.swing.JPanel TimKiemPanel;
     private javax.swing.JLabel TrangThaiLabel;
-    private javax.swing.JComboBox<String> TuKhoaCombobox;
-    private javax.swing.JTextField TuKhoaField;
     private javax.swing.JLabel TuKhoaLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

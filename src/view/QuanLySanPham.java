@@ -9,11 +9,14 @@ import Model.SanPham;
 import dao.DanhMucDAO;
 import java.io.File;
 import dao.SanPhamDAO;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,13 +47,20 @@ public class QuanLySanPham extends javax.swing.JFrame {
         this.HienThiDanhMuc();
         this.setTimKiemField();
         if(!"QL".equals(phanQuyen)){
-             this.ThemBtn.setVisible(false);
+            this.ThemBtn.setVisible(false);
             this.XoaBtn.setVisible(false);
             this.SuaBtn.setVisible(false);
             this.BoQuaBtn.setVisible(false);
             this.LuuBtn.setVisible(false);
             this.HinhAnhBtn.setVisible(false);
         }
+        MaDanhMucField.setRenderer(new DefaultListCellRenderer() {
+        @Override
+        public void paint(Graphics g) {
+            setForeground(Color.BLACK);
+            super.paint(g);
+        }
+        });
     }
     
     private void VoHieuHoaBtn(boolean val){
@@ -69,7 +79,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         this.DonGiaSiField.setEnabled(val);
         this.DonGiaLeField.setEnabled(val);
         this.MoTaField.setEnabled(val); 
-        this.HinhAnhBtn.setEnabled(val);
+        this.HinhAnhBtn.setVisible(val);
         
     }
     
@@ -184,9 +194,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        DanhSachSanPham.setGridColor(new java.awt.Color(153, 153, 153));
+        DanhSachSanPham.setGridColor(new java.awt.Color(102, 102, 102));
         DanhSachSanPham.setPreferredSize(new java.awt.Dimension(1400, 800));
-        DanhSachSanPham.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        DanhSachSanPham.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        DanhSachSanPham.setSelectionForeground(new java.awt.Color(0, 0, 0));
         DanhSachSanPham.getTableHeader().setReorderingAllowed(false);
         DanhSachSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -245,6 +256,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
         MaSanPhamField.setEditable(false);
         MaSanPhamField.setBackground(new java.awt.Color(255, 255, 255));
+        MaSanPhamField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         MaSanPhamField.setForeground(new java.awt.Color(0, 0, 0));
         MaSanPhamField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         MaSanPhamField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -256,12 +268,15 @@ public class QuanLySanPham extends javax.swing.JFrame {
         TenSanPhamLabel.setText("Tên sản phẩm");
 
         TenSanPhamField.setBackground(new java.awt.Color(255, 255, 255));
+        TenSanPhamField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TenSanPhamField.setForeground(new java.awt.Color(0, 0, 0));
         TenSanPhamField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         TenSanPhamField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         SoLuongField.setEditable(false);
         SoLuongField.setBackground(new java.awt.Color(255, 255, 255));
+        SoLuongField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        SoLuongField.setForeground(new java.awt.Color(0, 0, 0));
         SoLuongField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         SoLuongField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -274,6 +289,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         KichThuocLabel.setText("Kích thước");
 
         KichThuocField.setBackground(new java.awt.Color(255, 255, 255));
+        KichThuocField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         KichThuocField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         KichThuocField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -284,6 +300,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         MoTaLabel.setText("Mô tả");
 
         HangSanXuatField.setBackground(new java.awt.Color(255, 255, 255));
+        HangSanXuatField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         HangSanXuatField.setForeground(new java.awt.Color(0, 0, 0));
         HangSanXuatField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         HangSanXuatField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -293,6 +310,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         HangSanXuatLabel.setText("Hãng sản xuất");
 
         MauSacField.setBackground(new java.awt.Color(255, 255, 255));
+        MauSacField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         MauSacField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         MauSacField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -301,6 +319,8 @@ public class QuanLySanPham extends javax.swing.JFrame {
         MauSacLabel.setText("Màu sắc");
 
         DonGiaSiField.setBackground(new java.awt.Color(255, 255, 255));
+        DonGiaSiField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        DonGiaSiField.setForeground(new java.awt.Color(0, 0, 0));
         DonGiaSiField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         DonGiaSiField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -313,10 +333,14 @@ public class QuanLySanPham extends javax.swing.JFrame {
         DonGiaLeLabel.setText("Đơn giá lẻ");
 
         DonGiaLeField.setBackground(new java.awt.Color(255, 255, 255));
+        DonGiaLeField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        DonGiaLeField.setForeground(new java.awt.Color(0, 0, 0));
         DonGiaLeField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         DonGiaLeField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         MonTheThaoField.setBackground(new java.awt.Color(255, 255, 255));
+        MonTheThaoField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        MonTheThaoField.setForeground(new java.awt.Color(0, 0, 0));
         MonTheThaoField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         MonTheThaoField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
@@ -333,6 +357,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         SoNgayBaoHanhLabel.setText("Số ngày bảo hành");
 
         SoNgayBaoHanhField.setBackground(new java.awt.Color(255, 255, 255));
+        SoNgayBaoHanhField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         SoNgayBaoHanhField.setForeground(new java.awt.Color(0, 0, 0));
         SoNgayBaoHanhField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         SoNgayBaoHanhField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -357,6 +382,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
         MoTaField.setBackground(new java.awt.Color(255, 255, 255));
         MoTaField.setColumns(20);
+        MoTaField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         MoTaField.setForeground(new java.awt.Color(0, 0, 0));
         MoTaField.setRows(5);
         MoTaField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -375,6 +401,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         });
 
         MaDanhMucField.setBackground(new java.awt.Color(255, 255, 255));
+        MaDanhMucField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         MaDanhMucField.setForeground(new java.awt.Color(0, 0, 0));
         MaDanhMucField.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -388,6 +415,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
         TenDanhMucField.setEditable(false);
         TenDanhMucField.setBackground(new java.awt.Color(255, 255, 255));
+        TenDanhMucField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TenDanhMucField.setForeground(new java.awt.Color(0, 0, 0));
         TenDanhMucField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         TenDanhMucField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -519,12 +547,16 @@ public class QuanLySanPham extends javax.swing.JFrame {
         TimKiemPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 153, 153)));
 
         TimKiemField.setBackground(new java.awt.Color(255, 255, 255));
+        TimKiemField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TimKiemField.setForeground(new java.awt.Color(0, 0, 0));
 
         TimKiemLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         TimKiemLabel.setForeground(new java.awt.Color(0, 0, 0));
         TimKiemLabel.setText("Tìm kiếm theo:");
 
         TuKhoaField.setBackground(new java.awt.Color(255, 255, 255));
+        TuKhoaField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TuKhoaField.setForeground(new java.awt.Color(0, 0, 0));
         TuKhoaField.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(102, 102, 102), null));
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
