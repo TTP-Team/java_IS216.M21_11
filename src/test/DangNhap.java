@@ -36,7 +36,8 @@ public class DangNhap {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         new DangNhap_View();
-//
+
     }
 }

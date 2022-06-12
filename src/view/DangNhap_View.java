@@ -44,7 +44,8 @@ public class DangNhap_View extends javax.swing.JFrame {
         switch (tt) {
             case 1 -> {
                 this.setCursor(WAIT_CURSOR);
-                if ("NVBH".equals(phanQuyen)) {                   
+                if ("NVBH".equals(phanQuyen)) {  
+                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công role Nhân viên");
                     new NhanVienBanHang_View(phanQuyen,tk);
                     this.dispose();
                 } else if ("QL".equals(phanQuyen)) {
