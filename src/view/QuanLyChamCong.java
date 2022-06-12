@@ -95,6 +95,7 @@ public class QuanLyChamCong extends javax.swing.JFrame {
         TimKiemBtn.setForeground(new java.awt.Color(255, 255, 255));
         TimKiemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/search.png"))); // NOI18N
         TimKiemBtn.setText("Tìm kiếm");
+        TimKiemBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TimKiemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TimKiemBtnActionPerformed(evt);
@@ -155,6 +156,7 @@ public class QuanLyChamCong extends javax.swing.JFrame {
         ThoatBtn.setForeground(new java.awt.Color(255, 255, 255));
         ThoatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         ThoatBtn.setText("Thoát");
+        ThoatBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ThoatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ThoatBtnActionPerformed(evt);

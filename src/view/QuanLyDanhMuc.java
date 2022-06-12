@@ -26,7 +26,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.getAllDanhMuc();
-        this.BoQuaBtn.setEnabled(false);
+        this.BoQuaBtn.setVisible(false);
         this.LuuBtn.setEnabled(false);
         this.TenDanhMucField.setEnabled(false);
         this.phanQuyen = phanQuyen;
@@ -126,12 +126,13 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         }
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.GridLayout(1, 0, 20, 0));
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0, 22, 0));
 
         ThemBtn.setBackground(new java.awt.Color(0, 204, 102));
         ThemBtn.setForeground(new java.awt.Color(255, 255, 255));
         ThemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/add.png"))); // NOI18N
         ThemBtn.setText("Thêm");
+        ThemBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ThemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ThemBtnActionPerformed(evt);
@@ -143,6 +144,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         XoaBtn.setForeground(new java.awt.Color(255, 255, 255));
         XoaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/delete-button.png"))); // NOI18N
         XoaBtn.setText("Xóa");
+        XoaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         XoaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 XoaBtnActionPerformed(evt);
@@ -154,6 +156,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         SuaBtn.setForeground(new java.awt.Color(255, 255, 255));
         SuaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/edit.png"))); // NOI18N
         SuaBtn.setText("Sửa");
+        SuaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SuaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SuaBtnActionPerformed(evt);
@@ -165,6 +168,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         LuuBtn.setForeground(new java.awt.Color(255, 255, 255));
         LuuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/save.png"))); // NOI18N
         LuuBtn.setText("Lưu");
+        LuuBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LuuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LuuBtnActionPerformed(evt);
@@ -176,6 +180,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         BoQuaBtn.setForeground(new java.awt.Color(255, 255, 255));
         BoQuaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/cancel.png"))); // NOI18N
         BoQuaBtn.setText("Hủy");
+        BoQuaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BoQuaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BoQuaBtnActionPerformed(evt);
@@ -187,6 +192,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         ThoatBtn.setForeground(new java.awt.Color(255, 255, 255));
         ThoatBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         ThoatBtn.setText("Thoát");
+        ThoatBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ThoatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ThoatBtnActionPerformed(evt);
@@ -383,9 +389,9 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );

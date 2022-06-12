@@ -24,6 +24,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.toedter.calendar.JDateChooser;
 import dao.NhanVienDAO;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,7 +41,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Desktop;
+import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 
 /**
@@ -75,7 +78,14 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         this.phanQuyen = phanQuyen;
          MaNhanVienField.setText(maNV);
         TenNhanVienField.setText(NhanVienDAO.getInstance().getById(maNV).getTenNhanVien());
-        
+        MaSanPhamField.setRenderer(new DefaultListCellRenderer() {
+        @Override
+        public void paint(Graphics g) {
+            setForeground(Color.BLACK);
+            setBackground(Color.WHITE);
+            super.paint(g);
+        }
+        });
         this.setTimKiemField();
     }
 
@@ -234,7 +244,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         HuyPNBtn.setBackground(new java.awt.Color(0, 204, 102));
         HuyPNBtn.setForeground(new java.awt.Color(255, 255, 255));
         HuyPNBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/delete-button.png"))); // NOI18N
-        HuyPNBtn.setText("Hủy phiếu nhập");
+        HuyPNBtn.setText("Hủy phiếu");
         HuyPNBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         HuyPNBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +256,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         InPNBtn.setBackground(new java.awt.Color(0, 204, 102));
         InPNBtn.setForeground(new java.awt.Color(255, 255, 255));
         InPNBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/printer.png"))); // NOI18N
-        InPNBtn.setText("In phiếu nhập");
+        InPNBtn.setText("In phiếu ");
         InPNBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         InPNBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -487,7 +497,9 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         TenSanPhamField.setEditable(false);
         TenSanPhamField.setBackground(new java.awt.Color(255, 255, 255));
         TenSanPhamField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TenSanPhamField.setForeground(new java.awt.Color(0, 0, 0));
         TenSanPhamField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        TenSanPhamField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         TenSanPhamField.setEnabled(false);
 
         SoLuongLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N

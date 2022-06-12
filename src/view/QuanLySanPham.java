@@ -58,6 +58,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         @Override
         public void paint(Graphics g) {
             setForeground(Color.BLACK);
+            setBackground(Color.WHITE);
             super.paint(g);
         }
         });
