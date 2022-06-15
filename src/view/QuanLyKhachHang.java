@@ -44,6 +44,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         regEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
+        DanhSachKhachHang.setRowHeight(25);
     }
     private void VoHieuHoaBtn(boolean val) {
         this.ThemBtn.setEnabled(!val);

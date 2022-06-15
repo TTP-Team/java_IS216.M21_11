@@ -78,7 +78,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
         bufferedImage = null;
-        this.InBaoCao.setEnabled(false);
+        this.InBaoCao.setVisible(false);
     }
 
     /**
@@ -99,10 +99,11 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        XemBieuDo = new javax.swing.JButton();
-        InBaoCao = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        XemBieuDo = new javax.swing.JButton();
+        InBaoCao = new javax.swing.JButton();
         ThoatBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -186,28 +187,6 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        XemBieuDo.setBackground(new java.awt.Color(0, 204, 102));
-        XemBieuDo.setForeground(new java.awt.Color(255, 255, 255));
-        XemBieuDo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/eye.png"))); // NOI18N
-        XemBieuDo.setText("Xem biểu đồ");
-        XemBieuDo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        XemBieuDo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                XemBieuDoActionPerformed(evt);
-            }
-        });
-
-        InBaoCao.setBackground(new java.awt.Color(0, 204, 102));
-        InBaoCao.setForeground(new java.awt.Color(255, 255, 255));
-        InBaoCao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/printer.png"))); // NOI18N
-        InBaoCao.setText("In báo cáo");
-        InBaoCao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        InBaoCao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InBaoCaoActionPerformed(evt);
-            }
-        });
-
         jPanel3.setBackground(new java.awt.Color(0, 204, 102));
 
         jLabel4.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
@@ -221,7 +200,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(365, 365, 365))
+                .addGap(478, 478, 478))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +209,33 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0, 100, 30));
+
+        XemBieuDo.setBackground(new java.awt.Color(0, 204, 102));
+        XemBieuDo.setForeground(new java.awt.Color(255, 255, 255));
+        XemBieuDo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/eye.png"))); // NOI18N
+        XemBieuDo.setText("Xem biểu đồ");
+        XemBieuDo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        XemBieuDo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XemBieuDoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(XemBieuDo);
+
+        InBaoCao.setBackground(new java.awt.Color(0, 204, 102));
+        InBaoCao.setForeground(new java.awt.Color(255, 255, 255));
+        InBaoCao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/printer.png"))); // NOI18N
+        InBaoCao.setText("In báo cáo");
+        InBaoCao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        InBaoCao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InBaoCaoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(InBaoCao);
 
         ThoatBtn.setBackground(new java.awt.Color(0, 204, 102));
         ThoatBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -241,28 +247,22 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 ThoatBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(ThoatBtn);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(276, 276, 276)
-                .addComponent(XemBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143)
-                .addComponent(InBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
-                .addComponent(ThoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
+                .addContainerGap(202, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addGap(187, 187, 187))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(327, 327, 327)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,30 +270,22 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ThoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(XemBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(InBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
+                .addGap(27, 27, 27)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -301,7 +293,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
     private void XemBieuDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XemBieuDoActionPerformed
         String loai = (String) LoaiBaoCaoField.getSelectedItem();
-        this.InBaoCao.setEnabled(true);
+        this.InBaoCao.setVisible(true);
         if (NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null) {
             if ("Doanh thu theo ngày".equals(loai)) {
                 this.veBieuDo("Doanh thu ngày");
@@ -315,7 +307,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     private void InBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InBaoCaoActionPerformed
         // TODO add your handling code here:
         String loai = (String) LoaiBaoCaoField.getSelectedItem();
-        this.InBaoCao.setEnabled(false);
+        this.InBaoCao.setVisible(false);
         ArrayList<BaoCaoDoanhThu> hd = ThongKeDAO.getInstance().getDoanhThuByHoaDon(new Date(NgayBatDauField.getDate().getTime()), new Date(NgayKetThucField.getDate().getTime()));
         if (NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null && hd != null) {
             if ("Doanh thu theo ngày".equals(loai)) {
@@ -418,7 +410,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         Document doc = new Document(PageSize.A4);
         String fileName = "BaoCaoDoanhThu" + ngayBatDau + "+" + ngayKetThuc;
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\reports\\" + fileName + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/reports" + fileName + ".pdf"));
             doc.open();
             File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -564,7 +556,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             e.printStackTrace();
         }
         try {
-            File f = new File("D:\\tptsport\\reports\\" + fileName + ".pdf");
+            File f = new File("src/reports" + fileName + ".pdf");
             if(!Desktop.isDesktopSupported()){
                 System.out.println("not supported");
                 return;
@@ -584,7 +576,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
         String fileName = "BaoCaoSanPhamBan" + ngayBatDau + "+" + ngayKetThuc;
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\reports\\" + fileName + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/reports" + fileName + ".pdf"));
             doc.open();
             File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -709,7 +701,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             e.printStackTrace();
         }
         try {
-            File f = new File("D:\\tptsport\\reports\\" + fileName + ".pdf");
+            File f = new File("src/reports" + fileName + ".pdf");
             if(!Desktop.isDesktopSupported()){
                 System.out.println("not supported");
                 return;
@@ -753,5 +745,6 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }

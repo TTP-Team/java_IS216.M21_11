@@ -62,6 +62,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             super.paint(g);
         }
         });
+        DanhSachSanPham.setRowHeight(25);
     }
     
     private void VoHieuHoaBtn(boolean val){

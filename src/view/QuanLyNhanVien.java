@@ -56,7 +56,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             super.paint(g);
         }
         });
-                                       
+        DanhSachNhanVien.setRowHeight(25);                               
     }
     
     

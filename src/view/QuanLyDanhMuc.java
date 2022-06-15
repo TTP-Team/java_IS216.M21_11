@@ -38,7 +38,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
             this.BoQuaBtn.setVisible(false);
             this.LuuBtn.setVisible(false);
         }
-        
+        DanhSachDanhMuc.setRowHeight(25);
     }
 
     public void themDanhMuc() {        

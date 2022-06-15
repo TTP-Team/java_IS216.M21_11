@@ -40,6 +40,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         this.setTimKiemField();
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
+        DanhSachTaiKhoan.setRowHeight(25);
     }
     
     private void ResetValue(){

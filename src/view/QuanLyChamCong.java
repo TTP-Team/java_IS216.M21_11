@@ -5,11 +5,9 @@
 package view;
 
 import Model.ChamCong;
-import Model.SuKien;
 import com.toedter.calendar.JDateChooser;
 import dao.ChamCongDAO;
 import dao.NhanVienDAO;
-import dao.SuKienDAO;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.sql.Date;
@@ -39,7 +37,7 @@ public class QuanLyChamCong extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.getAllChamCong();
         this.setTimKiemField();
-
+        DanhSachChamCong.setRowHeight(25);
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
     }

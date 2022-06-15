@@ -4,10 +4,8 @@
  */
 package view;
 
-import Model.KhachHang;
 import Model.SuKien;
 import com.toedter.calendar.JDateChooser;
-import dao.KhachHangDAO;
 import dao.SuKienDAO;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -46,8 +44,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
         VoHieuHoaBtn(false);
         NgayBatDauField.setDateFormatString("dd/MM/yyyy");
         NgayKetThucField.setDateFormatString("dd/MM/yyyy");
-        this.setTimKiemField();
-        TuKhoaDate.setDateFormatString("dd/MM/yyyy");
+        this.setTimKiemField();       
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
         if (phanQuyen != "QL") {
@@ -56,9 +53,8 @@ public class QuanLySuKien extends javax.swing.JFrame {
             this.SuaBtn.setVisible(false);
             this.BoQuaBtn.setVisible(false);
             this.LuuBtn.setVisible(false);
-
         }
-
+        DanhSachSuKien.setRowHeight(25);
     }
 
     private void VoHieuHoaBtn(boolean val) {

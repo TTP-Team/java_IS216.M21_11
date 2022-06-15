@@ -138,6 +138,23 @@ public class TaiKhoanDAO {
         }
     }
     
+    
+    public String layLaiMatKhau(String t) {
+        String sql = "{? = call layLaiMatKhau(?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(2, t);
+            cstm.registerOutParameter(1, java.sql.Types.VARCHAR);
+            cstm.executeUpdate();
+            String mk = cstm.getString(1);
+            con.close();
+            return mk;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return "";
+        }
+    }
+    
     public void doiMatKhau(String tenDN, String mkMoi) {
         String sql = "{call doiMatKhau(?,?)}";
         try ( Connection con = JDBCUtil.getConnection()) {

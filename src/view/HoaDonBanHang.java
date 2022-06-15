@@ -83,6 +83,8 @@ public class HoaDonBanHang extends javax.swing.JFrame {
             super.paint(g);
         }
         });
+        DanhSachHoaDon.setRowHeight(25);
+        DanhSachCTHD.setRowHeight(25);
     }
 
     private void VoHieuHoaBtn(boolean val) {

@@ -87,6 +87,8 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         }
         });
         this.setTimKiemField();
+        DanhSachPhieuNhap.setRowHeight(25);
+        DanhSachCTPN.setRowHeight(25);
     }
 
     /**
@@ -110,7 +112,6 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         ThemPNBtn = new javax.swing.JButton();
         HuyPNBtn = new javax.swing.JButton();
-        InPNBtn = new javax.swing.JButton();
         ThoatBtn = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -227,7 +228,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         TriGiaValue.setToolTipText("");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setLayout(new java.awt.GridLayout(1, 0, 20, 0));
+        jPanel5.setLayout(new java.awt.GridLayout(1, 0, 50, 0));
 
         ThemPNBtn.setBackground(new java.awt.Color(0, 204, 102));
         ThemPNBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,18 +253,6 @@ public class PhieuNhapHang extends javax.swing.JFrame {
             }
         });
         jPanel5.add(HuyPNBtn);
-
-        InPNBtn.setBackground(new java.awt.Color(0, 204, 102));
-        InPNBtn.setForeground(new java.awt.Color(255, 255, 255));
-        InPNBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/printer.png"))); // NOI18N
-        InPNBtn.setText("In phiếu ");
-        InPNBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        InPNBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InPNBtnActionPerformed(evt);
-            }
-        });
-        jPanel5.add(InPNBtn);
 
         ThoatBtn.setBackground(new java.awt.Color(0, 204, 102));
         ThoatBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -639,9 +628,9 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -660,25 +649,24 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel16)
-                        .addComponent(TriGiaValue))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel14))
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel14))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(TriGiaValue)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -816,158 +804,6 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TimKiemFieldItemStateChanged
 
-    private void InPNBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InPNBtnActionPerformed
-        // TODO add your handling code here:
-        if ("".equals(MaPhieuNhapField.getText())) {
-            JOptionPane.showConfirmDialog(rootPane, "Vui lòng chọn phiếu nhập");
-        } else {
-            Document doc = new Document(PageSize.A5);
-            String fileName = MaPhieuNhapField.getText();
-            try {
-                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\inventories\\" + fileName + ".pdf"));
-                doc.open();
-                File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
-                BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                Font fontTieuDe1 = new Font(bfTieuDe, 15);
-                Font fontTieuDe2 = new Font(bfTieuDe, 13);
-                File fileFontNoiDung = new File("src/resources/fonts/vuArial.ttf");
-                BaseFont bfNoiDung = BaseFont.createFont(fileFontNoiDung.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                Font fontNoiDung1 = new Font(bfNoiDung, 13);
-                Font fontNoiDung2 = new Font(bfNoiDung, 12);
-
-                Paragraph prgTenCuaHang = new Paragraph("TPT SPORT", fontTieuDe1);
-                prgTenCuaHang.setAlignment(Element.ALIGN_CENTER);               
-                doc.add(prgTenCuaHang);
-
-                Paragraph prgDiaChi = new Paragraph("123 Đường số 4, Phường Linh Trung, Thành phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam", fontNoiDung2);
-                prgDiaChi.setAlignment(Element.ALIGN_CENTER);
-                prgDiaChi.setAlignment(Paragraph.ALIGN_CENTER);
-                prgDiaChi.setSpacingBefore(5);
-                doc.add(prgDiaChi);
-
-                Paragraph prgTieuDe = new Paragraph("PHIẾU NHẬP HÀNG", fontTieuDe1);
-                prgTieuDe.setAlignment(Element.ALIGN_CENTER);
-                prgTieuDe.setSpacingBefore(20);
-                prgTieuDe.setSpacingAfter(20);
-                doc.add(prgTieuDe);
-
-                List listTTHD = new List(List.UNORDERED);
-                listTTHD.add(new ListItem("Mã phiếu nhập: " + MaPhieuNhapField.getText(), fontNoiDung1));
-                listTTHD.add(new ListItem("Tên nhân viên: " + TenNhanVienField.getText(), fontNoiDung1));
-                listTTHD.add(new ListItem("Ngày nhập: " + NgayNhapField.getText(), fontNoiDung1));
-                doc.add(listTTHD);
-                
-                PdfPTable tableSP = new PdfPTable(4);
-                tableSP.setWidthPercentage(95);
-                tableSP.setSpacingBefore(20);
-                tableSP.setSpacingAfter(20);
-
-                float[] tableSP_colWidths = {250, 100, 200, 200};
-                tableSP.setWidths(tableSP_colWidths);
-                PdfPCell cellTDSP = new PdfPCell(new Paragraph("Tên sản phẩm", fontTieuDe2));
-                cellTDSP.setPaddingTop(5);
-                cellTDSP.setPaddingBottom(5);
-                cellTDSP.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cellTDSP.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                
-                tableSP.addCell(cellTDSP);
-
-                PdfPCell cellTDSL = new PdfPCell(new Paragraph("SL", fontTieuDe2));
-                cellTDSL.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cellTDSL.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cellTDSL.setPaddingTop(5);
-                cellTDSL.setPaddingBottom(5);
-                tableSP.addCell(cellTDSL);
-
-                PdfPCell cellTDDG = new PdfPCell(new Paragraph("Đơn giá", fontTieuDe2));
-                cellTDDG.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cellTDDG.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cellTDDG.setPaddingTop(5);
-                cellTDDG.setPaddingBottom(5);
-                tableSP.addCell(cellTDDG);
-
-                PdfPCell cellTDTT = new PdfPCell(new Paragraph("Thành tiền", fontTieuDe2));
-                cellTDTT.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cellTDTT.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cellTDTT.setPaddingTop(5);
-                cellTDTT.setPaddingBottom(5);
-                tableSP.addCell(cellTDTT);
-
-                ArrayList<ChiTietPhieuNhap> ctpn = ChiTietPhieuNhapDAO.getInstance().getById(MaPhieuNhapField.getText());
-                for (ChiTietPhieuNhap i : ctpn) {
-                    String tenSP = SanPhamDAO.getInstance().getById(i.getMaSanPham()).getTenSanPham();
-                    PdfPCell cellSP = new PdfPCell(new Paragraph(tenSP, fontNoiDung1));
-                    cellSP.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cellSP.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cellSP.setPaddingTop(5);
-                    cellSP.setPaddingBottom(5);
-                    tableSP.addCell(cellSP);
-
-                    PdfPCell cellSL = new PdfPCell(new Paragraph(String.valueOf(i.getSoLuong()), fontNoiDung1));
-                    cellSL.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cellSL.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cellSL.setPaddingTop(5);
-                    cellSL.setPaddingBottom(5);
-                    tableSP.addCell(cellSL);
-
-
-                    PdfPCell cellDG = new PdfPCell(new Paragraph(DinhDangTienTe(i.getSoLuong()), fontNoiDung1));
-                    cellDG.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cellDG.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cellTDSL.setPaddingTop(5);
-                    cellTDSL.setPaddingBottom(5);
-                    tableSP.addCell(cellDG);
-                    
-                    PdfPCell cellTT = new PdfPCell(new Paragraph(DinhDangTienTe(i.getSoLuong() * i.getDonGiaNhap()), fontNoiDung1));
-                    cellTT.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cellTT.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cellTDSL.setPaddingTop(5);
-                    cellTDSL.setPaddingBottom(5);
-                    tableSP.addCell(cellTT);
-                    
-                }
-                doc.add(tableSP);
-                
-                PdfPTable tableTinhTien = new PdfPTable(2);
-                tableTinhTien.setWidthPercentage(95);
-                tableTinhTien.setSpacingAfter(20);
-                
-                float[]  tableTinhTien_colWidths = {450, 150};
-                tableTinhTien.setWidths(tableTinhTien_colWidths);                
-
-                PdfPCell cellTDTC = new PdfPCell(new Paragraph("Tổng tiền: " , fontTieuDe2));
-                cellTDTC.setBorder(0);
-                cellTDTC.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                cellTDTC.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                tableTinhTien.addCell(cellTDTC);
-                PdfPCell cellTC = new PdfPCell(new Paragraph(DinhDangTienTe(PhieuNhapDAO.getInstance().getById(MaPhieuNhapField.getText()).getTriGia()), fontNoiDung1));
-                cellTC.setBorder(0);
-                cellTC.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cellTC.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                tableTinhTien.addCell(cellTC);
-                doc.add(tableTinhTien);
-                
-                doc.close();
-                writer.close();
-                
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                File file = new File("D:\\tptsport\\inventories\\" + fileName + ".pdf");
-                if(!Desktop.isDesktopSupported()){
-                    System.out.println("not supported");
-                    return;
-                }
-                Desktop desktop = Desktop.getDesktop();
-                if(file.exists()){
-                    desktop.open(file);
-                }
-            } catch (Exception e) {
-            }
-        }
-    }//GEN-LAST:event_InPNBtnActionPerformed
-
     private void NgayNhapFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NgayNhapFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NgayNhapFieldActionPerformed
@@ -1031,7 +867,6 @@ public class PhieuNhapHang extends javax.swing.JFrame {
     private javax.swing.JTextField DonGiaField;
     private javax.swing.JLabel DonGiaLabel;
     private javax.swing.JButton HuyPNBtn;
-    private javax.swing.JButton InPNBtn;
     private javax.swing.JTextField MaNhanVienField;
     private javax.swing.JLabel MaNhanVienLabel;
     private javax.swing.JTextField MaPhieuNhapField;
