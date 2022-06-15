@@ -6,8 +6,7 @@ package test;
 
 
 import view.DangNhap_View;
-import view.BaoCaoThongKe;
-import view.QuanLyChamCong;
+
 
 public class DangNhap {
     /**
