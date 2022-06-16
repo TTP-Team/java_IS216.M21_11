@@ -127,7 +127,7 @@ public class PhieuNhapDAO{
     
     public ArrayList<PhieuNhap> getByNgay(Date t) {
         ArrayList<PhieuNhap> ketQua = new ArrayList<>();
-        String sql = "{call getHoaDonByNgay(?,?)}";
+        String sql = "{call getPhieuNhapByNgay(?,?)}";
         try ( Connection con = JDBCUtil.getConnection()) {
             CallableStatement cstm = con.prepareCall(sql);
             cstm.setDate(1, t);
