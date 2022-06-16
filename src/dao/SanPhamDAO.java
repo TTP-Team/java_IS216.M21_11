@@ -147,7 +147,6 @@ public class SanPhamDAO {
             return null;
         }
     }
-
     public ArrayList<SanPham> getByTen(String t) {
         ArrayList<SanPham> ketQua = new ArrayList<>();
         String sql = "{call getSanPhamByTen(?,?)}";
@@ -181,6 +180,7 @@ public class SanPhamDAO {
             return null;
         }
     }
+
     public ArrayList<SanPham> getByMaSanPham(String t) {
         ArrayList<SanPham> ketQua = new ArrayList<>();
         String sql = "{call getSanPhamById(?,?)}";

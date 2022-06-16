@@ -15,6 +15,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
     private String phanQuyen;
     private String tenTaiKhoan;
     private DefaultTableModel model;
+    private String chucNang;
 
     /**
      * Creates new form QuanLyDanhMuc
@@ -35,12 +36,16 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
             this.BoQuaBtn.setVisible(false);
         }
         DanhSachDanhMuc.setRowHeight(25);
-        BoQuaBtn.setVisible(false);
+        VoHieuHoaBtn(false);
 
     }
 
     public void VoHieuHoaBtn(boolean val) {
         this.XoaBtn.setVisible(!val);
+        this.ThemBtn.setVisible(!val);
+        this.SuaBtn.setVisible(!val);
+        this.ThoatBtn.setVisible(!val);
+        this.LuuBtn.setVisible(val);
         this.BoQuaBtn.setVisible(val);
         this.TenDanhMucField.setEnabled(val);
     }
@@ -48,12 +53,20 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
     public void themDanhMuc() {
         DanhMuc dm = new DanhMuc();
         dm.setTenDanhMuc(TenDanhMucField.getText());
-        DanhMucDAO.getInstance().insert(dm);
-        MaDanhMucField.setText("");
-        TenDanhMucField.setText("");
-        model = (DefaultTableModel) DanhSachDanhMuc.getModel();
-        String[] dataRow = {dm.getMaDanhMuc(), dm.getTenDanhMuc()};
-        model.addRow(dataRow);
+        if (DanhMucDAO.getInstance().insert(dm) == 1) {
+            JOptionPane.showMessageDialog(null,
+                    "Thêm thành công",
+                    "",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Không thể thêm!",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);
+        };
+        
+        VoHieuHoaBtn(false);
+        this.getAllDanhMuc();
     }
 
     /**
@@ -81,6 +94,8 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         MaDanhMucField = new javax.swing.JTextField();
         TenDanhMucLabel = new javax.swing.JLabel();
         TenDanhMucField = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        LuuBtn = new javax.swing.JButton();
         BoQuaBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         TimKiemLabel = new javax.swing.JLabel();
@@ -194,14 +209,14 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195))
+                .addGap(147, 147, 147))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -232,6 +247,21 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         TenDanhMucField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         TenDanhMucField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0, 30, 0));
+
+        LuuBtn.setBackground(new java.awt.Color(0, 204, 102));
+        LuuBtn.setForeground(new java.awt.Color(255, 255, 255));
+        LuuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/save.png"))); // NOI18N
+        LuuBtn.setText("Lưu");
+        LuuBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LuuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LuuBtnActionPerformed(evt);
+            }
+        });
+        jPanel6.add(LuuBtn);
+
         BoQuaBtn.setBackground(new java.awt.Color(0, 204, 102));
         BoQuaBtn.setForeground(new java.awt.Color(255, 255, 255));
         BoQuaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/cancel.png"))); // NOI18N
@@ -242,20 +272,25 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
                 BoQuaBtnActionPerformed(evt);
             }
         });
+        jPanel6.add(BoQuaBtn);
 
         javax.swing.GroupLayout ModifyPaneLayout = new javax.swing.GroupLayout(ModifyPane);
         ModifyPane.setLayout(ModifyPaneLayout);
         ModifyPaneLayout.setHorizontalGroup(
             ModifyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ModifyPaneLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
                 .addGroup(ModifyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BoQuaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MaDanhMucLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TenDanhMucLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TenDanhMucField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MaDanhMucField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addGroup(ModifyPaneLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(ModifyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(MaDanhMucLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TenDanhMucLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TenDanhMucField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(MaDanhMucField)))
+                    .addGroup(ModifyPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ModifyPaneLayout.setVerticalGroup(
             ModifyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +303,8 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
                 .addComponent(TenDanhMucLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TenDanhMucField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BoQuaBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -288,6 +323,11 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         TuKhoaField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TuKhoaField.setForeground(new java.awt.Color(0, 0, 0));
         TuKhoaField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        TuKhoaField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TuKhoaFieldKeyReleased(evt);
+            }
+        });
 
         TimKiemField.setBackground(new java.awt.Color(255, 255, 255));
         TimKiemField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -310,14 +350,14 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(TuKhoaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TimKiemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TimKiemBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TuKhoaField)
                     .addComponent(TimKiemField, 0, 208, Short.MAX_VALUE))
-                .addGap(36, 36, 36))
+                .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +381,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ModifyPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -352,10 +392,9 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(ModifyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(ModifyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -440,36 +479,13 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         this.ThemBtn.setVisible(true);
         this.SuaBtn.setVisible(true);
         TenDanhMucField.setText("");
-        this.ThemBtn.setText("Thêm");
-        this.SuaBtn.setText("Sửa");
     }//GEN-LAST:event_BoQuaBtnActionPerformed
 
     private void SuaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuaBtnActionPerformed
         // TODO add your handling code here:
-        if (SuaBtn.getText() == "Sửa") {
-            VoHieuHoaBtn(true);
-            SuaBtn.setText("Lưu");
-            this.ThemBtn.setVisible(false);
-        } else if ("Lưu".equals(SuaBtn.getText())) {
-            if (TenDanhMucField.getText() != "") {
-                DanhMuc dm = new DanhMuc(MaDanhMucField.getText(), TenDanhMucField.getText());
-                DanhMucDAO.getInstance().update(dm);
-                VoHieuHoaBtn(false);
-                this.getAllDanhMuc();
-                this.MaDanhMucField.setText("");
-                this.TenDanhMucField.setText("");
-                SuaBtn.setText("Sửa");
-                this.ThemBtn.setVisible(true);
-                this.getAllDanhMuc();
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Vui lòng nhập đầy đủ thông tin",
-                        "",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-
-        }
-
+        VoHieuHoaBtn(true);
+        chucNang = "Sua";
+        this.ThemBtn.setVisible(false);
     }//GEN-LAST:event_SuaBtnActionPerformed
 
     private void XoaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XoaBtnActionPerformed
@@ -502,7 +518,6 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
                             "Không thể xóa",
                             "",
                             JOptionPane.ERROR_MESSAGE);
-
                 }
 
             } else {
@@ -514,29 +529,12 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
         // TODO add your handling code here:
-        if (ThemBtn.getText() == "Thêm") {
-            ThemBtn.setText("Lưu");
-            TenDanhMucField.setText("");
-            MaDanhMucField.setText("");
-            this.SuaBtn.setVisible(false);
-            VoHieuHoaBtn(true);
-            this.TenDanhMucField.requestFocus();
-        } else if (ThemBtn.getText() == "Lưu") {
-            if (TenDanhMucField.getText() != "") {
-                themDanhMuc();
-                ThemBtn.setText("Thêm");
-                this.SuaBtn.setVisible(true);
-                VoHieuHoaBtn(false);
-                this.getAllDanhMuc();
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Vui lòng nhập đầy đủ thông tin",
-                        "",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-
-        }
-
+        chucNang = "Them";
+        TenDanhMucField.setText("");
+        MaDanhMucField.setText("");
+        this.SuaBtn.setVisible(false);
+        VoHieuHoaBtn(true);
+        this.TenDanhMucField.requestFocus();
     }//GEN-LAST:event_ThemBtnActionPerformed
 
     private void DanhSachDanhMucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DanhSachDanhMucMouseClicked
@@ -545,6 +543,67 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
         MaDanhMucField.setText((String) model.getValueAt(index, 0));
         TenDanhMucField.setText((String) model.getValueAt(index, 1));
     }//GEN-LAST:event_DanhSachDanhMucMouseClicked
+
+    private void LuuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuuBtnActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(TenDanhMucField.getText())) {
+            if (this.chucNang == "Them") {
+                themDanhMuc();
+            } else if (this.chucNang == "Sua") {
+                DanhMuc dm = new DanhMuc(MaDanhMucField.getText(), TenDanhMucField.getText());
+                int result = JOptionPane.showConfirmDialog(null,
+                        "Bạn muốn sửa thông tin này ?",
+                        "Xác nhận",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (result == JOptionPane.YES_OPTION) {
+                    if (DanhMucDAO.getInstance().update(dm) == 1) {
+                        JOptionPane.showMessageDialog(null,
+                                "Sửa thành công",
+                                "",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Không thể sửa!",
+                                "",
+                                JOptionPane.ERROR_MESSAGE);
+                    };
+
+                }
+            }
+            this.ThemBtn.setEnabled(true);
+            this.XoaBtn.setEnabled(true);
+            this.SuaBtn.setEnabled(true);
+            this.BoQuaBtn.setEnabled(false);
+            this.LuuBtn.setEnabled(false);
+            this.TenDanhMucField.setEnabled(false);
+            this.getAllDanhMuc();
+            this.MaDanhMucField.setText("");
+            this.TenDanhMucField.setText("");
+        } else
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng điền đầy đủ thông tin",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_LuuBtnActionPerformed
+
+    private void TuKhoaFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TuKhoaFieldKeyReleased
+        // TODO add your handling code here:
+        String timKiemTheo = (String) TimKiemField.getSelectedItem();
+        ArrayList<DanhMuc> danhMuc = new ArrayList<>();
+        if (!"".equals(TuKhoaField.getText())) {
+            if ("Mã danh mục".equals(timKiemTheo)) {
+                danhMuc = DanhMucDAO.getInstance().getByMaDanhMuc(TuKhoaField.getText());
+            } else if ("Tên danh mục".equals(timKiemTheo)) {
+                danhMuc = DanhMucDAO.getInstance().getByTen(TuKhoaField.getText());
+            } 
+            if(danhMuc != null)
+                this.hienThi(danhMuc);
+        }
+        else{
+            this.getAllDanhMuc();
+        }
+    }//GEN-LAST:event_TuKhoaFieldKeyReleased
 
     private void hienThi(ArrayList<DanhMuc> t) {
         model = (DefaultTableModel) DanhSachDanhMuc.getModel();
@@ -566,6 +625,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoQuaBtn;
     private javax.swing.JTable DanhSachDanhMuc;
+    private javax.swing.JButton LuuBtn;
     private javax.swing.JTextField MaDanhMucField;
     private javax.swing.JLabel MaDanhMucLabel;
     private javax.swing.JPanel ModifyPane;
@@ -586,6 +646,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

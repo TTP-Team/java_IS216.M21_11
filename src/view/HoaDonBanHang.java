@@ -369,6 +369,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         TenSuKienField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         TenSuKienField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
+        DanhSachKhachHang.setBackground(new java.awt.Color(255, 255, 255));
         DanhSachKhachHang.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -499,6 +500,8 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         SoLuongField.setForeground(new java.awt.Color(0, 0, 0));
         SoLuongField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
+        DanhSachSanPham.setBackground(new java.awt.Color(255, 255, 255));
+        DanhSachSanPham.setForeground(new java.awt.Color(0, 0, 0));
         DanhSachSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -675,14 +678,10 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                     .addComponent(TimKiemTheoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TuKhoaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TimKiemField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(TimKiemBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(TimKiemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap()))))
+                        .addComponent(TimKiemField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(TimKiemBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .addComponent(TimKiemPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -965,9 +964,13 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         String maSanPham = MaSanPhamField.getText();
         int soSanPham = SanPhamDAO.getInstance().getById(maSanPham).getSoLuong();
         int soLuong = 0;
-        try {
-            soLuong = Integer.parseInt(SoLuongField.getText());
-            if (!"".equals(this.SoLuongField.getText())) {
+
+        if (!"".equals(this.SoLuongField.getText())) {
+            try {
+                soLuong = Integer.parseInt(SoLuongField.getText());
+                if (soLuong <= 0) {
+                    throw new ArithmeticException("");
+                }
                 if (soLuong <= soSanPham) {
                     model2 = (DefaultTableModel) DanhSachCTHD.getModel();
                     String tensanPham = SanPhamDAO.getInstance().getById(maSanPham).getTenSanPham();
@@ -996,15 +999,15 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Số lượng sản phẩm còn lại: " + soSanPham);
                 }
-            } else {
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
-                        "Vui lòng nhập đầy đủ thông tin",
+                        "Số lượng là chữ số lớn hơn 0",
                         "",
                         JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
+        } else {
             JOptionPane.showMessageDialog(null,
-                    "Số lượng là chữ số",
+                    "Vui lòng nhập đầy đủ thông tin",
                     "",
                     JOptionPane.ERROR_MESSAGE);
         }

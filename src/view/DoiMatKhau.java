@@ -140,14 +140,30 @@ public class DoiMatKhau extends javax.swing.JFrame {
         String matKhauMoi = MatKhauMoiField.getText();
         String xacNhanMatKhau = XacNhanMatKhauField.getText();
         int tt = TaiKhoanDAO.getInstance().kiemTraTrangThai(tenTaiKhoan, matKhauCu);
-        if ("".equals(matKhauCu) || "".equals(matKhauMoi) || "".equals(xacNhanMatKhau)) {
-            JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin");
+        if(matKhauCu.equals(matKhauMoi)){
+            JOptionPane.showMessageDialog(null,
+                    "Mật khẩu mới phải khác mật khẩu cũ",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);  
+        }
+        else{
+            if ("".equals(matKhauCu) || "".equals(matKhauMoi) || "".equals(xacNhanMatKhau)) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng điền đầy đủ thông tin!",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);
         } else {
             if (tt != 1) {
-                JOptionPane.showMessageDialog(rootPane, "Mật khảu cũ sai");
+                JOptionPane.showMessageDialog(null,
+                    "Mật khảu cũ sai",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);               
             } else {
                 if (!matKhauMoi.equals(xacNhanMatKhau)) {
-                    JOptionPane.showMessageDialog(rootPane, "Xác nhận mật khẩu sai");
+                                    JOptionPane.showMessageDialog(null,
+                    "Xác nhận mật khẩu sai",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);  
                 } else {
                     TaiKhoanDAO.getInstance().doiMatKhau(tenTaiKhoan, matKhauMoi);
                     if ("QL".equals(phanQuyen)) {
@@ -161,6 +177,9 @@ public class DoiMatKhau extends javax.swing.JFrame {
                 }
             }
         }
+        
+        }
+        
 
     }//GEN-LAST:event_XacNhanBtnActionPerformed
 

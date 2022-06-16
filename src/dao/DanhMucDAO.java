@@ -107,7 +107,29 @@ public class DanhMucDAO{
             return null;
         }
     }
-
+    
+    public ArrayList<DanhMuc> getByMaDanhMuc(String t) {
+        ArrayList<DanhMuc> ketQua = new ArrayList<>();
+        String sql = "{call getDanhMucById(?,?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(1, t);
+            cstm.registerOutParameter(2, OracleTypes.CURSOR);
+            cstm.execute();
+            ResultSet rs = (ResultSet) cstm.getObject(2);
+            while (rs.next()) {
+                String maDanhMuc = rs.getString("MADANHMUC");
+                String tenDanhMuc = rs.getString("TENDANHMUC");
+                DanhMuc danhMuc = new DanhMuc(maDanhMuc, tenDanhMuc);
+                ketQua.add(danhMuc);
+            }
+            con.close();
+            return ketQua;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return null;
+        }
+    }
     public ArrayList<DanhMuc> getByTen(String t) {
         ArrayList<DanhMuc> ketQua = new ArrayList<>();
         String sql = "{call getDanhMucByTen(?,?)}";

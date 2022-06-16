@@ -13,7 +13,6 @@ import Model.PhieuNhap;
 import com.toedter.calendar.JDateChooser;
 import dao.NhanVienDAO;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -28,7 +27,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Thanh PC
@@ -40,7 +38,6 @@ public class PhieuNhapHang extends javax.swing.JFrame {
     private DefaultTableModel PhieuNhap_model;
     private DefaultTableModel CTPN_model;
     private DefaultTableModel SP_model;
-    private String chucNang;
     private JTextField tuKhoaField;
     private JDateChooser tuKhoaDate;
     private ArrayList<ChiTietPhieuNhap> arr_CTPN;
@@ -68,7 +65,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         DanhSachPhieuNhap.setRowHeight(25);
         DanhSachCTPN.setRowHeight(25);
         DanhSachSanPham.setRowHeight(25);
-        
+
     }
 
     /**
@@ -418,10 +415,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         DanhSachSanPham.setBackground(new java.awt.Color(255, 255, 255));
         DanhSachSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã sản phẩm", "Tên sản phẩm", "Số lượng còn"
@@ -711,20 +705,20 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
         ArrayList<PhieuNhap> phieuNhap = new ArrayList<>();
-        if (!"".equals(tuKhoaField.getText()) || tuKhoaDate.getDate() != null) {
+        if (!"".equals(tuKhoaField.getText()) || tuKhoaDate != null) {
             if ("Mã phiếu nhập".equals(timKiemTheo)) {
                 phieuNhap.add(PhieuNhapDAO.getInstance().getById(tuKhoaField.getText()));
             } else if ("Mã nhân viên".equals(timKiemTheo)) {
                 phieuNhap = PhieuNhapDAO.getInstance().getByMaNhanVien(tuKhoaField.getText());
             } else if ("Ngày nhập".equals(timKiemTheo)) {
                 phieuNhap = PhieuNhapDAO.getInstance().getByNgay(new Date(tuKhoaDate.getDate().getTime()));
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Không tìm thấy!");
+
+            }else {
+                JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
             }
             if(phieuNhap != null)
                 this.hienThiPhieuNhap(phieuNhap);
-            else
-                JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
+            
         } else
             this.getAllPhieuNhap();
     }//GEN-LAST:event_TimKiemBtnActionPerformed
@@ -750,7 +744,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
 
     private void ThemPNBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemPNBtnActionPerformed
         // TODO add your handling code here:
-        
+
         triGia = 0.0;
         if ("Thêm".equals(ThemPNBtn.getText())) {
             VoHieuHoaBtn(true);
@@ -777,7 +771,10 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                 i.setMaPhieuNhap(pn.getMaPhieuNhap());
                 ChiTietPhieuNhapDAO.getInstance().insert(i);
             }
-            JOptionPane.showMessageDialog(rootPane, "Thêm phiếu nhập thành công!");
+            JOptionPane.showMessageDialog(null,
+                    "Thêm phiếu nhập thành công!",
+                    "",
+                    JOptionPane.INFORMATION_MESSAGE);
             ThemPNBtn.setText("Thêm");
             VoHieuHoaBtn(false);
             this.getAllSanPham();
@@ -786,33 +783,47 @@ public class PhieuNhapHang extends javax.swing.JFrame {
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
 
-
-        if (!"".equals(this.SoLuongField.getText()) || !"".equals(this.DonGiaField.getText()) || !"".equals(this.MaSanPhamField.getText()) || !"".equals(this.TenSanPhamField.getText()) ) {
-            String maSanPham = MaSanPhamField.getText();
-            triGia = triGia + Double.parseDouble(DonGiaField.getText()) * Integer.parseInt(SoLuongField.getText());
-            CTPN_model = (DefaultTableModel) DanhSachCTPN.getModel();
-            String tensanPham = SanPhamDAO.getInstance().getById(maSanPham).getTenSanPham();
-            ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap("", maSanPham, Double.parseDouble(DonGiaField.getText()), Integer.parseInt(SoLuongField.getText()));
-            String[] dataRow = {maSanPham, tensanPham, SoLuongField.getText(), DonGiaField.getText()};
-            CTPN_model.addRow(dataRow);
-            if (!arr_CTPN.isEmpty()) {
-                for (ChiTietPhieuNhap i : arr_CTPN) {
-                    int sl = i.getSoLuong();
-                    if (i.getMaSanPham().equalsIgnoreCase(maSanPham)) {
-                        i.setSoLuong(sl + Integer.parseInt(SoLuongField.getText()));
-                    } 
-                    else{
-                        System.out.println(ctpn.getMaSanPham() + ctpn.getSoLuong());
-                        arr_CTPN.add(ctpn);
-                        break;
-                    } 
+        if (!"".equals(this.SoLuongField.getText()) || !"".equals(this.DonGiaField.getText()) || !"".equals(this.MaSanPhamField.getText()) || !"".equals(this.TenSanPhamField.getText())) {
+            int soLuong = Integer.parseInt(SoLuongField.getText());
+            try {
+                soLuong = Integer.parseInt(SoLuongField.getText());
+                if (soLuong <= 0) {
+                    throw new ArithmeticException("");
                 }
-            } else {
-                arr_CTPN.add(ctpn);
+                String maSanPham = MaSanPhamField.getText();
+                triGia = triGia + Double.parseDouble(DonGiaField.getText()) * Integer.parseInt(SoLuongField.getText());
+                CTPN_model = (DefaultTableModel) DanhSachCTPN.getModel();
+                String tensanPham = SanPhamDAO.getInstance().getById(maSanPham).getTenSanPham();
+                ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap("", maSanPham, Double.parseDouble(DonGiaField.getText()), soLuong);
+                String[] dataRow = {maSanPham, tensanPham, SoLuongField.getText(), DonGiaField.getText()};
+                CTPN_model.addRow(dataRow);
+                if (!arr_CTPN.isEmpty()) {
+                    for (ChiTietPhieuNhap i : arr_CTPN) {
+                        int sl = i.getSoLuong();
+                        if (i.getMaSanPham().equalsIgnoreCase(maSanPham)) {
+                            i.setSoLuong(sl + Integer.parseInt(SoLuongField.getText()));
+                        } else {
+                            System.out.println(ctpn.getMaSanPham() + ctpn.getSoLuong());
+                            arr_CTPN.add(ctpn);
+                            break;
+                        }
+                    }
+                } else {
+                    arr_CTPN.add(ctpn);
+                }
+                TriGiaValue.setText(DinhDangTienTe(triGia));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Số lượng là chữ số lớn hơn 0",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
             }
-            TriGiaValue.setText(DinhDangTienTe(triGia));
+
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin!");
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng điền đầy đủ thông tin!",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ThemBtnActionPerformed
 
@@ -861,7 +872,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = DanhSachSanPham.getSelectedRow();
         MaSanPhamField.setText((String) SP_model.getValueAt(index, 0));
-        TenSanPhamField.setText((String) SP_model.getValueAt(index, 1));  
+        TenSanPhamField.setText((String) SP_model.getValueAt(index, 1));
     }//GEN-LAST:event_DanhSachSanPhamMouseClicked
 
     private void MaSanPhamFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MaSanPhamFieldKeyPressed
@@ -921,7 +932,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
             CTPN_model.addRow(dataRow);
         }
     }
-    
+
     private void hienThiDanhSachSanPham(ArrayList<SanPham> t) {
         SP_model = (DefaultTableModel) DanhSachSanPham.getModel();
 
@@ -931,10 +942,12 @@ public class PhieuNhapHang extends javax.swing.JFrame {
             SP_model.addRow(dataRow);
         }
     }
-        private void getAllSanPham() {
+
+    private void getAllSanPham() {
         ArrayList<SanPham> sanPham = SanPhamDAO.getInstance().getAll();
         this.hienThiDanhSachSanPham(sanPham);
     }
+
     private void setTimKiemField() {
         String[] tenCot = {"Mã phiếu nhập", "Mã nhân viên", "Ngày nhập"};
         for (int i = 0; i < tenCot.length; i++) {

@@ -8,8 +8,13 @@ package test;
 import view.DangNhap_View;
 import view.HoaDonBanHang;
 import view.PhieuNhapHang;
+import view.QuanLyChamCong;
 import view.QuanLyDanhMuc;
 import view.QuanLyKhachHang;
+import view.QuanLyNhanVien;
+import view.QuanLySanPham;
+import view.QuanLySuKien;
+import view.QuanLyTaiKhoan;
 
 
 public class DangNhap {
@@ -17,7 +22,7 @@ public class DangNhap {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new QuanLyKhachHang("QL", "NV01");
+        new QuanLySuKien("QL", "NV01");
 
             
     }

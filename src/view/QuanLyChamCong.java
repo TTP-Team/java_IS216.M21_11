@@ -101,7 +101,6 @@ public class QuanLyChamCong extends javax.swing.JFrame {
         });
 
         TimKiemPanel.setBackground(new java.awt.Color(255, 255, 255));
-        TimKiemPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         TimKiemPanel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout TimKiemPanelLayout = new javax.swing.GroupLayout(TimKiemPanel);
@@ -226,7 +225,7 @@ public class QuanLyChamCong extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(208, 208, 208)
                         .addComponent(ThoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +286,10 @@ public class QuanLyChamCong extends javax.swing.JFrame {
                 System.out.println("Ngay lam viec: " + ngayVaoLam);
                 chamCong = ChamCongDAO.getInstance().getByNgayLamViec(new Date(TuKhoaDate.getDate().getTime()));
             }else {
-            JOptionPane.showMessageDialog(rootPane, "Không tìm thấy!");
+            JOptionPane.showMessageDialog(null,
+                    "Không tìm thấy!",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);
             }
             this.hienThi(chamCong);
         } else
@@ -297,19 +299,19 @@ public class QuanLyChamCong extends javax.swing.JFrame {
     private void TimKiemFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TimKiemFieldItemStateChanged
         // TODO add your handling code here:
         if("Ngày làm việc".equals((String)TimKiemField.getSelectedItem())){    
+            TimKiemPanel.removeAll();
             TuKhoaDate = new JDateChooser();
             TuKhoaDate.setDateFormatString("dd/MM/yyyy");
             TuKhoaDate.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
-            TimKiemPanel.removeAll();
             TimKiemPanel.setLayout(new CardLayout());
             TimKiemPanel.add(TuKhoaDate);
             TimKiemPanel.validate();
             TimKiemPanel.repaint();
         }
         else{
+            TimKiemPanel.removeAll();
             TuKhoaField = new JTextField();
             TuKhoaField.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
-            TimKiemPanel.removeAll();
             TimKiemPanel.setLayout(new CardLayout());
             TimKiemPanel.add(TuKhoaField);
             TimKiemPanel.validate();

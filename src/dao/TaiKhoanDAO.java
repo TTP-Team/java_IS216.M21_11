@@ -125,20 +125,7 @@ public class TaiKhoanDAO {
             System.out.println("Error: " + e);
             return null;
         }
-    }
-    public void lamMoiMatKhau(String t) {
-        String sql = "{call lamMoiMatKhau(?)}";
-        try ( Connection con = JDBCUtil.getConnection()) {
-            CallableStatement cstm = con.prepareCall(sql);
-            cstm.setString(1, t);
-            cstm.executeUpdate();
-            con.close();
-        } catch (SQLException e) {
-            System.out.println("Error: " + e);
-        }
-    }
-    
-    
+    }      
     public String layLaiMatKhau(String t) {
         String sql = "{? = call layLaiMatKhau(?)}";
         try ( Connection con = JDBCUtil.getConnection()) {

@@ -317,6 +317,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel6.setLayout(new java.awt.GridLayout(1, 0, 25, 0));
 
         LuuBtn.setBackground(new java.awt.Color(0, 204, 102));
+        LuuBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         LuuBtn.setForeground(new java.awt.Color(255, 255, 255));
         LuuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/save.png"))); // NOI18N
         LuuBtn.setText("Lưu");
@@ -329,6 +330,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel6.add(LuuBtn);
 
         BoQuaBtn.setBackground(new java.awt.Color(0, 204, 102));
+        BoQuaBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         BoQuaBtn.setForeground(new java.awt.Color(255, 255, 255));
         BoQuaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/cancel.png"))); // NOI18N
         BoQuaBtn.setText("Hủy");
@@ -470,6 +472,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jLabel2.setText("Từ khóa");
 
         TimKiemBtn.setBackground(new java.awt.Color(0, 204, 102));
+        TimKiemBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         TimKiemBtn.setForeground(new java.awt.Color(255, 255, 255));
         TimKiemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/search.png"))); // NOI18N
         TimKiemBtn.setText("Tìm kiếm");
@@ -545,6 +548,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel5.setLayout(new java.awt.GridLayout(1, 0, 35, 0));
 
         ThemBtn.setBackground(new java.awt.Color(0, 204, 102));
+        ThemBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         ThemBtn.setForeground(new java.awt.Color(255, 255, 255));
         ThemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/add.png"))); // NOI18N
         ThemBtn.setText("Thêm");
@@ -557,6 +561,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel5.add(ThemBtn);
 
         SuaBtn.setBackground(new java.awt.Color(0, 204, 102));
+        SuaBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         SuaBtn.setForeground(new java.awt.Color(255, 255, 255));
         SuaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/edit.png"))); // NOI18N
         SuaBtn.setText("Sửa");
@@ -569,6 +574,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel5.add(SuaBtn);
 
         XoaBtn.setBackground(new java.awt.Color(0, 204, 102));
+        XoaBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         XoaBtn.setForeground(new java.awt.Color(255, 255, 255));
         XoaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/delete-button.png"))); // NOI18N
         XoaBtn.setText("Xóa");
@@ -581,6 +587,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel5.add(XoaBtn);
 
         QuayLaiBtn.setBackground(new java.awt.Color(0, 204, 102));
+        QuayLaiBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         QuayLaiBtn.setForeground(new java.awt.Color(255, 255, 255));
         QuayLaiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/exit.png"))); // NOI18N
         QuayLaiBtn.setText("Thoát");
@@ -647,8 +654,20 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         } else if (jRadioButton2.isSelected()) {
             gioiTinh = jRadioButton2.getText();
         }
+
         KhachHang kh = new KhachHang("", HoTenField.getText(), DiaChiField.getText(), SoDienThoaiField.getText(), EmailField.getText(), Long.parseLong(CCCDField.getText()), gioiTinh, ngaySinh, ngayDangKy, Double.parseDouble(DoanhSoField.getText()));
-        KhachHangDAO.getInstance().insert(kh);
+
+        if (KhachHangDAO.getInstance().insert(kh) == 1) {
+            JOptionPane.showMessageDialog(null,
+                    "Thêm thành công",
+                    "",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Không thể thêm!",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);
+        };
         ResetValue();
         this.getAllKhachHang();
     }
@@ -663,10 +682,9 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         SoDienThoaiField.setText((String) model.getValueAt(index, 3));
         EmailField.setText((String) model.getValueAt(index, 4));
         CCCDField.setText((String) model.getValueAt(index, 5));
-        if ("nam".equalsIgnoreCase((String) model.getValueAt(index, 6))) {
+        if ("nam".equalsIgnoreCase(((String) model.getValueAt(index, 6)).trim())) {
             jRadioButton1.setSelected(true);
         } else {
-            jRadioButton1.setSelected(false);
             jRadioButton2.setSelected(true);
         }
 
@@ -771,8 +789,25 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                         gioiTinh = jRadioButton2.getText();
                     }
                     KhachHang kh = new KhachHang(MaKhachHangField.getText(), HoTenField.getText(), DiaChiField.getText(), SoDienThoaiField.getText(), EmailField.getText(), Long.parseLong(CCCDField.getText()), gioiTinh, ngaySinh, ngayDangKy, Double.parseDouble(DoanhSoField.getText()));
+                    int result = JOptionPane.showConfirmDialog(null,
+                            "Bạn muốn sửa thông tin này ?",
+                            "Xác nhận",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (result == JOptionPane.YES_OPTION) {
+                        if (KhachHangDAO.getInstance().update(kh) == 1) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Sửa thành công",
+                                    "",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "Không thể sửa!",
+                                    "",
+                                    JOptionPane.ERROR_MESSAGE);
+                        };
 
-                    KhachHangDAO.getInstance().update(kh);
+                    }
                 }
                 this.VoHieuHoaBtn(false);
                 this.getAllKhachHang();
@@ -824,14 +859,18 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
         ArrayList<KhachHang> khachHang = new ArrayList<>();
-        if ("Mã khách hàng".equals(timKiemTheo)) {
-            khachHang = KhachHangDAO.getInstance().getByMaKhachHang(TuKhoaField.getText());
-        } else if ("Tên khách hàng".equals(timKiemTheo)) {
-            khachHang = KhachHangDAO.getInstance().getByTen(TuKhoaField.getText());
-        } else if ("Giới tính".equals(timKiemTheo)) {
-            khachHang = KhachHangDAO.getInstance().getByGioiTinh(TuKhoaField.getText());
-        }
-        this.hienThi(khachHang);
+        if (!"".equals(TuKhoaField.getText())) {
+            if ("Mã khách hàng".equals(timKiemTheo)) {
+                khachHang.add(KhachHangDAO.getInstance().getById(TuKhoaField.getText()));
+            } else if ("Tên khách hàng".equals(timKiemTheo)) {
+                khachHang = KhachHangDAO.getInstance().getByTen(TuKhoaField.getText());
+            } else if ("Giới tính".equals(timKiemTheo)) {
+                khachHang = KhachHangDAO.getInstance().getByGioiTinh(TuKhoaField.getText());
+            } 
+            if(khachHang != null)
+                this.hienThi(khachHang);
+        } else
+            this.getAllKhachHang();
     }//GEN-LAST:event_TuKhoaFieldKeyReleased
 
     private void hienThi(ArrayList<KhachHang> t) {

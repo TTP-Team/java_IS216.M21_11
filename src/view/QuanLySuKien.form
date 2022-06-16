@@ -64,11 +64,11 @@
                   <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="205" max="-2" attributes="0"/>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -182,6 +182,29 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ThemBtnActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="SuaBtn">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="cc" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="13" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/icon/edit.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SuaBtnActionPerformed"/>
+              </Events>
+            </Component>
             <Component class="javax.swing.JButton" name="XoaBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -205,7 +228,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="XoaBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="SuaBtn">
+            <Component class="javax.swing.JButton" name="QuayLaiBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -217,15 +240,15 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/icon/edit.png"/>
+                  <Image iconType="3" name="/resources/icon/exit.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
+                <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SuaBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QuayLaiBtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="LuuBtn">
@@ -274,29 +297,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoQuaBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="QuayLaiBtn">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="cc" red="0" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="13" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/icon/exit.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QuayLaiBtnActionPerformed"/>
-              </Events>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -329,11 +329,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                          </Group>
                           <Component id="jPanel2" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -349,33 +352,31 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="MaSuKienField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="NgayBatDauField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="PhanTramGiamGiaField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="NgayBatDauLabel" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                      <Component id="PhanTramGiamGiaLabel" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="MaSuKienField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="NgayBatDauField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="NgayBatDauLabel" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="TenSuKienLabel" min="-2" pref="109" max="-2" attributes="0"/>
                                               <Component id="TenSuKienField" min="-2" pref="200" max="-2" attributes="0"/>
                                               <Component id="NgayKetThucLabel" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                              <Component id="NgayKetThucField" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="NgayKetThucField" min="-2" pref="200" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="MaSuKienLabel" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <Component id="PhanTramGiamGiaLabel" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="MaSuKienLabel" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="PhanTramGiamGiaField" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -384,7 +385,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="TenSuKienLabel" max="32767" attributes="0"/>
@@ -409,9 +410,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="PhanTramGiamGiaLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="PhanTramGiamGiaField" pref="35" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="PhanTramGiamGiaField" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -469,10 +469,10 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                        <EtchetBorder bevelType="0">
-                          <Color PropertyName="highlight" blue="66" green="66" red="66" type="rgb"/>
-                        </EtchetBorder>
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder>
+                          <Color PropertyName="color" blue="99" green="99" red="99" type="rgb"/>
+                        </LineBorder>
                       </Border>
                     </Property>
                     <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -488,30 +488,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n tr&#x103;m gi&#x1ea3;m gi&#xe1;"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="PhanTramGiamGiaField">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Dialog" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                        <EtchetBorder bevelType="0">
-                          <Color PropertyName="highlight" blue="66" green="66" red="66" type="rgb"/>
-                        </EtchetBorder>
-                      </Border>
-                    </Property>
-                    <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
+                    <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n tr&#x103;m gi&#x1ea3;m gi&#xe1; %"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="NgayBatDauLabel">
@@ -562,6 +539,20 @@
                     </Property>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JSlider" name="PhanTramGiamGiaField">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="majorTickSpacing" type="int" value="10"/>
+                    <Property name="minorTickSpacing" type="int" value="2"/>
+                    <Property name="paintLabels" type="boolean" value="true"/>
+                    <Property name="paintTicks" type="boolean" value="true"/>
+                    <Property name="snapToTicks" type="boolean" value="true"/>
+                    <Property name="value" type="int" value="10"/>
+                    <Property name="valueIsAdjusting" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel2">
@@ -581,27 +572,28 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="TuKhoaLabel" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
-                              <Component id="TimKiemLabel" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                              <Component id="TimKiemField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="TimKiemPanel" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TimKiemBtn" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="TuKhoaLabel" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
+                                      <Component id="TimKiemLabel" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                                      <Component id="TimKiemField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="TimKiemPanel" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="TimKiemBtn" min="-2" pref="127" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="TimKiemLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="TimKiemField" min="-2" pref="35" max="-2" attributes="0"/>
@@ -611,7 +603,7 @@
                           <Component id="TimKiemPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="TimKiemBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
