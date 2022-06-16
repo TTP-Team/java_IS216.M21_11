@@ -78,30 +78,33 @@ public class DangNhap_View extends javax.swing.JFrame {
             case 1 -> {
                 this.setCursor(WAIT_CURSOR);
                 if ("NVBH".equals(phanQuyen)) {
+                    JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công dưới quyền NHÂN VIÊN BÁN HÀNG!","Thành công",JOptionPane.INFORMATION_MESSAGE);
                     new NhanVienBanHang_View(phanQuyen, tk);
                     this.dispose();
                 } else if ("QL".equals(phanQuyen)) {
+                    JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công dưới quyền QUẢN LÝ!","Thành công",JOptionPane.INFORMATION_MESSAGE);
                     new QuanLy_View(phanQuyen, tk);
                     this.dispose();
                 } else if ("TK".equals(phanQuyen)) {
+                    JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công dưới quyền THỦ KHO!","Thành công",JOptionPane.INFORMATION_MESSAGE);
                     new ThuKho_View(phanQuyen, tk);
                     this.dispose();
                 }
             }
             case 0 -> {
-                JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không đúng");
+                JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không đúng!","Thất bại",JOptionPane.INFORMATION_MESSAGE);
                 if (soLanDangNhapSai == 3) {
                     TaiKhoan taiKhoan = new TaiKhoan();
                     taiKhoan.setTenDangNhap(tk);
                     taiKhoan.setTrangThai("Khóa");
                     TaiKhoanDAO.getInstance().update(taiKhoan);
-                    JOptionPane.showMessageDialog(rootPane, "Tài khoản đã bị khóa");
+                    JOptionPane.showMessageDialog(rootPane, "Tài khoản đã bị khóa","Thất bại",JOptionPane.INFORMATION_MESSAGE);
                     this.soLanDangNhapSai = 0;
                 }
                 this.soLanDangNhapSai += 1;
             }
             default ->
-                JOptionPane.showMessageDialog(rootPane, "Tài khoản đang bị khóa");
+                JOptionPane.showMessageDialog(rootPane, "Tài khoản đang bị khóa","Thất bại",JOptionPane.INFORMATION_MESSAGE);
         }
 
     }
