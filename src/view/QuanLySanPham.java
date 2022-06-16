@@ -105,6 +105,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     }
 
     public void ThemSanPham() {
+
         SanPham sp = new SanPham("", TenSanPhamField.getText(), Integer.parseInt(SoLuongField.getText()), KichThuocField.getText(), hinhAnh, MoTaField.getText(), HangSanXuatField.getText(), MauSacField.getText(), Double.parseDouble(DonGiaSiField.getText()), Double.parseDouble(DonGiaLeField.getText()), MonTheThaoField.getText(), MaDanhMucField.getSelectedItem().toString(), Integer.parseInt(SoNgayBaoHanhField.getText()));
 
         if (SanPhamDAO.getInstance().insert(sp) == 1) {
@@ -120,6 +121,15 @@ public class QuanLySanPham extends javax.swing.JFrame {
         };
         ResetValue();
         this.getAllSanPham();
+
+        SanPham sp = new SanPham("", TenSanPhamField.getText(), Integer.parseInt(SoLuongField.getText()), KichThuocField.getText(), HinhAnhField.getText(), MoTaField.getText(), HangSanXuatField.getText(), MauSacField.getText(), Double.parseDouble(DonGiaSiField.getText()), Double.parseDouble(DonGiaLeField.getText()), MonTheThaoField.getText(), MaDanhMucField.getSelectedItem().toString(), Integer.parseInt(SoNgayBaoHanhField.getText()));
+        
+        {
+            SanPhamDAO.getInstance().insert(sp);
+            ResetValue();
+            this.getAllSanPham();
+        }
+
     }
 
     /**
@@ -812,6 +822,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
 
     private void XoaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XoaBtnActionPerformed
         // TODO add your handling code here:
+
         int index = DanhSachSanPham.getSelectedRow();
         if (index == -1) {
             JOptionPane.showMessageDialog(null,
@@ -839,6 +850,19 @@ public class QuanLySanPham extends javax.swing.JFrame {
                     this.getAllSanPham();
                 }
             }
+
+       int index = DanhSachSanPham.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Chọn dòng cần xóa");
+        } else {   
+            if(SanPhamDAO.getInstance().delete((String) model.getValueAt(index, 0)) == 0)
+                JOptionPane.showMessageDialog(rootPane, "Lỗi! Không thể xóa.");
+            else{
+                this.ResetValue();
+                JOptionPane.showMessageDialog(rootPane, "Xóa sản phẩm thành công!","Thành công",JOptionPane.INFORMATION_MESSAGE);
+                this.getAllSanPham();
+            }    
+
         }
     }//GEN-LAST:event_XoaBtnActionPerformed
 
@@ -871,6 +895,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_SuaBtnActionPerformed
 
     private void LuuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuuBtnActionPerformed
+
         // TODO add your handling code here: 
         int soNgayBaoHanh;
         double donGiaSi, donGiaLe;
@@ -945,6 +970,36 @@ public class QuanLySanPham extends javax.swing.JFrame {
                     "",
                     JOptionPane.ERROR_MESSAGE);
         }
+
+
+        // TODO add your handling code here:       
+        if (!"".equals(TenSanPhamField.getText())) {
+            if(this.chucNang == "Them")
+            {
+                if (TenSanPhamField.getText().equals("")||SoLuongField.getText().equals("")||
+                KichThuocField.getText().equals("")|| HinhAnhField.getText().equals("")|| MoTaField.getText().equals("")||
+                HangSanXuatField.getText().equals("")|| MauSacField.getText().equals("")|| 
+                DonGiaSiField.getText().equals("") || DonGiaLeField.getText().equals("")||
+                MonTheThaoField.getText().equals("") || MaDanhMucField.getSelectedItem().equals("") || SoNgayBaoHanhField.getText().equals(""))
+                JOptionPane.showMessageDialog(rootPane, "Định dạng thông tin nhập sai hoặc nhập thiếu thông tin!","Thất bại",JOptionPane.INFORMATION_MESSAGE);
+            else
+            {
+                ThemSanPham();
+                JOptionPane.showMessageDialog(rootPane, "Thêm sản phẩm thành công!","Thành công",JOptionPane.INFORMATION_MESSAGE);
+            }
+            }
+            else if(this.chucNang == "Sua")
+            {
+                JOptionPane.showMessageDialog(rootPane, "Sửa thông tin sản phẩm thành công!","Thành công",JOptionPane.INFORMATION_MESSAGE);
+                SanPham sp = new SanPham(MaSanPhamField.getText(), TenSanPhamField.getText(), Integer.parseInt(SoLuongField.getText()), KichThuocField.getText(), HinhAnhField.getText(), MoTaField.getText(), HangSanXuatField.getText(), MauSacField.getText(), Double.parseDouble(DonGiaSiField.getText()), Double.parseDouble(DonGiaLeField.getText()), MonTheThaoField.getText(), MaDanhMucField.getSelectedItem().toString(), Integer.parseInt(SoNgayBaoHanhField.getText()));
+                SanPhamDAO.getInstance().update(sp);
+            }
+            this.VoHieuHoaBtn(false);
+            this.getAllSanPham();
+            this.ResetValue();
+            
+        } else
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin!","Thất bại",JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_LuuBtnActionPerformed
 
