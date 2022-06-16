@@ -135,7 +135,38 @@ public class KhachHangDAO{
         }
         return khachHang;
     }
-
+    
+    public ArrayList<KhachHang> getByMaKhachHang(String t) {
+        ArrayList<KhachHang> ketQua = new ArrayList<>();
+        String sql = "{call getKhachHangById(?,?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(1, t);
+            cstm.registerOutParameter(2, OracleTypes.CURSOR);
+            cstm.execute();
+            ResultSet rs = (ResultSet) cstm.getObject(2);
+            while (rs.next()) {
+                String maKhachHang= rs.getString("MAKHACHHANG");
+                String tenKhachHang = rs.getString("HOTEN");
+                String diaChi= rs.getString("DIACHI");
+                String soDienThoai = rs.getString("SODIENTHOAI");
+                String email = rs.getString("EMAIL");
+                long CCCD = rs.getLong("CCCD");
+                String gioiTinh = rs.getString("GIOITINH");
+                Date ngaySinh = rs.getDate("NGAYSINH");
+                Date ngayDangKi = rs.getDate("NGAYDANGKI");
+                Double doanhSo = rs.getDouble("DOANHSO");
+                KhachHang khachHang = new KhachHang(maKhachHang, tenKhachHang, diaChi, soDienThoai, email, CCCD, gioiTinh, ngaySinh, ngayDangKi, doanhSo);
+                ketQua.add(khachHang);
+            }
+            con.close();
+            return ketQua;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return null;
+        }
+    }
+    
     public ArrayList<KhachHang> getByTen(String t) {
         ArrayList<KhachHang> ketQua = new ArrayList<>();
         String sql = "{call getKhachHangByTen(?,?)}";
