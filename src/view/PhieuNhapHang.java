@@ -705,20 +705,24 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
         ArrayList<PhieuNhap> phieuNhap = new ArrayList<>();
+        if(CTPN_model != null)
+            CTPN_model.setRowCount(0);
         if (!"".equals(tuKhoaField.getText()) || tuKhoaDate != null) {
             if ("Mã phiếu nhập".equals(timKiemTheo)) {
                 phieuNhap.add(PhieuNhapDAO.getInstance().getById(tuKhoaField.getText()));
             } else if ("Mã nhân viên".equals(timKiemTheo)) {
                 phieuNhap = PhieuNhapDAO.getInstance().getByMaNhanVien(tuKhoaField.getText());
             } else if ("Ngày nhập".equals(timKiemTheo)) {
+                System.out.println("Đang tìm kiếm");
                 phieuNhap = PhieuNhapDAO.getInstance().getByNgay(new Date(tuKhoaDate.getDate().getTime()));
 
-            }else {
-                JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
             }
+
             if(phieuNhap != null)
                 this.hienThiPhieuNhap(phieuNhap);
-            
+            else {
+                JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
+            }
         } else
             this.getAllPhieuNhap();
     }//GEN-LAST:event_TimKiemBtnActionPerformed

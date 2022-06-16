@@ -5,6 +5,12 @@
 package test;
 
 
+import Model.PhieuNhap;
+import dao.PhieuNhapDAO;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import view.DangNhap_View;
 import view.HoaDonBanHang;
 import view.PhieuNhapHang;
@@ -21,10 +27,9 @@ public class DangNhap {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        new QuanLySuKien("QL", "NV01");
-
-            
+    public static void main(String[] args) throws ParseException {
+        new DangNhap_View();
+        
     }
 
 }

@@ -85,6 +85,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private void VoHieuHoaBtn(boolean val) {
         this.HuyBtn.setVisible(val);
         this.HuyHDBtn.setVisible(!val);
+        this.ThoatBtn.setVisible(!val);
         this.MaKhachHangField.setEnabled(val);
         this.MaSanPhamField.setEnabled(val);
         this.TenSanPhamField.setEnabled(val);
@@ -916,6 +917,8 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
         ArrayList<HoaDon> hoaDon = new ArrayList<>();
+        if(model2 != null)
+            model2.setRowCount(0);
         if (!"".equals(tuKhoaField.getText()) || tuKhoaDate != null) {
             if ("Mã hóa đơn".equals(timKiemTheo)) {
                 hoaDon.add(HoaDonDAO.getInstance().getById(tuKhoaField.getText()));
@@ -975,7 +978,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                     model2 = (DefaultTableModel) DanhSachCTHD.getModel();
                     String tensanPham = SanPhamDAO.getInstance().getById(maSanPham).getTenSanPham();
                     double donGia;
-                    if (soLuong > 10) {
+                    if (soLuong >= 10) {
                         donGia = SanPhamDAO.getInstance().getById(maSanPham).getDonGiaSi();
                     } else {
                         donGia = SanPhamDAO.getInstance().getById(maSanPham).getDonGiaLe();
@@ -1019,6 +1022,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         if ("Thêm Hóa Đơn".equals(ThemHDBtn.getText())) {
             ThemHDBtn.setText("Tính Tiền");
+            ThanhToanValue.setText("0");
             arr_CTHD = new ArrayList<>();
             if (model1 != null) {
                 model1.setRowCount(0);
@@ -1301,6 +1305,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         ThemHDBtn.setText("Thêm Hóa Đơn");
         this.getAllHoaDon();
         InHDBtn.setVisible(true);
+        SoLuongField.setText("0");
     }//GEN-LAST:event_HuyBtnActionPerformed
 
     private void DanhSachSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DanhSachSanPhamMouseClicked
