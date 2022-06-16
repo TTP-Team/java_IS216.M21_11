@@ -410,7 +410,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         Document doc = new Document(PageSize.A4);
         String fileName = "BaoCaoDoanhThu" + ngayBatDau + "+" + ngayKetThuc;
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("src/reports" + fileName + ".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("D:\\tptsport\\reports\\" + fileName + ".pdf"));
             doc.open();
             File fileFontTieuDe = new File("src/resources/fonts/vuArialBold.ttf");
             BaseFont bfTieuDe = BaseFont.createFont(fileFontTieuDe.getAbsolutePath(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -545,6 +545,12 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             cellGC.setPaddingBottom(6);
             tableSP.addCell(cellGC);
             doc.add(tableSP);
+            Paragraph prgMuc2 = new Paragraph("II. Biểu đồ", fontTieuDe2);
+            prgMuc2.setAlignment(Element.ALIGN_LEFT);
+            prgMuc2.setIndentationLeft(30);
+            prgMuc2.setSpacingBefore(20);
+            prgMuc2.setSpacingAfter(10);
+            doc.add(prgMuc2);
             Image image = Image.getInstance(writer, bufferedImage, 1.0f);
             image.setAlignment(Element.ALIGN_CENTER);
             image.scaleToFit(PageSize.A4);
@@ -556,7 +562,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             e.printStackTrace();
         }
         try {
-            File f = new File("src/reports" + fileName + ".pdf");
+            File f = new File("D:\\tptsport\\reports\\" + fileName + ".pdf");
             if(!Desktop.isDesktopSupported()){
                 System.out.println("not supported");
                 return;
