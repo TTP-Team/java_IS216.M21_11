@@ -140,18 +140,6 @@ public class DoiMatKhau extends javax.swing.JFrame {
         String matKhauMoi = MatKhauMoiField.getText();
         String xacNhanMatKhau = XacNhanMatKhauField.getText();
         int tt = TaiKhoanDAO.getInstance().kiemTraTrangThai(tenTaiKhoan, matKhauCu);
-        if ("".equals(matKhauCu) || "".equals(matKhauMoi) || "".equals(xacNhanMatKhau)) {
-            JOptionPane.showMessageDialog(rootPane, "Vui lòng điền đầy đủ thông tin!","Thất bại",JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            if (matKhauCu.equals(matKhauMoi) || matKhauCu.equals(xacNhanMatKhau)){
-                JOptionPane.showMessageDialog(rootPane, "Mật khẩu mới không được trùng mật khẩu cũ!","Thất bại",JOptionPane.INFORMATION_MESSAGE);
-            }
-            else 
-            if (tt != 1) {
-                JOptionPane.showMessageDialog(rootPane, "Mật khẩu cũ sai!","Thất bại",JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                if (!matKhauMoi.equals(xacNhanMatKhau)) {
-                    JOptionPane.showMessageDialog(rootPane, "Xác nhận mật khẩu sai!","Thất bại",JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     TaiKhoanDAO.getInstance().doiMatKhau(tenTaiKhoan, matKhauMoi);
                     if ("QL".equals(phanQuyen)) {
@@ -168,6 +156,9 @@ public class DoiMatKhau extends javax.swing.JFrame {
                 }
             }
         }
+        
+        }
+        
 
     }//GEN-LAST:event_XacNhanBtnActionPerformed
 

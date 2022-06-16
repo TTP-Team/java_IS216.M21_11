@@ -143,6 +143,36 @@ public class NhanVienDAO {
             return null;
         }
     }
+    public ArrayList<NhanVien> getByMaNhanVien(String t) {
+        ArrayList<NhanVien> ketQua = new ArrayList<>();
+        String sql = "{call getNhanVienById(?,?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(1, t);
+            cstm.registerOutParameter(2, OracleTypes.CURSOR);
+            cstm.execute();
+            ResultSet rs = (ResultSet) cstm.getObject(2);
+            while (rs.next()) {
+                String maNhanVien = rs.getString("MANHANVIEN");
+                String tenNhanVien = rs.getString("TENNHANVIEN");
+                String diaChi = rs.getString("DIACHI");
+                String soDienThoai = rs.getString("SODIENTHOAI");
+                String email = rs.getString("EMAIL");
+                long CCCD = rs.getLong("CCCD");
+                String gioiTinh = rs.getString("GIOITINH");
+                Date ngaySinh = rs.getDate("NGAYSINH");
+                Date ngayVaoLam = rs.getDate("NGAYVAOLAM");
+                String chucVu = rs.getString("CHUCVU");                
+                double luong = rs.getDouble("LUONG");
+                NhanVien nhanVien = new NhanVien(maNhanVien, tenNhanVien, diaChi, soDienThoai, email, CCCD, gioiTinh, ngaySinh, ngayVaoLam, chucVu, luong);
+                ketQua.add(nhanVien);
+            }
+            con.close();
+            return ketQua;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
     public ArrayList<NhanVien> getByTen(String t) {
         ArrayList<NhanVien> ketQua = new ArrayList<>();
         String sql = "{call getNhanVienByTen(?,?)}";

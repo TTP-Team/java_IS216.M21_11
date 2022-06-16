@@ -120,7 +120,32 @@ public class SuKienDAO {
             return null;
         }
     }
-  
+    
+    public ArrayList<SuKien> getByMaSuKien(String t) {
+        ArrayList<SuKien> ketQua = new ArrayList<>();
+        String sql = "{call getSuKienById(?,?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(1, t);
+            cstm.registerOutParameter(2, OracleTypes.CURSOR);
+            cstm.execute();
+            ResultSet rs = (ResultSet) cstm.getObject(2);
+            while (rs.next()) {
+                String maSuKien = rs.getString("MASUKIEN");
+                String tenSuKien = rs.getString("TENSUKIEN");
+                float giamGia = rs.getFloat("PHANTRAMGIAMGIA");
+                Date ngayBatDau = rs.getDate("NGAYBATDAU");
+                Date ngayKetThuc = rs.getDate("NGAYKETTHUC");
+                SuKien suKien = new SuKien(maSuKien, tenSuKien, giamGia, ngayBatDau, ngayKetThuc);
+                ketQua.add(suKien);
+            }
+            con.close();
+            return ketQua;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return null;
+        }
+    }
     public ArrayList<SuKien> getByTen(String t) {
         ArrayList<SuKien> ketQua = new ArrayList<>();
         String sql = "{call getSuKienByTen(?,?)}";

@@ -152,7 +152,7 @@ public class PhieuNhapDAO{
     public String getSoThuTu(){
         try ( Connection con = JDBCUtil.getConnection()) {
             String tt;
-            String sqlProc = "{? := call getThuTuPhieuNhap}";
+            String sqlProc = "{? = call getThuTuPhieuNhap}";
             CallableStatement cstm = con.prepareCall(sqlProc);
             cstm.registerOutParameter(1,java.sql.Types.INTEGER);              
             cstm.executeUpdate();

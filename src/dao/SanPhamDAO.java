@@ -147,10 +147,43 @@ public class SanPhamDAO {
             return null;
         }
     }
-
     public ArrayList<SanPham> getByTen(String t) {
         ArrayList<SanPham> ketQua = new ArrayList<>();
         String sql = "{call getSanPhamByTen(?,?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setString(1, t);
+            cstm.registerOutParameter(2, OracleTypes.CURSOR);
+            cstm.execute();
+            ResultSet rs = (ResultSet) cstm.getObject(2);
+            while (rs.next()) {
+                String maSanPham = rs.getString("MASANPHAM");
+                String tenSanPham = rs.getString("TENSANPHAM");
+                int soLuong = rs.getInt("SOLUONG");
+                String kichThuoc = rs.getString("KICHTHUOC");
+                String hinhAnh = rs.getString("HINHANH");
+                String moTa = rs.getString("MOTA");
+                String hangSanXuat = rs.getString("HANGSANXUAT");
+                String mauSac = rs.getString("MAUSAC");
+                double donGiaSi = rs.getDouble("DONGIASI");
+                double donGiaLe = rs.getDouble("DONGIALE");
+                String monTheThao = rs.getString("MONTHETHAO");
+                String maDanhMuc = rs.getString("MADANHMUC");
+                int soNgayBaoHanh = rs.getInt("SONGAYBAOHANH");
+                SanPham sanPham = new SanPham(maSanPham, tenSanPham, soLuong, kichThuoc, hinhAnh, moTa, hangSanXuat, mauSac, donGiaSi, donGiaLe, monTheThao, maDanhMuc, soNgayBaoHanh);
+                ketQua.add(sanPham);
+            }
+            con.close();
+            return ketQua;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e);
+            return null;
+        }
+    }
+
+    public ArrayList<SanPham> getByMaSanPham(String t) {
+        ArrayList<SanPham> ketQua = new ArrayList<>();
+        String sql = "{call getSanPhamById(?,?)}";
         try ( Connection con = JDBCUtil.getConnection()) {
             CallableStatement cstm = con.prepareCall(sql);
             cstm.setString(1, t);
