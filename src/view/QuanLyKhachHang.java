@@ -882,7 +882,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             String ngaySinh = dateFormat.format(i.getNgaySinh());
             Double doanhSo = i.getDoanhSo();
             Locale locale = new Locale("en", "EN");
-            String pattern = "###,###.##";
+            String pattern = "###,###";
             DecimalFormat dcf = (DecimalFormat) NumberFormat.getNumberInstance(locale);
             dcf.applyPattern(pattern);
             String ds = String.valueOf(dcf.format(doanhSo));

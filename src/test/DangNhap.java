@@ -5,14 +5,20 @@
 package test;
 
 
+import Model.LoiNhuanThang;
 import Model.PhieuNhap;
+import Model.TienLuong;
+import dao.NhanVienDAO;
 import dao.PhieuNhapDAO;
+import dao.ThongKeDAO;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import view.BaoCaoThongKe;
 import view.DangNhap_View;
 import view.HoaDonBanHang;
+import view.LuongNhanVien;
 import view.PhieuNhapHang;
 import view.QuanLyChamCong;
 import view.QuanLyDanhMuc;
@@ -29,6 +35,7 @@ public class DangNhap {
      */
     public static void main(String[] args) throws ParseException {
         new DangNhap_View();
+
         
     }
 
