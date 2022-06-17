@@ -363,7 +363,7 @@ create or replace PROCEDURE getAllDoanhThuTheoNgay(ngBD HOADON.NGAYHOADON%TYPE, 
 AS
 BEGIN
       OPEN o_c_dbuser FOR
-      SELECT NGAYHOADON, SUM(TRIGIA) AS DOANHTHU FROM HOADON WHERE NGAYHOADON >= ngBD AND NGAYHOADON <= ngKT GROUP BY NGAYHOADON ; 
+      SELECT NGAYHOADON, SUM(TRIGIA) AS DOANHTHU FROM HOADON WHERE NGAYHOADON >= ngBD AND NGAYHOADON <= ngKT GROUP BY NGAYHOADON ORDER BY NGAYHOADON ; 
 END;
 
 /
@@ -550,11 +550,21 @@ BEGIN
       SELECT * FROM NHANVIEN WHERE CHUCVU = cvu;
 END;
 /
+
 create or replace PROCEDURE ThemNhanVien(TenNV IN NHANVIEN.TENNHANVIEN%TYPE, DChi IN NHANVIEN.DIACHI%TYPE,
-sdt IN NHANVIEN.SODIENTHOAI%TYPE, mail IN NHANVIEN.EMAIL%TYPE, cc IN NHANVIEN.CCCD%TYPE, gt IN NHANVIEN.GIOITINH%TYPE, ngsinh IN NHANVIEN.NGAYSINH%TYPE, ngvl IN NHANVIEN.NGAYVAOLAM%TYPE, cvu IN NHANVIEN.CHUCVU%TYPE)
+sdt IN NHANVIEN.SODIENTHOAI%TYPE, mail IN NHANVIEN.EMAIL%TYPE, cc IN NHANVIEN.CCCD%TYPE, gt IN NHANVIEN.GIOITINH%TYPE, ngsinh IN NHANVIEN.NGAYSINH%TYPE, ngvl IN NHANVIEN.NGAYVAOLAM%TYPE, cv IN NHANVIEN.CHUCVU%TYPE)
 AS 
+    l NHANVIEN.LUONG%TYPE;
 BEGIN
-    INSERT INTO NHANVIEN VALUES('NV'|| seq_NhanVien.nextval, TenNV, DChi, sdt, mail, cc, gt, ngsinh, ngvl, cvu, 0);
+    IF(LOWER(cv) = 'quản lý')THEN
+            l := 350000.0;
+        ELSIF(LOWER(cv) = 'nhân viên bán hàng') THEN
+            l := 200000.0;
+        ELSIF(LOWER(cv) = 'nhân viên kho') THEN
+            l := 150000.0;
+        END IF;
+    INSERT INTO NHANVIEN VALUES('NV'|| seq_NhanVien.nextval, TenNV, DChi, sdt, mail, cc, gt, ngsinh, ngvl, cv, l);
+    
     commit;
 END;
 /
@@ -566,13 +576,34 @@ BEGIN
 END;
 /
 create or replace PROCEDURE SuaNhanVien(MaNV IN NHANVIEN.MANHANVIEN%TYPE, TenNV IN NHANVIEN.TENNHANVIEN%TYPE, DChi IN NHANVIEN.DIACHI%TYPE,
-sdt IN NHANVIEN.SODIENTHOAI%TYPE, mail IN NHANVIEN.EMAIL%TYPE, cc IN NHANVIEN.CCCD%TYPE, gt IN NHANVIEN.GIOITINH%TYPE, ngsinh IN NHANVIEN.NGAYSINH%TYPE, ngvl IN NHANVIEN.NGAYVAOLAM%TYPE, cvu IN NHANVIEN.CHUCVU%TYPE, l IN NHANVIEN.LUONG%TYPE)
+sdt IN NHANVIEN.SODIENTHOAI%TYPE, mail IN NHANVIEN.EMAIL%TYPE, cc IN NHANVIEN.CCCD%TYPE, gt IN NHANVIEN.GIOITINH%TYPE, ngsinh IN NHANVIEN.NGAYSINH%TYPE, ngvl IN NHANVIEN.NGAYVAOLAM%TYPE, cv IN NHANVIEN.CHUCVU%TYPE)
 AS 
+    l NHANVIEN.LUONG%TYPE;
 BEGIN
+        IF(LOWER(cv) = 'quản lý')THEN
+            l := 350000;
+        ELSIF(LOWER(cv) = 'nhân viên bán hàng') THEN
+            l := 200000;
+        ELSIF(LOWER(cv) = 'nhân viên kho') THEN
+            l := 150000;
+        END IF;
     UPDATE NHANVIEN
-    SET TENNHANVIEN = TenNV, DIACHI = DChi, SODIENTHOAI = sdt, EMAIL = mail, CCCD = cc, GIOITINH = gt, NGAYSINH = ngsinh, NGAYVAOLAM = ngvl, CHUCVU = cvu, LUONG = l
+    SET TENNHANVIEN = TenNV, DIACHI = DChi, SODIENTHOAI = sdt, EMAIL = mail, CCCD = cc, GIOITINH = gt, NGAYSINH = ngsinh, NGAYVAOLAM = ngvl, CHUCVU = cv, LUONG = l
     WHERE MANHANVIEN = MaNV;
     commit;
+END;
+
+create or replace PROCEDURE getDanhSachLuong(thang INT, nam INT, o_c_dbuser OUT SYS_REFCURSOR)
+AS   
+BEGIN       
+      OPEN o_c_dbuser FOR
+      SELECT DISTINCT c.MANHANVIEN,COUNT(NGAYLAMVIEC) AS NLV, COUNT(NGAYLAMVIEC)* LUONG AS TIENLUONG
+      FROM CHAMCONG c JOIN NHANVIEN n ON c.MANHANVIEN = n.MANHANVIEN
+      WHERE EXTRACT (MONTH FROM NGAYLAMVIEC ) = thang AND EXTRACT (YEAR FROM NGAYLAMVIEC ) = nam
+      GROUP BY c.MANHANVIEN, LUONG;
+      EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('no data');
 END;
 --------------SUKIEN
 CREATE OR REPLACE PROCEDURE getAllSuKien(o_c_dbuser OUT SYS_REFCURSOR)
@@ -725,6 +756,21 @@ BEGIN
 END;
 /
 
+create or replace PROCEDURE getLoiNhuanThang(thang INT, nam INT, l OUT DOUBLE PRECISION,hd OUT DOUBLE PRECISION, pn OUT DOUBLE PRECISION, loiNhuan OUT DOUBLE PRECISION)
+AS   
+BEGIN       
+      SELECT SUM(COUNT(NGAYLAMVIEC)* LUONG) INTO l
+      FROM CHAMCONG c JOIN NHANVIEN n ON c.MANHANVIEN = n.MANHANVIEN
+      WHERE EXTRACT (MONTH FROM NGAYLAMVIEC ) = thang AND EXTRACT (YEAR FROM NGAYLAMVIEC ) = nam
+      GROUP BY c.MANHANVIEN, LUONG;
+      SELECT SUM(TRIGIA) INTO hd FROM HOADON WHERE EXTRACT (MONTH FROM NGAYHOADON ) = thang AND EXTRACT (YEAR FROM NGAYHOADON ) = nam;
+      SELECT SUM(TRIGIA) INTO pn FROM PHIEUNHAP WHERE EXTRACT (MONTH FROM NGAYNHAP ) = thang AND EXTRACT (YEAR FROM NGAYNHAP ) = nam;
+      loiNhuan := hd - l - pn;
+      EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('no data');
+END;
+/
 -------------------------------------------------------------FUNCTION------------------------------------------------------------------
 
 create or replace FUNCTION tinhGiamGia(maHD HOADON.MAHOADON%TYPE)
@@ -833,7 +879,7 @@ END;
 /
 -------------------------------------------------------------
 create or replace TRIGGER SuaTaiKhoan
-AFTER INSERT 
+AFTER UPDATE
 ON NHANVIEN
 FOR EACH ROW
 BEGIN
@@ -862,25 +908,7 @@ BEGIN
 END;
 /
 -------------------------------------------------------------
-create or replace TRIGGER tinhTienLuong
-AFTER INSERT
-ON CHAMCONG
-FOR EACH ROW
-DECLARE
-    cv NHANVIEN.CHUCVU%TYPE;
-    heSoLuong NHANVIEN.LUONG%TYPE := 0;
-BEGIN 
-    SELECT CHUCVU INTO cv FROM NHANVIEN WHERE MANHANVIEN = :NEW.MANHANVIEN;
-    IF(LOWER(cv) = 'quản lý')THEN
-        heSoLuong := 350000;
-    ELSIF(LOWER(cv) = 'nhân viên bán hàng') THEN
-        heSoLuong := 200000;
-    ELSIF(LOWER(cv) = 'nhân viên kho') THEN
-        heSoLuong := 150000;
-    END IF;
-    UPDATE NHANVIEN SET LUONG = LUONG + heSoLuong WHERE MANHANVIEN = :NEW.MANHANVIEN;
-END;
-/
+
 -------------------------------------------------------------
 create or replace TRIGGER trg_KHACHHANG_deleteDoanhSo
 AFTER DELETE
