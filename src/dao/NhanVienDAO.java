@@ -2,6 +2,7 @@
 package dao;
 
 import Model.NhanVien;
+import Model.TienLuong;
 import database.JDBCUtil;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -45,7 +46,7 @@ public class NhanVienDAO {
     public int update(NhanVien t) {
         int ketQua = 0;
         try(Connection con = JDBCUtil.getConnection()) {
-            String sql = "{call SuaNhanVien(?,?,?,?,?,?,?,?,?,?,?)}";
+            String sql = "{call SuaNhanVien(?,?,?,?,?,?,?,?,?,?)}";
             CallableStatement cstm = con.prepareCall(sql);
             cstm.setString(1, t.getMaNhanVien());
             cstm.setString(2, t.getTenNhanVien());
@@ -57,7 +58,6 @@ public class NhanVienDAO {
             cstm.setDate(8, t.getNgaySinh());
             cstm.setDate(9, t.getNgayVaoLam());
             cstm.setString(10, t.getChucVu());
-            cstm.setDouble(11, t.getLuong());
             ketQua = cstm.executeUpdate();
             con.close();
         } catch (SQLException e) {
@@ -203,6 +203,31 @@ public class NhanVienDAO {
             return null;
         }
     }
+    
+    public ArrayList<TienLuong> getDanhSachLuong(int thang, int nam) {
+        ArrayList<TienLuong> ketQua = new ArrayList<>();
+        String sql = "{call getDanhSachLuong(?,?,?)}";
+        try ( Connection con = JDBCUtil.getConnection()) {
+            CallableStatement cstm = con.prepareCall(sql);
+            cstm.setInt(1, thang);
+            cstm.setInt(2, nam);
+            cstm.registerOutParameter(3, OracleTypes.CURSOR);
+            cstm.execute();
+            ResultSet rs = (ResultSet) cstm.getObject(3);
+            while (rs.next()) {
+                String maNhanVien = rs.getString("MANHANVIEN");
+                int soNgayLam = rs.getInt("NLV");
+                double luong = rs.getDouble("TIENLUONG");
+                TienLuong tl = new TienLuong(maNhanVien, soNgayLam, luong);
+                ketQua.add(tl);
+            }
+            con.close();
+            return ketQua;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
     public ArrayList<NhanVien> getByGioiTinh(String t) {
         ArrayList<NhanVien> ketQua = new ArrayList<>();
         String sql = "{call getNhanVienByGioiTinh(?,?)}";

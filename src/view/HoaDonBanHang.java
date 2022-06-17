@@ -917,8 +917,9 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
         ArrayList<HoaDon> hoaDon = new ArrayList<>();
-        if(model2 != null)
+        if (model2 != null) {
             model2.setRowCount(0);
+        }
         if (!"".equals(tuKhoaField.getText()) || tuKhoaDate != null) {
             if ("Mã hóa đơn".equals(timKiemTheo)) {
                 hoaDon.add(HoaDonDAO.getInstance().getById(tuKhoaField.getText()));
@@ -975,29 +976,30 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                     throw new ArithmeticException("");
                 }
                 if (soLuong <= soSanPham) {
-                    model2 = (DefaultTableModel) DanhSachCTHD.getModel();
-                    String tensanPham = SanPhamDAO.getInstance().getById(maSanPham).getTenSanPham();
-                    double donGia;
-                    if (soLuong >= 10) {
-                        donGia = SanPhamDAO.getInstance().getById(maSanPham).getDonGiaSi();
-                    } else {
-                        donGia = SanPhamDAO.getInstance().getById(maSanPham).getDonGiaLe();
-                    }
                     ChiTietHoaDon cthd = new ChiTietHoaDon("", maSanPham, soLuong);
-                    String[] dataRow = {maSanPham, tensanPham, SoLuongField.getText(), String.valueOf(donGia)};
-                    model2.addRow(dataRow);
                     if (!arr_CTHD.isEmpty()) {
+                        Them:
                         for (ChiTietHoaDon i : arr_CTHD) {
                             int sl = i.getSoLuong();
                             if (i.getMaSanPham().equals(maSanPham)) {
-                                i.setSoLuong(sl + Integer.parseInt(SoLuongField.getText()));
-                            } else {
+                                int slc = soSanPham - sl;
+                                if (soLuong > slc) {
+                                    
+                                    JOptionPane.showMessageDialog(rootPane, "Số lượng sản phẩm còn lại: " + slc);
+                                    break Them;
+                                }
+                                else{
+                                     i.setSoLuong(sl + Integer.parseInt(SoLuongField.getText()));
+                                }
+                            } else {                               
                                 arr_CTHD.add(cthd);
                                 break;
                             }
                         }
+                        this.hienThiChiTietHoaDon(arr_CTHD);
                     } else {
                         arr_CTHD.add(cthd);
+                        this.hienThiChiTietHoaDon(arr_CTHD);
                     }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Số lượng sản phẩm còn lại: " + soSanPham);
@@ -1381,10 +1383,11 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private void hienThiChiTietHoaDon(ArrayList<ChiTietHoaDon> t) {
         model2 = (DefaultTableModel) DanhSachCTHD.getModel();
         double donGia;
-        model2.setRowCount(0);
+        if(model2 != null)
+            model2.setRowCount(0);
         for (ChiTietHoaDon i : t) {
             String tensanPham = SanPhamDAO.getInstance().getById(i.getMaSanPham()).getTenSanPham();
-            if (i.getSoLuong() > 10) {
+            if (i.getSoLuong() >= 10) {
                 donGia = SanPhamDAO.getInstance().getById(i.getMaSanPham()).getDonGiaSi();
             } else {
                 donGia = SanPhamDAO.getInstance().getById(i.getMaSanPham()).getDonGiaLe();
