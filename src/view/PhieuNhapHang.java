@@ -65,6 +65,8 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         DanhSachPhieuNhap.setRowHeight(25);
         DanhSachCTPN.setRowHeight(25);
         DanhSachSanPham.setRowHeight(25);
+        DanhSachCTPN.setEnabled(false);
+        DanhSachSanPham.setEnabled(false);
 
     }
 
@@ -191,6 +193,11 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         DanhSachCTPN.setGridColor(new java.awt.Color(102, 102, 102));
         DanhSachCTPN.setSelectionBackground(new java.awt.Color(153, 255, 153));
         DanhSachCTPN.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        DanhSachCTPN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                DanhSachCTPNKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(DanhSachCTPN);
         if (DanhSachCTPN.getColumnModel().getColumnCount() > 0) {
             DanhSachCTPN.getColumnModel().getColumn(2).setResizable(false);
@@ -694,6 +701,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
     private void VoHieuHoaBtn(boolean val) {
         this.HuyPNBtn.setVisible(!val);
         this.HuyBtn.setVisible(val);
+        ThoatBtn.setVisible(!val);
         this.MaSanPhamField.setEnabled(val);
         this.TenSanPhamField.setEnabled(val);
         this.SoLuongField.setEnabled(val);
@@ -705,8 +713,9 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
         ArrayList<PhieuNhap> phieuNhap = new ArrayList<>();
-        if(CTPN_model != null)
+        if (CTPN_model != null) {
             CTPN_model.setRowCount(0);
+        }
         if (!"".equals(tuKhoaField.getText()) || tuKhoaDate != null) {
             if ("Mã phiếu nhập".equals(timKiemTheo)) {
                 phieuNhap.add(PhieuNhapDAO.getInstance().getById(tuKhoaField.getText()));
@@ -718,9 +727,9 @@ public class PhieuNhapHang extends javax.swing.JFrame {
 
             }
 
-            if(phieuNhap != null)
+            if (phieuNhap != null) {
                 this.hienThiPhieuNhap(phieuNhap);
-            else {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
             }
         } else
@@ -751,6 +760,8 @@ public class PhieuNhapHang extends javax.swing.JFrame {
 
         triGia = 0.0;
         if ("Thêm".equals(ThemPNBtn.getText())) {
+            DanhSachCTPN.setEnabled(true);
+            DanhSachSanPham.setEnabled(true);
             VoHieuHoaBtn(true);
             ThemPNBtn.setText("Lưu");
             arr_CTPN = new ArrayList<>();
@@ -762,6 +773,8 @@ public class PhieuNhapHang extends javax.swing.JFrame {
             }
             this.TriGiaValue.setText("0   VND");
         } else if ("Lưu".equals(ThemPNBtn.getText())) {
+            DanhSachCTPN.setEnabled(false);
+            DanhSachSanPham.setEnabled(false);
             Date ngayNhap = null;
             try {
                 ngayNhap = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayNhapField.getText()).getTime());
@@ -779,13 +792,13 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                     "Thêm phiếu nhập thành công!",
                     "",
                     JOptionPane.INFORMATION_MESSAGE);
-            
+
             ThemPNBtn.setText("Thêm");
             VoHieuHoaBtn(false);
             this.getAllSanPham();
             this.getAllPhieuNhap();
             CTPN_model.setRowCount(0);
-            
+
         }
     }//GEN-LAST:event_ThemPNBtnActionPerformed
 
@@ -904,6 +917,15 @@ public class PhieuNhapHang extends javax.swing.JFrame {
         ArrayList<SanPham> sp = SanPhamDAO.getInstance().getByTen(TenSanPhamField.getText());
         this.hienThiDanhSachSanPham(sp);
     }//GEN-LAST:event_TenSanPhamFieldKeyReleased
+
+    private void DanhSachCTPNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DanhSachCTPNKeyReleased
+        // TODO add your handling code here:
+        int index = DanhSachCTPN.getSelectedRow();
+        arr_CTPN.remove(index);
+        if (!arr_CTPN.isEmpty()) {
+            this.hienThiChiTietPhieuNhap(arr_CTPN);
+        }
+    }//GEN-LAST:event_DanhSachCTPNKeyReleased
     public String DinhDangTienTe(double SoTien) {
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
