@@ -779,9 +779,13 @@ public class PhieuNhapHang extends javax.swing.JFrame {
                     "Thêm phiếu nhập thành công!",
                     "",
                     JOptionPane.INFORMATION_MESSAGE);
+            
             ThemPNBtn.setText("Thêm");
             VoHieuHoaBtn(false);
             this.getAllSanPham();
+            this.getAllPhieuNhap();
+            CTPN_model.setRowCount(0);
+            
         }
     }//GEN-LAST:event_ThemPNBtnActionPerformed
 

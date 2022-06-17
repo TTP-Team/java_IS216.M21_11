@@ -869,7 +869,6 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private void DanhSachSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DanhSachSanPhamMouseClicked
         // TODO add your handling code here:
         int index = DanhSachSanPham.getSelectedRow();
-        VoHieuHoaBtn(false);
         AnhLabel.setIcon(new ImageIcon(new ImageIcon((String) model.getValueAt(index, 4)).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
         MaSanPhamField.setText((String) model.getValueAt(index, 0));
         TenSanPhamField.setText((String) model.getValueAt(index, 1));
