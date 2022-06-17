@@ -209,53 +209,70 @@ public class DangNhap_View extends javax.swing.JFrame {
         if ("Đăng nhập".equals(DangNhap_Btn.getText())) {
             this.kiemTraDangNhap();
         } else {
-            HuyBtn.setVisible(false);
-            String mk = TaiKhoanDAO.getInstance().layLaiMatKhau(tenDangNhap_Field.getText());
-
-            if (!email_Field.getText().matches(regEmail)) {
-                JOptionPane.showMessageDialog(rootPane, "Định dạng email không đúng");
-            } else {
-                if (kiemTraEmail(tenDangNhap_Field.getText(), email_Field.getText()) == 1) {
-                    final String username = "tptsport22@gmail.com";
-                    final String password = "xchxgoxctsljinhi   ";
-
-                    Properties prop = new Properties();
-                    prop.put("mail.smtp.host", "smtp.gmail.com");
-                    prop.put("mail.smtp.port", "587");
-                    prop.put("mail.smtp.auth", "true");
-                    prop.put("mail.smtp.starttls.enable", "true"); //TLS
-
-                    Session session = Session.getInstance(prop,
-                            new javax.mail.Authenticator() {
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(username, password);
-                        }
-                    });
-
-                    try {
-                        Message message = new MimeMessage(session);
-                        message.setFrom(new InternetAddress("tptsport22@gmail.com"));
-                        message.setRecipients(
-                                Message.RecipientType.TO,
-                                InternetAddress.parse(email_Field.getText())
-                        );
-                        message.setSubject("TPT Sport xác nhận mật khẩu");
-                        message.setText(mk + "là mật khẩu mới của tài khoản của bạn. Vui lòng đăng nhập lại và đổi mật khẩu mới");
-
-                        Transport.send(message);
-                        System.out.println("Done");
-
-                    } catch (MessagingException e) {
-                        e.printStackTrace();
-                    }
-                }
-                matKhau_Label.setText("Mật khẩu");
-                DangNhap_Btn.setText("Đăng nhập");
-                matKhau_Label.setVisible(true);
-                matKhau_Field.setVisible(true);
-                quenMK.setVisible(true);
+            if (!"".equals(tenDangNhap_Field.getText()) && !"".equals(email_Field.getText())) {
                 HuyBtn.setVisible(false);
-                this.taomkField();
+                String mk = TaiKhoanDAO.getInstance().layLaiMatKhau(tenDangNhap_Field.getText());
+
+                if (!email_Field.getText().matches(regEmail)) {
+                    JOptionPane.showMessageDialog(null,
+                            "Định dạng email không đúng",
+                            "",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (kiemTraEmail(tenDangNhap_Field.getText(), email_Field.getText()) == 1) {
+                        final String username = "tptsport22@gmail.com";
+                        final String password = "xchxgoxctsljinhi   ";
+
+                        Properties prop = new Properties();
+                        prop.put("mail.smtp.host", "smtp.gmail.com");
+                        prop.put("mail.smtp.port", "587");
+                        prop.put("mail.smtp.auth", "true");
+                        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+
+                        Session session = Session.getInstance(prop,
+                                new javax.mail.Authenticator() {
+                            protected PasswordAuthentication getPasswordAuthentication() {
+                                return new PasswordAuthentication(username, password);
+                            }
+                        });
+
+                        try {
+                            Message message = new MimeMessage(session);
+                            message.setFrom(new InternetAddress("tptsport22@gmail.com"));
+                            message.setRecipients(
+                                    Message.RecipientType.TO,
+                                    InternetAddress.parse(email_Field.getText())
+                            );
+                            message.setSubject("TPT Sport xác nhận mật khẩu");
+                            message.setText(mk + "là mật khẩu mới của tài khoản của bạn. Vui lòng đăng nhập lại và đổi mật khẩu mới");
+
+                            Transport.send(message);
+                            System.out.println("Done");
+
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                        }
+                        matKhau_Label.setText("Mật khẩu");
+                        DangNhap_Btn.setText("Đăng nhập");
+                        matKhau_Label.setVisible(true);
+                        matKhau_Field.setVisible(true);
+                        quenMK.setVisible(true);
+                        HuyBtn.setVisible(false);
+                        this.taomkField();
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Email sai",
+                                "",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Vui lòng nhập đầy đủ thông tin",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+
             }
 
         }

@@ -34,6 +34,7 @@ import java.io.*;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import java.awt.Desktop;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -80,6 +81,9 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         DanhSachKhachHang.setRowHeight(25);
         this.getAllSanPham();
         this.getAllKhachHang();
+        DanhSachCTHD.setEnabled(false);
+        DanhSachSanPham.setEnabled(false);
+        DanhSachKhachHang.setEnabled(false);
     }
 
     private void VoHieuHoaBtn(boolean val) {
@@ -103,6 +107,8 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         NgayHoaDonField.setText(dateFormat.format(ngayHoaDon));
         if (!"".equals(maSK)) {
             TenSuKienField.setText(SuKienDAO.getInstance().getById(maSK).getTenSuKien());
+        } else {
+            TenSuKienField.setText("");
         }
         TenNhanVienField.setText(NhanVienDAO.getInstance().getById(tenTaiKhoan).getTenNhanVien());
         TenKhachHangField.setText("");
@@ -237,7 +243,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -247,6 +253,11 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         DanhSachCTHD.setGridColor(new java.awt.Color(102, 102, 102));
         DanhSachCTHD.setSelectionBackground(new java.awt.Color(153, 255, 153));
         DanhSachCTHD.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        DanhSachCTHD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                DanhSachCTHDKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(DanhSachCTHD);
         if (DanhSachCTHD.getColumnModel().getColumnCount() > 0) {
             DanhSachCTHD.getColumnModel().getColumn(0).setResizable(false);
@@ -969,7 +980,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         int soSanPham = SanPhamDAO.getInstance().getById(maSanPham).getSoLuong();
         int soLuong = 0;
 
-        if (!"".equals(this.SoLuongField.getText())) {
+        if (!"".equals(this.SoLuongField.getText()) && !"".equals(this.MaSanPhamField.getText()) && !"".equals(this.TenSanPhamField.getText())) {
             try {
                 soLuong = Integer.parseInt(SoLuongField.getText());
                 if (soLuong <= 0) {
@@ -984,14 +995,12 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                             if (i.getMaSanPham().equals(maSanPham)) {
                                 int slc = soSanPham - sl;
                                 if (soLuong > slc) {
-                                    
                                     JOptionPane.showMessageDialog(rootPane, "Số lượng sản phẩm còn lại: " + slc);
                                     break Them;
+                                } else {
+                                    i.setSoLuong(sl + Integer.parseInt(SoLuongField.getText()));
                                 }
-                                else{
-                                     i.setSoLuong(sl + Integer.parseInt(SoLuongField.getText()));
-                                }
-                            } else {                               
+                            } else {
                                 arr_CTHD.add(cthd);
                                 break;
                             }
@@ -1023,6 +1032,9 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private void ThemHDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemHDBtnActionPerformed
         // TODO add your handling code here:
         if ("Thêm Hóa Đơn".equals(ThemHDBtn.getText())) {
+            DanhSachCTHD.setEnabled(true);
+            DanhSachSanPham.setEnabled(true);
+            DanhSachKhachHang.setEnabled(true);
             ThemHDBtn.setText("Tính Tiền");
             ThanhToanValue.setText("0");
             arr_CTHD = new ArrayList<>();
@@ -1036,25 +1048,35 @@ public class HoaDonBanHang extends javax.swing.JFrame {
             ResetValue();
             VoHieuHoaBtn(true);
         } else if ("Tính Tiền".equals(ThemHDBtn.getText())) {
-            Date ngayHoaDon = null;
-            ThemHDBtn.setText("Thêm Hóa Đơn");
-            this.InHDBtn.setVisible(true);
-            try {
-                ngayHoaDon = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayHoaDonField.getText()).getTime());
-            } catch (ParseException ex) {
-                Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+            if (!arr_CTHD.isEmpty()) {
+                DanhSachCTHD.setEnabled(false);
+                DanhSachSanPham.setEnabled(false);
+                DanhSachKhachHang.setEnabled(false);
+                Date ngayHoaDon = null;
+                ThemHDBtn.setText("Thêm Hóa Đơn");
+                this.InHDBtn.setVisible(true);
+                try {
+                    ngayHoaDon = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayHoaDonField.getText()).getTime());
+                } catch (ParseException ex) {
+                    Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String stt = HoaDonDAO.getInstance().getSoThuTu();
+                newHoaDon = new HoaDon(stt, MaKhachHangField.getText(), tenTaiKhoan, maSK, ngayHoaDon, 0);
+                HoaDonDAO.getInstance().insert(newHoaDon);
+                for (ChiTietHoaDon i : arr_CTHD) {
+                    i.setMaHoaDon(newHoaDon.getMaHoaDon());
+                    ChiTietHoaDonDAO.getInstance().insert(i);
+                }
+                MaHoaDonField.setText(stt);
+                TriGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById(newHoaDon.getMaHoaDon()).getTriGia()));
+                GiamGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienGiamGia(newHoaDon.getMaHoaDon())));
+                ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienThanhToan(newHoaDon.getMaHoaDon())));
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Vui lòng chọn sản phẩm",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
             }
-            String stt = HoaDonDAO.getInstance().getSoThuTu();
-            newHoaDon = new HoaDon(stt, MaKhachHangField.getText(), tenTaiKhoan, maSK, ngayHoaDon, 0);
-            HoaDonDAO.getInstance().insert(newHoaDon);
-            for (ChiTietHoaDon i : arr_CTHD) {
-                i.setMaHoaDon(newHoaDon.getMaHoaDon());
-                ChiTietHoaDonDAO.getInstance().insert(i);
-            }
-            MaHoaDonField.setText(stt);
-            TriGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().getById(newHoaDon.getMaHoaDon()).getTriGia()));
-            GiamGiaValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienGiamGia(newHoaDon.getMaHoaDon())));
-            ThanhToanValue.setText(DinhDangTienTe(HoaDonDAO.getInstance().tienThanhToan(newHoaDon.getMaHoaDon())));
 
         }
 
@@ -1364,6 +1386,15 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         this.MaKhachHangField.setText("");
     }//GEN-LAST:event_TenKhachHangFieldKeyPressed
 
+    private void DanhSachCTHDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DanhSachCTHDKeyReleased
+        // TODO add your handling code here:
+        int index = DanhSachCTHD.getSelectedRow();
+        arr_CTHD.remove(index);
+        if (arr_CTHD != null) {
+            this.hienThiChiTietHoaDon(arr_CTHD);
+        }
+    }//GEN-LAST:event_DanhSachCTHDKeyReleased
+
     private void hienThiHoaDon(ArrayList<HoaDon> t) {
         model1 = (DefaultTableModel) DanhSachHoaDon.getModel();
         model1.setRowCount(0);
@@ -1383,8 +1414,9 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private void hienThiChiTietHoaDon(ArrayList<ChiTietHoaDon> t) {
         model2 = (DefaultTableModel) DanhSachCTHD.getModel();
         double donGia;
-        if(model2 != null)
+        if (model2 != null) {
             model2.setRowCount(0);
+        }
         for (ChiTietHoaDon i : t) {
             String tensanPham = SanPhamDAO.getInstance().getById(i.getMaSanPham()).getTenSanPham();
             if (i.getSoLuong() >= 10) {
