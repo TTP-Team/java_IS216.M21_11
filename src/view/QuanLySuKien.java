@@ -36,7 +36,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
     /**
      * Creates new form QuanLySuKien
      */
-    public QuanLySuKien(String phanQuyen, String maNV) {
+    public QuanLySuKien(String pq, String maNV) {
         initComponents();
         this.setVisible(true);
         this.setTitle("Quản lý sản phẩm");
@@ -46,9 +46,9 @@ public class QuanLySuKien extends javax.swing.JFrame {
         NgayBatDauField.setDateFormatString("dd/MM/yyyy");
         NgayKetThucField.setDateFormatString("dd/MM/yyyy");
         this.setTimKiemField();
-        this.phanQuyen = phanQuyen;
+        this.phanQuyen = pq;
         this.tenTaiKhoan = maNV;
-        if (phanQuyen != "QL") {
+        if (!"QL".equals(phanQuyen)) {
             this.ThemBtn.setVisible(false);
             this.XoaBtn.setVisible(false);
             this.SuaBtn.setVisible(false);
