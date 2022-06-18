@@ -245,7 +245,7 @@ public class DangNhap_View extends javax.swing.JFrame {
                                     InternetAddress.parse(email_Field.getText())
                             );
                             message.setSubject("TPT Sport xác nhận mật khẩu");
-                            message.setText(mk + "là mật khẩu mới của tài khoản của bạn. Vui lòng đăng nhập lại và đổi mật khẩu mới");
+                            message.setText(mk + " is your TPTSPORT verification code. Please login and change your password!");
 
                             Transport.send(message);
                             System.out.println("Done");
