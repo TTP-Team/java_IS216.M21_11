@@ -247,8 +247,8 @@ public class DangNhap_View extends javax.swing.JFrame {
                                     Message.RecipientType.TO,
                                     InternetAddress.parse(email_Field.getText())
                             );
-                            message.setSubject("TPT Sport xác nhận mật khẩu");
-                            message.setText(mk + "là mật khẩu mới của tài khoản của bạn. Vui lòng đăng nhập lại và đổi mật khẩu mới");
+                            message.setSubject("TPT Sport verify password");
+                            message.setText(mk + " is your TPTSPORT verification code. Please login and change your password!");
 
                             Transport.send(message);
                             System.out.println("Done");
@@ -256,20 +256,21 @@ public class DangNhap_View extends javax.swing.JFrame {
                         } catch (MessagingException e) {
                             e.printStackTrace();
                         }
-                        matKhau_Label.setText("Mật khẩu");
+                       
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Email không đúng với tài khoản",
+                                "",
+                                JOptionPane.ERROR_MESSAGE);
+                        
+                    }
+                     matKhau_Label.setText("Mật khẩu");
                         DangNhap_Btn.setText("Đăng nhập");
                         matKhau_Label.setVisible(true);
                         matKhau_Field.setVisible(true);
                         quenMK.setVisible(true);
                         HuyBtn.setVisible(false);
                         this.taomkField();
-                    } else {
-                        JOptionPane.showMessageDialog(null,
-                                "Email sai",
-                                "",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-
                 }
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -319,8 +320,7 @@ public class DangNhap_View extends javax.swing.JFrame {
         String m = NhanVienDAO.getInstance().getById(tdn).getEmail();
         if (m.equals(mail)) {
             return 1;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Email không đúng");
+        } else {            
             return 0;
         }
     }
