@@ -1330,6 +1330,9 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         this.getAllHoaDon();
         InHDBtn.setVisible(true);
         SoLuongField.setText("0");
+        DanhSachCTHD.setEnabled(false);
+        DanhSachSanPham.setEnabled(false);
+        DanhSachKhachHang.setEnabled(false);
     }//GEN-LAST:event_HuyBtnActionPerformed
 
     private void DanhSachSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DanhSachSanPhamMouseClicked
@@ -1389,7 +1392,37 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private void DanhSachCTHDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DanhSachCTHDKeyReleased
         // TODO add your handling code here:
         int index = DanhSachCTHD.getSelectedRow();
-        arr_CTHD.remove(index);
+        if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            arr_CTHD.remove(index);
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int soSanPham = SanPhamDAO.getInstance().getById(model2.getValueAt(index, 0).toString()).getSoLuong();
+            int soLuong = 0;
+            try {
+                soLuong = Integer.parseInt(model2.getValueAt(index, 2).toString());
+                if (soLuong < 0) {
+                    throw new ArithmeticException("");
+                }                
+                if(soLuong <= soSanPham){
+                    if(soLuong == 0){
+                        arr_CTHD.remove(index);
+                    }
+                    else{
+                         ChiTietHoaDon t = new ChiTietHoaDon("", model2.getValueAt(index, 0).toString(), soLuong);
+                    arr_CTHD.set(index, t);
+                    }                  
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Số lượng sản phẩm còn lại: " + soSanPham);
+                    SoLuongField.setFocusable(true);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Số lượng là chữ số lớn hơn 0",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
         if (arr_CTHD != null) {
             this.hienThiChiTietHoaDon(arr_CTHD);
         }
