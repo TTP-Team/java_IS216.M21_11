@@ -306,13 +306,19 @@ public class QuanLySuKien extends javax.swing.JFrame {
         NgayKetThucField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         PhanTramGiamGiaField.setBackground(new java.awt.Color(255, 255, 255));
+        PhanTramGiamGiaField.setForeground(new java.awt.Color(0, 0, 0));
         PhanTramGiamGiaField.setMajorTickSpacing(10);
         PhanTramGiamGiaField.setMinorTickSpacing(2);
         PhanTramGiamGiaField.setPaintLabels(true);
         PhanTramGiamGiaField.setPaintTicks(true);
         PhanTramGiamGiaField.setSnapToTicks(true);
-        PhanTramGiamGiaField.setValue(10);
+        PhanTramGiamGiaField.setValue(0);
         PhanTramGiamGiaField.setValueIsAdjusting(true);
+        PhanTramGiamGiaField.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                PhanTramGiamGiaFieldStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -537,7 +543,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
     private void ThemSuKien() throws ParseException {
         Date ngayBatDau = new Date(NgayBatDauField.getDate().getTime());
         Date ngayKetThuc = new Date(NgayKetThucField.getDate().getTime());
-        float pt = PhanTramGiamGiaField.getValue() / 100;
+        float pt = PhanTramGiamGiaField.getValue() / (float)100;
         SuKien sk = new SuKien("", TenSuKienField.getText(), pt, ngayBatDau, ngayKetThuc);
         if (SuKienDAO.getInstance().insert(sk) == 1) {
             JOptionPane.showMessageDialog(null,
@@ -611,7 +617,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
             } else if ("Sua".equals(this.chucNang)) {
                 Date ngayBatDau = new Date(NgayBatDauField.getDate().getTime());
                 Date ngayKetThuc = new Date(NgayKetThucField.getDate().getTime());
-                float pt = PhanTramGiamGiaField.getValue() / 100;
+                float pt = PhanTramGiamGiaField.getValue() / (float)100;
                 SuKien sk = new SuKien(MaSuKienField.getText(), TenSuKienField.getText(), pt, ngayBatDau, ngayKetThuc);
                 int result = JOptionPane.showConfirmDialog(null,
                         "Bạn muốn sửa thông tin này ?",
@@ -654,7 +660,6 @@ public class QuanLySuKien extends javax.swing.JFrame {
     private void DanhSachSuKienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DanhSachSuKienMouseClicked
         // TODO add your handling code here:
         int index = DanhSachSuKien.getSelectedRow();
-        VoHieuHoaBtn(false);
         MaSuKienField.setText((String) model.getValueAt(index, 0));
         TenSuKienField.setText((String) model.getValueAt(index, 1));
 
@@ -751,6 +756,12 @@ public class QuanLySuKien extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_QuayLaiBtnActionPerformed
+
+    private void PhanTramGiamGiaFieldStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PhanTramGiamGiaFieldStateChanged
+        // TODO add your handling code here:
+        float pt = PhanTramGiamGiaField.getValue();
+        PhanTramGiamGiaLabel.setText("Phần trăm giảm giá: " + pt + "%");     
+    }//GEN-LAST:event_PhanTramGiamGiaFieldStateChanged
     private void setTimKiemField() {
         String[] tenCot = {"Mã sự kiện", "Tên sự kiện", "Ngày sự kiện"};
         for (int i = 0; i < tenCot.length; i++) {

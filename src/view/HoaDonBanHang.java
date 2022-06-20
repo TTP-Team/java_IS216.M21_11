@@ -68,8 +68,11 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         java.sql.Date ngayHoaDon = new java.sql.Date(millis);
         NgayHoaDonField.setText(dateFormat.format(ngayHoaDon));
         maSK = SuKienDAO.getInstance().getMaSuKien(ngayHoaDon);
-        if (!"".equals(maSK)) {
+        if (maSK != null) {
             TenSuKienField.setText(SuKienDAO.getInstance().getById(maSK).getTenSuKien());
+        }
+        else{
+            TenSuKienField.setText("");
         }
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
@@ -105,9 +108,10 @@ public class HoaDonBanHang extends javax.swing.JFrame {
         long millis = System.currentTimeMillis();
         java.sql.Date ngayHoaDon = new java.sql.Date(millis);
         NgayHoaDonField.setText(dateFormat.format(ngayHoaDon));
-        if (!"".equals(maSK)) {
+        if (maSK != null) {
             TenSuKienField.setText(SuKienDAO.getInstance().getById(maSK).getTenSuKien());
-        } else {
+        }
+        else{
             TenSuKienField.setText("");
         }
         TenNhanVienField.setText(NhanVienDAO.getInstance().getById(tenTaiKhoan).getTenNhanVien());

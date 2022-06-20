@@ -544,14 +544,20 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
                     <Property name="majorTickSpacing" type="int" value="10"/>
                     <Property name="minorTickSpacing" type="int" value="2"/>
                     <Property name="paintLabels" type="boolean" value="true"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
                     <Property name="snapToTicks" type="boolean" value="true"/>
-                    <Property name="value" type="int" value="10"/>
+                    <Property name="value" type="int" value="0"/>
                     <Property name="valueIsAdjusting" type="boolean" value="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="PhanTramGiamGiaFieldStateChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
