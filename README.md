@@ -47,7 +47,7 @@ CÀI ĐẶT CHƯƠNG TRÌNH
 
 Cơ sở dữ liệu sử dụng: Oracle
 
-Thư viện sử dụng:
+Thư viện sử dụng: 9 thư viện
 
 + Ojdbc11.jar
 + Jcalendar-1.4.jar
@@ -118,3 +118,5 @@ TỔNG QUAN FOLDER ĐỒ ÁN:
 + Test Packages:
 + Libraries: các thư viện liên quan
 + Test Libraries: 
++ Bussiness document: file bussinss document.word
++ Testcase: file testcase.xlsx
