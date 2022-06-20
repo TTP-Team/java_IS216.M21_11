@@ -68,7 +68,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         
         Date ngayBatDau= null;
         try {
-            ngayBatDau = new Date(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021").getTime());
+            ngayBatDau = new Date(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2022").getTime());
         } catch (ParseException ex) {
             Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
         }

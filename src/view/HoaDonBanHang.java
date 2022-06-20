@@ -1399,12 +1399,17 @@ public class HoaDonBanHang extends javax.swing.JFrame {
             int soLuong = 0;
             try {
                 soLuong = Integer.parseInt(model2.getValueAt(index, 2).toString());
-                if (soLuong <= 0) {
+                if (soLuong < 0) {
                     throw new ArithmeticException("");
-                }
+                }                
                 if(soLuong <= soSanPham){
-                    ChiTietHoaDon t = new ChiTietHoaDon("", model2.getValueAt(index, 0).toString(), soLuong);
+                    if(soLuong == 0){
+                        arr_CTHD.remove(index);
+                    }
+                    else{
+                         ChiTietHoaDon t = new ChiTietHoaDon("", model2.getValueAt(index, 0).toString(), soLuong);
                     arr_CTHD.set(index, t);
+                    }                  
                 }
                 else{
                     JOptionPane.showMessageDialog(rootPane, "Số lượng sản phẩm còn lại: " + soSanPham);
