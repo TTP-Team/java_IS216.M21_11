@@ -31,6 +31,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
     private String chucNang;
     private String regSDT;
     private String regEmail;
+    private Date ngayHienTai;
 
     /**
      * Creates new form QuanLyNhanVien
@@ -43,6 +44,8 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         this.getAllKhachHang();
         this.VoHieuHoaBtn(false);
         NgaySinhField.setDateFormatString("dd/MM/yyyy");
+        long millis = System.currentTimeMillis();
+        ngayHienTai = new java.sql.Date(millis);
         this.setTimKiemField();
         regSDT = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
         regEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
@@ -427,18 +430,17 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(NgayVaoLamLabel))))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
-                                .addComponent(CCCDField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(CCCDField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NgayDangKyField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(DoanhSoField, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(DoanhSoField, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                                    .addComponent(NgayDangKyField))))
                         .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(DiaChiLabel)
@@ -605,11 +607,15 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 979, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -769,49 +775,58 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } else {
             if (!"".equals(HoTenField.getText()) && NgaySinhField.getDate() != null && !"".equals(DiaChiField.getText())) {
-                if ("Them".equals(this.chucNang))
+                if (NgaySinhField.getDate().after(ngayHienTai)) {
+                    JOptionPane.showMessageDialog(null,
+                            "Ngày sinh không thể lớn hơn hoặc bằng ngày vào làm",
+                            "",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    if ("Them".equals(this.chucNang))
                 try {
-                    ThemKhachHang();
-                } catch (ParseException ex) {
-                    Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
-                } else if ("Sua".equals(this.chucNang)) {
-                    Date ngaySinh = new Date(NgaySinhField.getDate().getTime());
-                    Date ngayDangKy = null;
-                    try {
-                        ngayDangKy = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayDangKyField.getText()).getTime());
+                        ThemKhachHang();
                     } catch (ParseException ex) {
                         Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    String gioiTinh = "";
-                    if (jRadioButton1.isSelected()) {
-                        gioiTinh = jRadioButton1.getText();
-                    } else if (jRadioButton2.isSelected()) {
-                        gioiTinh = jRadioButton2.getText();
-                    }
-                    KhachHang kh = new KhachHang(MaKhachHangField.getText(), HoTenField.getText(), DiaChiField.getText(), SoDienThoaiField.getText(), EmailField.getText(), Long.parseLong(CCCDField.getText()), gioiTinh, ngaySinh, ngayDangKy, Double.parseDouble(DoanhSoField.getText()));
-                    int result = JOptionPane.showConfirmDialog(null,
-                            "Bạn muốn sửa thông tin này ?",
-                            "Xác nhận",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE);
-                    if (result == JOptionPane.YES_OPTION) {
-                        if (KhachHangDAO.getInstance().update(kh) == 1) {
-                            JOptionPane.showMessageDialog(null,
-                                    "Sửa thành công",
-                                    "",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            JOptionPane.showMessageDialog(null,
-                                    "Không thể sửa!",
-                                    "",
-                                    JOptionPane.ERROR_MESSAGE);
-                        };
+                    } else if ("Sua".equals(this.chucNang)) {
+                        Date ngaySinh = new Date(NgaySinhField.getDate().getTime());
+                        Date ngayDangKy = null;
+                        try {
+                            ngayDangKy = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayDangKyField.getText()).getTime());
+                        } catch (ParseException ex) {
+                            Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String gioiTinh = "";
+                        if (jRadioButton1.isSelected()) {
+                            gioiTinh = jRadioButton1.getText();
+                        } else if (jRadioButton2.isSelected()) {
+                            gioiTinh = jRadioButton2.getText();
+                        }
+                        KhachHang kh = new KhachHang(MaKhachHangField.getText(), HoTenField.getText(), DiaChiField.getText(), SoDienThoaiField.getText(), EmailField.getText(), Long.parseLong(CCCDField.getText()), gioiTinh, ngaySinh, ngayDangKy, Double.parseDouble(DoanhSoField.getText()));
+                        int result = JOptionPane.showConfirmDialog(null,
+                                "Bạn muốn sửa thông tin này ?",
+                                "Xác nhận",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE);
+                        if (result == JOptionPane.YES_OPTION) {
+                            if (KhachHangDAO.getInstance().update(kh) == 1) {
+                                JOptionPane.showMessageDialog(null,
+                                        "Sửa thành công",
+                                        "",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "Không thể sửa!",
+                                        "",
+                                        JOptionPane.ERROR_MESSAGE);
+                            };
 
+                        }
                     }
+                    this.VoHieuHoaBtn(false);
+                    this.getAllKhachHang();
+                    this.ResetValue();
+
                 }
-                this.VoHieuHoaBtn(false);
-                this.getAllKhachHang();
-                this.ResetValue();
 
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -830,7 +845,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<KhachHang> khachHang = new ArrayList<>();
+        ArrayList<KhachHang> khachHang = null;
         if (!"".equals(TuKhoaField.getText())) {
             if ("Mã khách hàng".equals(timKiemTheo)) {
                 khachHang.add(KhachHangDAO.getInstance().getById(TuKhoaField.getText()));
@@ -838,13 +853,16 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 khachHang = KhachHangDAO.getInstance().getByTen(TuKhoaField.getText());
             } else if ("Giới tính".equals(timKiemTheo)) {
                 khachHang = KhachHangDAO.getInstance().getByGioiTinh(TuKhoaField.getText());
-            } else {
+            }
+            if (khachHang == null || TuKhoaField.getText().contains("%")) {
                 JOptionPane.showMessageDialog(null,
                         "Không tìm thấy",
                         "",
                         JOptionPane.ERROR_MESSAGE);
+            } else {
+                this.hienThi(khachHang);
+
             }
-            this.hienThi(khachHang);
         } else
             this.getAllKhachHang();
     }//GEN-LAST:event_TimKiemBtnActionPerformed
@@ -866,9 +884,10 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 khachHang = KhachHangDAO.getInstance().getByTen(TuKhoaField.getText());
             } else if ("Giới tính".equals(timKiemTheo)) {
                 khachHang = KhachHangDAO.getInstance().getByGioiTinh(TuKhoaField.getText());
-            } 
-            if(khachHang != null)
+            }
+            if (khachHang != null && !TuKhoaField.getText().contains("%")) {
                 this.hienThi(khachHang);
+            }
         } else
             this.getAllKhachHang();
     }//GEN-LAST:event_TuKhoaFieldKeyReleased

@@ -272,26 +272,26 @@ public class QuanLyChamCong extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
 
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<ChamCong> chamCong = new ArrayList<>();
+        ArrayList<ChamCong> chamCong = null;
         if (!"".equals(TuKhoaField.getText()) || TuKhoaDate.getDate() != null) {
-            if ("Mã nhân viên".equals(timKiemTheo)) {
-                chamCong = ChamCongDAO.getInstance().getByMaNhanVien(TuKhoaField.getText());
-            } else if ("Tên nhân viên".equals(timKiemTheo)) {
-                chamCong = ChamCongDAO.getInstance().getByTenNhanVien(TuKhoaField.getText());
+            if (null != timKiemTheo) switch (timKiemTheo) {
+                case "Mã nhân viên" -> chamCong = ChamCongDAO.getInstance().getByMaNhanVien(TuKhoaField.getText());
+                case "Tên nhân viên" -> chamCong = ChamCongDAO.getInstance().getByTenNhanVien(TuKhoaField.getText());
+                case "Ngày làm việc" -> {
+                    chamCong = ChamCongDAO.getInstance().getByNgayLamViec(new Date(TuKhoaDate.getDate().getTime()));
+                }
+                default -> {
+                }
             }
-            else if ("Ngày làm việc".equals(timKiemTheo)) {
-                System.out.println("Đang tìm kiếm");
-                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String ngayVaoLam = dateFormat.format(new Date(TuKhoaDate.getDate().getTime()));
-                System.out.println("Ngay lam viec: " + ngayVaoLam);
-                chamCong = ChamCongDAO.getInstance().getByNgayLamViec(new Date(TuKhoaDate.getDate().getTime()));
-            }else {
-            JOptionPane.showMessageDialog(null,
-                    "Không tìm thấy!",
-                    "",
-                    JOptionPane.ERROR_MESSAGE);
+            if (chamCong == null || TuKhoaField.getText().contains("%")) {
+                JOptionPane.showMessageDialog(null,
+                        "Không tìm thấy",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                this.hienThi(chamCong);
+
             }
-            this.hienThi(chamCong);
         } else
             this.getAllChamCong();
     }//GEN-LAST:event_TimKiemBtnActionPerformed

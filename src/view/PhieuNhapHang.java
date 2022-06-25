@@ -4,6 +4,7 @@
  */
 package view;
 
+import Model.ChiTietHoaDon;
 import Model.ChiTietPhieuNhap;
 import dao.ChiTietPhieuNhapDAO;
 import Model.SanPham;
@@ -14,6 +15,7 @@ import com.toedter.calendar.JDateChooser;
 import dao.NhanVienDAO;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -183,7 +185,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -712,7 +714,7 @@ public class PhieuNhapHang extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<PhieuNhap> phieuNhap = new ArrayList<>();
+        ArrayList<PhieuNhap> phieuNhap = null;
         if (CTPN_model != null) {
             CTPN_model.setRowCount(0);
         }
@@ -727,10 +729,13 @@ public class PhieuNhapHang extends javax.swing.JFrame {
 
             }
 
-            if (phieuNhap != null) {
+            if (phieuNhap != null || !tuKhoaField.getText().contains("%")) {
                 this.hienThiPhieuNhap(phieuNhap);
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
+                JOptionPane.showMessageDialog(null,
+                                "Không tìm thấy!",
+                                "",
+                                JOptionPane.ERROR_MESSAGE);
             }
         } else
             this.getAllPhieuNhap();
@@ -921,8 +926,38 @@ public class PhieuNhapHang extends javax.swing.JFrame {
     private void DanhSachCTPNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DanhSachCTPNKeyReleased
         // TODO add your handling code here:
         int index = DanhSachCTPN.getSelectedRow();
-        arr_CTPN.remove(index);
-        if (!arr_CTPN.isEmpty()) {
+        if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            arr_CTPN.remove(index);
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int soSanPham = SanPhamDAO.getInstance().getById(CTPN_model.getValueAt(index, 0).toString()).getSoLuong();
+            int soLuong = 0;
+            try {
+                soLuong = Integer.parseInt(CTPN_model.getValueAt(index, 2).toString());
+                if (soLuong < 0) {
+                    throw new ArithmeticException("");
+                }                
+                if(soLuong <= soSanPham){
+                    if(soLuong == 0){
+                        arr_CTPN.remove(index);
+                    }
+                    else{
+                         ChiTietPhieuNhap t= new ChiTietPhieuNhap("", CTPN_model.getValueAt(index, 0).toString(), Double.parseDouble(DonGiaField.getText()), soLuong);
+                    arr_CTPN.set(index, t);
+                    }                  
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Số lượng sản phẩm còn lại: " + soSanPham);
+                    SoLuongField.setFocusable(true);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Số lượng là chữ số lớn hơn 0",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
+        if (arr_CTPN != null) {
             this.hienThiChiTietPhieuNhap(arr_CTPN);
         }
     }//GEN-LAST:event_DanhSachCTPNKeyReleased

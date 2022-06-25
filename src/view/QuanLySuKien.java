@@ -174,10 +174,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
         jScrollPane1.setViewportView(DanhSachSuKien);
         if (DanhSachSuKien.getColumnModel().getColumnCount() > 0) {
             DanhSachSuKien.getColumnModel().getColumn(0).setResizable(false);
-            DanhSachSuKien.getColumnModel().getColumn(1).setResizable(false);
             DanhSachSuKien.getColumnModel().getColumn(2).setResizable(false);
-            DanhSachSuKien.getColumnModel().getColumn(3).setResizable(false);
-            DanhSachSuKien.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -308,7 +305,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
         PhanTramGiamGiaField.setBackground(new java.awt.Color(255, 255, 255));
         PhanTramGiamGiaField.setForeground(new java.awt.Color(0, 0, 0));
         PhanTramGiamGiaField.setMajorTickSpacing(10);
-        PhanTramGiamGiaField.setMinorTickSpacing(2);
+        PhanTramGiamGiaField.setMinorTickSpacing(1);
         PhanTramGiamGiaField.setPaintLabels(true);
         PhanTramGiamGiaField.setPaintTicks(true);
         PhanTramGiamGiaField.setSnapToTicks(true);
@@ -325,26 +322,23 @@ public class QuanLySuKien extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(MaSuKienField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NgayBatDauField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NgayBatDauLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TenSuKienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TenSuKienField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NgayKetThucLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NgayKetThucField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(MaSuKienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PhanTramGiamGiaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(PhanTramGiamGiaField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(MaSuKienField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NgayBatDauField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NgayBatDauLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TenSuKienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TenSuKienField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NgayKetThucLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NgayKetThucField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(MaSuKienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PhanTramGiamGiaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addComponent(PhanTramGiamGiaField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,7 +485,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(268, 268, 268))
+                .addGap(248, 248, 248))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,8 +602,15 @@ public class QuanLySuKien extends javax.swing.JFrame {
 
     private void LuuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuuBtnActionPerformed
         // TODO add your handling code here:
-        if (!"".equals(TenSuKienField.getText())) {
-            if ("Them".equals(this.chucNang))
+        if (!"".equals(TenSuKienField.getText()) && NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null) {
+            if (NgayBatDauField.getDate().after(NgayKetThucField.getDate())) {
+                    JOptionPane.showMessageDialog(null,
+                            "Ngày bắt đầu không thể lớn hơn ngày kết thúc!",
+                            "",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            else{
+                if ("Them".equals(this.chucNang))
                 try {
                 ThemSuKien();
             } catch (ParseException ex) {
@@ -643,6 +644,8 @@ public class QuanLySuKien extends javax.swing.JFrame {
             this.VoHieuHoaBtn(false);
             this.getAllSuKien();
             this.ResetValue();
+            }
+            
 
         } else
             JOptionPane.showMessageDialog(null,
@@ -680,7 +683,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<SuKien> suKien = new ArrayList<>();
+        ArrayList<SuKien> suKien = null;
         if (!"".equals(TuKhoaField.getText()) || TuKhoaDate != null) {
             if ("Mã sự kiện".equals(timKiemTheo)) {
                 suKien.add(SuKienDAO.getInstance().getById(TuKhoaField.getText()));
@@ -690,7 +693,7 @@ public class QuanLySuKien extends javax.swing.JFrame {
                 suKien = SuKienDAO.getInstance().getByNgay(new Date(TuKhoaDate.getDate().getTime()));
                 System.out.println("Đang tìm kiếm");
             } 
-            if(suKien != null)
+            if(suKien != null || !TuKhoaField.getText().contains("%"))
                 this.hienThi(suKien);
             else {
                 JOptionPane.showMessageDialog(null,

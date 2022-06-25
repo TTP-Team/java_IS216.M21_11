@@ -442,19 +442,21 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<DanhMuc> danhMuc = new ArrayList<>();
+        ArrayList<DanhMuc> danhMuc = null;
         if (!"".equals(TuKhoaField.getText())) {
             if ("Mã danh mục".equals(timKiemTheo)) {
                 danhMuc.add(DanhMucDAO.getInstance().getById(TuKhoaField.getText()));
             } else if ("Tên danh mục".equals(timKiemTheo)) {
                 danhMuc = DanhMucDAO.getInstance().getByTen(TuKhoaField.getText());
-            } else {
+            } 
+             if (danhMuc == null || TuKhoaField.getText().contains("%")) {
                 JOptionPane.showMessageDialog(null,
                         "Không tìm thấy",
                         "",
                         JOptionPane.ERROR_MESSAGE);
+            } else {
+                this.hienThi(danhMuc);
             }
-            this.hienThi(danhMuc);
         } else {
             this.getAllDanhMuc();
         }
@@ -597,7 +599,7 @@ public class QuanLyDanhMuc extends javax.swing.JFrame {
             } else if ("Tên danh mục".equals(timKiemTheo)) {
                 danhMuc = DanhMucDAO.getInstance().getByTen(TuKhoaField.getText());
             } 
-            if(danhMuc != null)
+            if(danhMuc != null && !TuKhoaField.getText().contains("%"))
                 this.hienThi(danhMuc);
         }
         else{

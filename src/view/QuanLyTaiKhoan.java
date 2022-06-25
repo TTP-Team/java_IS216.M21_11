@@ -21,11 +21,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh PC
  */
 public class QuanLyTaiKhoan extends javax.swing.JFrame {
+
     private DefaultTableModel model;
     private String phanQuyen;
     private String tenTaiKhoan;
-            private JTextField TuKhoaField;
+    private JTextField TuKhoaField;
     private JComboBox TuKhoaCombobox;
+
     /**
      * Creates new form QuanLyTaiKhoan
      */
@@ -34,30 +36,33 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         this.setVisible(true);
         this.setTitle("Quản lý tài khoản");
         this.setLocationRelativeTo(null);
-        this.getAllTaiKhoan();  
+        this.getAllTaiKhoan();
         this.setTimKiemField();
         this.phanQuyen = phanQuyen;
         this.tenTaiKhoan = maNV;
         DanhSachTaiKhoan.setRowHeight(25);
     }
-    
-    private void ResetValue(){
-        TenDangNhapField.setText("");    
+
+    private void ResetValue() {
+        TenDangNhapField.setText("");
     }
+
     private void hienThi(ArrayList<TaiKhoan> t) {
         model = (DefaultTableModel) DanhSachTaiKhoan.getModel();
         model.setRowCount(0);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         for (TaiKhoan i : t) {
             String[] dataRow = {i.getTenDangNhap(), i.getPhanQuyen(), i.getTrangThai()};
             model.addRow(dataRow);
         }
     }
+
     private void getAllTaiKhoan() {
         ArrayList<TaiKhoan> taiKhoan = TaiKhoanDAO.getInstance().getAll();
         this.hienThi(taiKhoan);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -437,47 +442,46 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         int index = DanhSachTaiKhoan.getSelectedRow();
         TenDangNhapField.setText((String) model.getValueAt(index, 0));
         PhanQuyenField.setText((String) model.getValueAt(index, 1));
-        if("Khóa".equals((String) model.getValueAt(index, 2))){
+        if ("Khóa".equals((String) model.getValueAt(index, 2))) {
             KhoaBtn.setSelected(true);
             KhoaBtn.setText("Mở khóa");
-        }else{
+        } else {
             KhoaBtn.setSelected(false);
-            KhoaBtn.setText("Khóa");    
+            KhoaBtn.setText("Khóa");
         }
-        
+
     }//GEN-LAST:event_DanhSachTaiKhoanMouseClicked
 
     private void KhoaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KhoaBtnActionPerformed
         // TODO add your handling code here:
-        if(KhoaBtn.isSelected()){
+        if (KhoaBtn.isSelected()) {
             TaiKhoan tk = new TaiKhoan();
             tk.setTenDangNhap(TenDangNhapField.getText());
             tk.setTrangThai("Khóa");
             TaiKhoanDAO.getInstance().update(tk);
             KhoaBtn.setText("Mở khóa");
             JOptionPane.showMessageDialog(null,
-                                "Khóa tài khoản thành công",
-                                "",
-                                JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
+                    "Khóa tài khoản thành công",
+                    "",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
             TaiKhoan tk = new TaiKhoan();
             tk.setTenDangNhap(TenDangNhapField.getText());
             tk.setTrangThai("Hoạt Động");
             TaiKhoanDAO.getInstance().update(tk);
             KhoaBtn.setText("Khóa");
             JOptionPane.showMessageDialog(null,
-                                "Mở khóa tài khoản thành công",
-                                "",
-                                JOptionPane.INFORMATION_MESSAGE);
+                    "Mở khóa tài khoản thành công",
+                    "",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         this.getAllTaiKhoan();
     }//GEN-LAST:event_KhoaBtnActionPerformed
-    
-    
+
+
     private void TimKiemFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TimKiemFieldItemStateChanged
         // TODO add your handling code here:
-        if("Tên đăng nhập".equals((String)TimKiemField.getSelectedItem())){    
+        if ("Tên đăng nhập".equals((String) TimKiemField.getSelectedItem())) {
             TuKhoaField = new JTextField();
             TuKhoaField.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
             TimKiemPanel.removeAll();
@@ -485,50 +489,59 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
             TimKiemPanel.add(TuKhoaField);
             TimKiemPanel.validate();
             TimKiemPanel.repaint();
-        }
-        else{
+        } else {
             TuKhoaCombobox = new JComboBox();
             TuKhoaCombobox.setPreferredSize(new Dimension(TimKiemPanel.getWidth(), TimKiemPanel.getHeight()));
             TimKiemPanel.removeAll();
             TimKiemPanel.setLayout(new CardLayout());
             TimKiemPanel.add(TuKhoaCombobox);
             TimKiemPanel.validate();
-            TimKiemPanel.repaint();  
+            TimKiemPanel.repaint();
             TuKhoaCombobox.removeAllItems();
-            if("Quyền truy cập".equals((String)TimKiemField.getSelectedItem())){
-                String []tenCot ={"Quản lý", "Nhân viên bán hàng", "Thủ kho"}; 
-                for(int i = 0; i < tenCot.length; i++)
+            if ("Quyền truy cập".equals((String) TimKiemField.getSelectedItem())) {
+                String[] tenCot = {"Quản lý", "Nhân viên bán hàng", "Thủ kho"};
+                for (int i = 0; i < tenCot.length; i++) {
                     TuKhoaCombobox.addItem(tenCot[i]);
-            }
-            else{
-                String []tenCot ={"Hoạt Động", "Khóa"}; 
-                for(int i = 0; i < tenCot.length; i++)
+                }
+            } else {
+                String[] tenCot = {"Hoạt Động", "Khóa"};
+                for (int i = 0; i < tenCot.length; i++) {
                     TuKhoaCombobox.addItem(tenCot[i]);
+                }
             }
-            
+
         }
     }//GEN-LAST:event_TimKiemFieldItemStateChanged
 
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
-        String timKiemTheo = (String) TimKiemField.getSelectedItem();        
-        ArrayList<TaiKhoan> taiKhoan = new ArrayList<>();
-        if ("Tên đăng nhập".equals(timKiemTheo)){
-            if(!"".equals(TuKhoaField.getText())){
+        String timKiemTheo = (String) TimKiemField.getSelectedItem();
+        ArrayList<TaiKhoan> taiKhoan = null;
+        if ("Tên đăng nhập".equals(timKiemTheo)) {
+            if (!"".equals(TuKhoaField.getText())) {
                 taiKhoan.add(TaiKhoanDAO.getInstance().getById(TuKhoaField.getText()));
             }
         } else if ("Trạng thái".equals(timKiemTheo)) {
             taiKhoan = TaiKhoanDAO.getInstance().getByTrangThai((String) TuKhoaCombobox.getSelectedItem());
-        }else if ("Quyền truy cập".equals(timKiemTheo)) {
+        } else if ("Quyền truy cập".equals(timKiemTheo)) {
             taiKhoan = TaiKhoanDAO.getInstance().getByPhanQuyen((String) TuKhoaCombobox.getSelectedItem());
-        }else {
-            JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
         }
+        if (taiKhoan == null || TuKhoaField.getText().contains("%")) {
+            JOptionPane.showMessageDialog(null,
+                    "Không tìm thấy",
+                    "",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            this.hienThi(taiKhoan);
+
+        }
+
     }//GEN-LAST:event_TimKiemBtnActionPerformed
-    private void setTimKiemField(){
-        String [] tenCot ={"Tên đăng nhập", "Trạng thái", "Quyền truy cập"}; 
-        for(int i = 0; i < tenCot.length; i++)
+    private void setTimKiemField() {
+        String[] tenCot = {"Tên đăng nhập", "Trạng thái", "Quyền truy cập"};
+        for (int i = 0; i < tenCot.length; i++) {
             TimKiemField.addItem(tenCot[i]);
+        }
     }
     /**
      * @param args the command line arguments

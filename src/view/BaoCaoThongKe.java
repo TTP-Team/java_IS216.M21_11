@@ -49,6 +49,7 @@ import java.util.logging.Logger;
  * @author LeCongThanh
  */
 public class BaoCaoThongKe extends javax.swing.JFrame {
+
     private Chart chart;
     /**
      * Creates new form BaoCaoThongKe
@@ -56,6 +57,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
     private String phanQuyen;
     private String tenTaiKhoan;
     private BufferedImage bufferedImage;
+
     public BaoCaoThongKe(String phanQuyen, String maNV) {
         initComponents();
         this.setVisible(true);
@@ -65,15 +67,15 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         NgayKetThucField.setDateFormatString("dd/MM/yyyy");
         long millis = System.currentTimeMillis();
         java.sql.Date ngayHienTai = new java.sql.Date(millis);
-        
-        Date ngayBatDau= null;
+
+        Date ngayBatDau = null;
         try {
             ngayBatDau = new Date(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2022").getTime());
         } catch (ParseException ex) {
             Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
         }
         NgayBatDauField.setDate(ngayBatDau);
-        NgayKetThucField.setDate(ngayHienTai);   
+        NgayKetThucField.setDate(ngayHienTai);
         this.veBieuDo("Doanh thu ngày");
         this.tenTaiKhoan = maNV;
         this.phanQuyen = phanQuyen;
@@ -189,7 +191,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 102));
 
-        jLabel4.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("DialogInput", 1, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("BÁO CÁO THỐNG KÊ");
 
@@ -200,7 +202,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(478, 478, 478))
+                .addGap(490, 490, 490))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +276,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,12 +297,19 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         String loai = (String) LoaiBaoCaoField.getSelectedItem();
         this.InBaoCao.setVisible(true);
         if (NgayBatDauField.getDate() != null && NgayKetThucField.getDate() != null) {
-            if ("Doanh thu theo ngày".equals(loai)) {
-                this.veBieuDo("Doanh thu ngày");
-            } else if ("Sản phẩm bán ra".equals(loai)) {
-                this.veBieuDo("Sản phẩm ngày");
-            } else if ("Sản phẩm nhập vào".equals(loai)) {
+            if (NgayBatDauField.getDate().after(NgayKetThucField.getDate())) {
+                JOptionPane.showMessageDialog(null,
+                        "Ngày bắt đầu không thể lớn hơn ngày kết thúc!",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                if ("Doanh thu theo ngày".equals(loai)) {
+                    this.veBieuDo("Doanh thu ngày");
+                } else if ("Sản phẩm bán ra".equals(loai)) {
+                    this.veBieuDo("Sản phẩm ngày");
+                }
             }
+
         }
     }//GEN-LAST:event_XemBieuDoActionPerformed
 
@@ -322,12 +331,13 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
     private void ThoatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThoatBtnActionPerformed
         // TODO add your handling code here:
-        if("QL".equals(phanQuyen))
+        if ("QL".equals(phanQuyen)) {
             new QuanLy_View(phanQuyen, tenTaiKhoan);
-        else if("NVBH".equals(phanQuyen))
+        } else if ("NVBH".equals(phanQuyen)) {
             new NhanVienBanHang_View(phanQuyen, tenTaiKhoan);
-        else if("TK".equals(phanQuyen))
+        } else if ("TK".equals(phanQuyen)) {
             new ThuKho_View(phanQuyen, tenTaiKhoan);
+        }
         this.dispose();
     }//GEN-LAST:event_ThoatBtnActionPerformed
 
@@ -338,7 +348,6 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
 
         ArrayList<BaoCaoDoanhThu> hd = ThongKeDAO.getInstance().getDoanhThuByHoaDon(new Date(NgayBatDauField.getDate().getTime()), new Date(NgayKetThucField.getDate().getTime()));
         ArrayList<BaoCaoSanPham> sp1 = ThongKeDAO.getInstance().getSoSanPhamBanRa(new Date(NgayBatDauField.getDate().getTime()), new Date(NgayKetThucField.getDate().getTime()));
-      
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String ngayBatDau = dateFormat.format(NgayBatDauField.getDate());
@@ -368,7 +377,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                     Panel1.add(chart);
                     Panel1.validate();
                     Panel1.repaint();
-                    chart.start();                   
+                    chart.start();
                 } else {
                     JOptionPane.showConfirmDialog(rootPane, "Không tồn tại dữ liệu!");
                 }
@@ -396,14 +405,14 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
                     JOptionPane.showConfirmDialog(rootPane, "Không tồn tại dữ liệu!");
                 }
 
-            }            
+            }
             default -> {
             }
         }
 
     }
 
-    private void InBaoCaoDoanhThu() {        
+    private void InBaoCaoDoanhThu() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String ngayBatDau = dateFormat.format(NgayBatDauField.getDate());
         String ngayKetThuc = dateFormat.format(NgayKetThucField.getDate());
@@ -563,17 +572,18 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         }
         try {
             File f = new File("src/reports/" + fileName + ".pdf");
-            if(!Desktop.isDesktopSupported()){
+            if (!Desktop.isDesktopSupported()) {
                 System.out.println("not supported");
                 return;
             }
             Desktop dk = Desktop.getDesktop();
-            if(f.exists()){
+            if (f.exists()) {
                 dk.open(f);
             }
         } catch (Exception e) {
         }
     }
+
     private void InBaoCaoSanPhamBan() {
         Document doc = new Document(PageSize.A4);
         DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy");
@@ -699,7 +709,7 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             doc.add(prgMuc2);
             Image image = Image.getInstance(writer, bufferedImage, 1.0f);
             image.setAlignment(Element.ALIGN_CENTER);
-            doc.add(image);                        
+            doc.add(image);
             doc.close();
             writer.close();
 
@@ -708,17 +718,18 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
         }
         try {
             File f = new File("src/reports/" + fileName + ".pdf");
-            if(!Desktop.isDesktopSupported()){
+            if (!Desktop.isDesktopSupported()) {
                 System.out.println("not supported");
                 return;
             }
             Desktop dk = Desktop.getDesktop();
-            if(f.exists()){
+            if (f.exists()) {
                 dk.open(f);
             }
         } catch (Exception e) {
         }
-    }        
+    }
+
     public String DinhDangTienTe(double SoTien) {
         Locale localeEN = new Locale("en", "EN");
         NumberFormat en = NumberFormat.getInstance(localeEN);
@@ -733,7 +744,6 @@ public class BaoCaoThongKe extends javax.swing.JFrame {
             LoaiBaoCaoField.addItem(tenCot[i]);
         }
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
