@@ -19,6 +19,7 @@ import java.awt.Image;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
@@ -233,16 +234,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jScrollPane1.setViewportView(DanhSachSanPham);
         if (DanhSachSanPham.getColumnModel().getColumnCount() > 0) {
             DanhSachSanPham.getColumnModel().getColumn(0).setResizable(false);
-            DanhSachSanPham.getColumnModel().getColumn(1).setResizable(false);
             DanhSachSanPham.getColumnModel().getColumn(2).setResizable(false);
             DanhSachSanPham.getColumnModel().getColumn(3).setResizable(false);
             DanhSachSanPham.getColumnModel().getColumn(4).setResizable(false);
-            DanhSachSanPham.getColumnModel().getColumn(5).setResizable(false);
-            DanhSachSanPham.getColumnModel().getColumn(6).setResizable(false);
             DanhSachSanPham.getColumnModel().getColumn(7).setResizable(false);
-            DanhSachSanPham.getColumnModel().getColumn(8).setResizable(false);
-            DanhSachSanPham.getColumnModel().getColumn(9).setResizable(false);
-            DanhSachSanPham.getColumnModel().getColumn(10).setResizable(false);
             DanhSachSanPham.getColumnModel().getColumn(11).setResizable(false);
             DanhSachSanPham.getColumnModel().getColumn(12).setResizable(false);
         }
@@ -257,17 +252,17 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(506, 506, 506)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(551, 551, 551))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -1030,7 +1025,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<SanPham> sanPham = new ArrayList<>();
+        ArrayList<SanPham> sanPham = null;
         if (!"".equals(TuKhoaField.getText())) {
             if ("Mã sản phẩm".equals(timKiemTheo)) {
                 sanPham.add(SanPhamDAO.getInstance().getById(TuKhoaField.getText()));
@@ -1044,13 +1039,15 @@ public class QuanLySanPham extends javax.swing.JFrame {
                 sanPham = SanPhamDAO.getInstance().getByMonTheThao(TuKhoaField.getText());
             } else if ("Mã danh mục".equals(timKiemTheo)) {
                 sanPham = SanPhamDAO.getInstance().getByMaDanhMuc(TuKhoaField.getText());
-            } else {
+            } 
+            if (sanPham == null || TuKhoaField.getText().contains("%")) {
                 JOptionPane.showMessageDialog(null,
-                    "Không tìm thấy!",
-                    "",
-                    JOptionPane.ERROR_MESSAGE);
+                        "Không tìm thấy",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                this.hienThi(sanPham);
             }
-            this.hienThi(sanPham);
         } else
             this.getAllSanPham();
     }//GEN-LAST:event_TimKiemBtnActionPerformed
@@ -1073,7 +1070,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
             } else if ("Mã danh mục".equals(timKiemTheo)) {
                 sanPham = SanPhamDAO.getInstance().getByMaDanhMuc(TuKhoaField.getText());
             }
-            if(sanPham != null)
+            if(sanPham != null && !TuKhoaField.getText().contains("%"))
                 this.hienThi(sanPham);
         }
         else

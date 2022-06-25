@@ -931,7 +931,7 @@ public class HoaDonBanHang extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<HoaDon> hoaDon = new ArrayList<>();
+        ArrayList<HoaDon> hoaDon = null;
         if (model2 != null) {
             model2.setRowCount(0);
         }
@@ -944,10 +944,14 @@ public class HoaDonBanHang extends javax.swing.JFrame {
                 hoaDon = HoaDonDAO.getInstance().getByMaNhanVien(tuKhoaField.getText());
             } else if ("Ngày hóa đơn".equals(timKiemTheo)) {
                 hoaDon = HoaDonDAO.getInstance().getByNgayHoaDon(new Date(tuKhoaDate.getDate().getTime()));
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Không tìm thấy");
-            }
-            this.hienThiHoaDon(hoaDon);
+            } 
+            if(hoaDon != null || !tuKhoaField.getText().contains("%"))
+                this.hienThiHoaDon(hoaDon);
+            else
+                JOptionPane.showMessageDialog(null,
+                                "Không tìm thấy!",
+                                "",
+                                JOptionPane.ERROR_MESSAGE);
         } else
             this.getAllHoaDon();
     }//GEN-LAST:event_TimKiemBtnActionPerformed

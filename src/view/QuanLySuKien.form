@@ -105,7 +105,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -115,12 +115,12 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -353,33 +353,28 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="7" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="MaSuKienField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <Component id="NgayBatDauField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <Component id="NgayBatDauLabel" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="TenSuKienLabel" min="-2" pref="109" max="-2" attributes="0"/>
-                                              <Component id="TenSuKienField" min="-2" pref="200" max="-2" attributes="0"/>
-                                              <Component id="NgayKetThucLabel" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                              <Component id="NgayKetThucField" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="MaSuKienLabel" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                                      <Component id="PhanTramGiamGiaLabel" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
+                                      <Component id="MaSuKienField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="NgayBatDauField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="NgayBatDauLabel" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="TenSuKienLabel" min="-2" pref="109" max="-2" attributes="0"/>
+                                      <Component id="TenSuKienField" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="NgayKetThucLabel" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                      <Component id="NgayKetThucField" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="PhanTramGiamGiaField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="MaSuKienLabel" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="PhanTramGiamGiaLabel" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
+                      <Component id="PhanTramGiamGiaField" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -548,7 +543,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="majorTickSpacing" type="int" value="10"/>
-                    <Property name="minorTickSpacing" type="int" value="2"/>
+                    <Property name="minorTickSpacing" type="int" value="1"/>
                     <Property name="paintLabels" type="boolean" value="true"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
                     <Property name="snapToTicks" type="boolean" value="true"/>
@@ -728,7 +723,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

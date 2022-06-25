@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
@@ -31,6 +34,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private String chucNang;
     private String regSDT;
     private String regEmail;
+    private Date ngayHienTai;
 
     /**
      * Creates new form QuanLyNhanVien
@@ -43,6 +47,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         this.getAllNhanVien();
         this.VoHieuHoaBtn(false);
         NgaySinhField.setDateFormatString("dd/MM/yyyy");
+        long millis = System.currentTimeMillis();
+        ngayHienTai = new java.sql.Date(millis);
         this.setTimKiemField();
         regSDT = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$";
         regEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
@@ -56,6 +62,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 super.paint(g);
             }
         });
+        
         DanhSachNhanVien.setRowHeight(25);
     }
 
@@ -178,14 +185,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         jScrollPane1.setViewportView(DanhSachNhanVien);
         if (DanhSachNhanVien.getColumnModel().getColumnCount() > 0) {
             DanhSachNhanVien.getColumnModel().getColumn(0).setResizable(false);
-            DanhSachNhanVien.getColumnModel().getColumn(1).setResizable(false);
-            DanhSachNhanVien.getColumnModel().getColumn(2).setResizable(false);
             DanhSachNhanVien.getColumnModel().getColumn(3).setResizable(false);
-            DanhSachNhanVien.getColumnModel().getColumn(4).setResizable(false);
-            DanhSachNhanVien.getColumnModel().getColumn(5).setResizable(false);
             DanhSachNhanVien.getColumnModel().getColumn(6).setResizable(false);
-            DanhSachNhanVien.getColumnModel().getColumn(7).setResizable(false);
-            DanhSachNhanVien.getColumnModel().getColumn(8).setResizable(false);
             DanhSachNhanVien.getColumnModel().getColumn(9).setResizable(false);
             DanhSachNhanVien.getColumnModel().getColumn(10).setResizable(false);
         }
@@ -257,11 +258,6 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         SoDienThoaiField.setForeground(new java.awt.Color(0, 0, 0));
         SoDienThoaiField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         SoDienThoaiField.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        SoDienThoaiField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SoDienThoaiFieldActionPerformed(evt);
-            }
-        });
 
         SoDienThoaiLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         SoDienThoaiLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -313,6 +309,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         NgaySinhField.setForeground(new java.awt.Color(0, 0, 0));
         NgaySinhField.setDateFormatString("dd,MM,yyyy");
         NgaySinhField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        NgaySinhField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                NgaySinhFieldMouseReleased(evt);
+            }
+        });
 
         NgayVaoLamField.setEditable(false);
         NgayVaoLamField.setBackground(new java.awt.Color(255, 255, 255));
@@ -324,7 +325,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         LuongLabel.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
         LuongLabel.setForeground(new java.awt.Color(0, 0, 0));
-        LuongLabel.setText("Lương");
+        LuongLabel.setText("Lương cơ bản");
 
         LuongField.setEditable(false);
         LuongField.setBackground(new java.awt.Color(255, 255, 255));
@@ -617,7 +618,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,7 +630,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -661,6 +662,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         this.DiaChiField.setEnabled(val);
         this.CCCDField.setEnabled(val);
         this.ChucVuField.setEnabled(val);
+        NgaySinhField.setEnabled(val);
 
     }
 
@@ -700,39 +702,48 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } else {
             if (!"".equals(HoTenField.getText()) && NgaySinhField.getDate() != null && !"".equals(DiaChiField.getText())) {
-                if ("Them".equals(this.chucNang))
-                try {
-                    ThemNhanVien();
-                } catch (ParseException ex) {
-                    Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-                } else if ("Sua".equals(this.chucNang)) {
-                    Date ngaySinh = new Date(NgaySinhField.getDate().getTime());
-                    Date ngayVaoLam = null;
-                    try {
-                        ngayVaoLam = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayVaoLamField.getText()).getTime());
-                    } catch (ParseException ex) {
-                        Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    String gioiTinh = "";
-                    if (jRadioButton1.isSelected()) {
-                        gioiTinh = jRadioButton1.getText();
-                    } else if (jRadioButton2.isSelected()) {
-                        gioiTinh = jRadioButton2.getText();
-                    }
+                if (NgaySinhField.getDate().after(ngayHienTai)) {
+                    JOptionPane.showMessageDialog(null,
+                            "Ngày sinh không thể lớn hơn hoặc bằng ngày vào làm",
+                            "",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if ("Them".equals(this.chucNang)){
+                        try {
+                            ThemNhanVien();
+                        } catch (ParseException ex) {
+                            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                        } 
+                    }                       
+                    else if ("Sua".equals(this.chucNang)) {
+                        Date ngaySinh = new Date(NgaySinhField.getDate().getTime());
+                        Date ngayVaoLam = null;
+                        try {
+                            ngayVaoLam = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(NgayVaoLamField.getText()).getTime());
+                        } catch (ParseException ex) {
+                            Logger.getLogger(QuanLyKhachHang.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String gioiTinh = "";
+                        if (jRadioButton1.isSelected()) {
+                            gioiTinh = jRadioButton1.getText();
+                        } else if (jRadioButton2.isSelected()) {
+                            gioiTinh = jRadioButton2.getText();
+                        }
 
-                    NhanVien nv = new NhanVien(MaNhanVienField.getText(), HoTenField.getText(), DiaChiField.getText(), SoDienThoaiField.getText(), EmailField.getText(), Long.parseLong(CCCDField.getText()), gioiTinh, ngaySinh, ngayVaoLam, ChucVuField.getSelectedItem().toString(), Double.parseDouble(LuongField.getText()));
-                    int result = JOptionPane.showConfirmDialog(null,
-                            "Bạn muốn sửa thông tin này ?",
-                            "Xác nhận",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE);
-                    if (result == JOptionPane.YES_OPTION) {
-                        NhanVienDAO.getInstance().update(nv);
+                        NhanVien nv = new NhanVien(MaNhanVienField.getText(), HoTenField.getText(), DiaChiField.getText(), SoDienThoaiField.getText(), EmailField.getText(), Long.parseLong(CCCDField.getText()), gioiTinh, ngaySinh, ngayVaoLam, ChucVuField.getSelectedItem().toString(), Double.parseDouble(LuongField.getText()));
+                        int result = JOptionPane.showConfirmDialog(null,
+                                "Bạn muốn sửa thông tin này ?",
+                                "Xác nhận",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE);
+                        if (result == JOptionPane.YES_OPTION) {
+                            NhanVienDAO.getInstance().update(nv);
+                        }
                     }
+                    this.VoHieuHoaBtn(false);
+                    this.getAllNhanVien();
+                    this.ResetValue();
                 }
-                this.VoHieuHoaBtn(false);
-                this.getAllNhanVien();
-                this.ResetValue();
 
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -829,7 +840,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private void TimKiemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtnActionPerformed
         // TODO add your handling code here:
         String timKiemTheo = (String) TimKiemField.getSelectedItem();
-        ArrayList<NhanVien> nhanVien = new ArrayList<>();
+        ArrayList<NhanVien> nhanVien = null;
         if (!"".equals(TuKhoaField.getText())) {
             if ("Mã nhân viên".equals(timKiemTheo)) {
                 nhanVien.add(NhanVienDAO.getInstance().getById(TuKhoaField.getText()));
@@ -839,20 +850,18 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                 nhanVien = NhanVienDAO.getInstance().getByGioiTinh(TuKhoaField.getText());
             } else if ("Chức vụ".equals(timKiemTheo)) {
                 nhanVien = NhanVienDAO.getInstance().getByChucVu(TuKhoaField.getText());
-            } else {
-                JOptionPane.showMessageDialog(null,
-                    "Không tìm thấy!",
-                    "",
-                    JOptionPane.ERROR_MESSAGE);
             }
-            this.hienThi(nhanVien);
+            if (nhanVien == null || TuKhoaField.getText().contains("%")) {
+                JOptionPane.showMessageDialog(null,
+                        "Không tìm thấy",
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                this.hienThi(nhanVien);
+            }
         } else
             this.getAllNhanVien();
     }//GEN-LAST:event_TimKiemBtnActionPerformed
-
-    private void SoDienThoaiFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SoDienThoaiFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SoDienThoaiFieldActionPerformed
 
     private void TuKhoaFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TuKhoaFieldKeyReleased
         // TODO add your handling code here:
@@ -866,12 +875,17 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             } else if ("Giới tính".equals(timKiemTheo)) {
                 nhanVien = NhanVienDAO.getInstance().getByGioiTinh(TuKhoaField.getText());
             }
-            if (nhanVien != null) {
+            if (nhanVien != null && !TuKhoaField.getText().contains("%")) {
                 this.hienThi(nhanVien);
             }
         } else
             this.getAllNhanVien();
     }//GEN-LAST:event_TuKhoaFieldKeyReleased
+
+    private void NgaySinhFieldMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NgaySinhFieldMouseReleased
+        // TODO add your handling code here:
+        System.out.println("thay đổi");
+    }//GEN-LAST:event_NgaySinhFieldMouseReleased
 
     private void hienThi(ArrayList<NhanVien> t) {
         model = (DefaultTableModel) DanhSachNhanVien.getModel();
@@ -880,8 +894,13 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String ngayVaoLam = dateFormat.format(i.getNgayVaoLam());
             String ngaySinh = dateFormat.format(i.getNgaySinh());
-
-            String[] dataRow = {i.getMaNhanVien(), i.getTenNhanVien(), i.getDiaChi(), i.getSoDienThoai(), i.getEmail(), String.valueOf(i.getCCCD()), i.getGioiTinh(), ngaySinh, ngayVaoLam, i.getChucVu(), String.valueOf(i.getLuong())};
+             Locale locale = new Locale("en", "EN");
+            String pattern = "###,###";
+            DecimalFormat dcf = (DecimalFormat) NumberFormat.getNumberInstance(locale);
+            dcf.applyPattern(pattern);
+            Double luong = i.getLuong();
+            String ds = String.valueOf(dcf.format(luong));
+            String[] dataRow = {i.getMaNhanVien(), i.getTenNhanVien(), i.getDiaChi(), i.getSoDienThoai(), i.getEmail(), String.valueOf(i.getCCCD()), i.getGioiTinh(), ngaySinh, ngayVaoLam, i.getChucVu(), ds};
             model.addRow(dataRow);
         }
     }
